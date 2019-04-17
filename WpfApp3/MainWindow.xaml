@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:MainProgramUi"
         mc:Ignorable="d"
         Title="MainWindow" Height="772.334" Width="1636.894">
-    <Grid Width="1300">
+    <Grid Width="1300" HorizontalAlignment="Left" Margin="164,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="189*"/>
+            <RowDefinition Height="554*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="16*"/>
             <ColumnDefinition Width="36*"/>
@@ -16,10 +20,15 @@
             <ColumnDefinition Width="303*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="getMoviesFromPc" Content="Search Movies&#xA;" HorizontalAlignment="Left" Margin="-158,27,0,0" VerticalAlignment="Top" Width="155" Height="31" Click="GetMoviesFromPc_Click"/>
-        <ListBox x:Name="getDataListBox" Grid.Column="1" HorizontalAlignment="Left" Height="502" Margin="14,31,0,0" VerticalAlignment="Top" Width="392" Grid.ColumnSpan="4"/>
+        <ListBox x:Name="getDataListBox" Grid.Column="1" HorizontalAlignment="Left" Height="502" Margin="9,84,0,0" VerticalAlignment="Top" Width="392" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
         <Button x:Name="ClearListBtn" Content="Clear List&#xA;" HorizontalAlignment="Left" Margin="-156,77,0,0" VerticalAlignment="Top" Width="154" Height="30" Click="ClearListBtn_Click"/>
-        <ListBox x:Name="MoviesListBox" Grid.Column="4" HorizontalAlignment="Left" Margin="159,39,0,0" VerticalAlignment="Top" Width="392" Height="500" Grid.ColumnSpan="2"/>
-        <ListBox x:Name="SeriesListBox" Grid.Column="5" HorizontalAlignment="Left" Height="500" Margin="328,44,0,0" VerticalAlignment="Top" Width="392"/>
+        <ListBox x:Name="MoviesListBox" Grid.Column="4" HorizontalAlignment="Left" Margin="148,85,0,0" VerticalAlignment="Top" Width="392" Height="500" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <ListBox x:Name="SeriesListBox" Grid.Column="5" HorizontalAlignment="Left" Height="500" Margin="292,85,0,0" VerticalAlignment="Top" Width="392" Grid.RowSpan="2"/>
+        <ComboBox x:Name="SortTypeComboBox" Grid.ColumnSpan="2" Grid.Column="4" HorizontalAlignment="Left" Margin="150,26,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="By Year" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="By Rating" HorizontalAlignment="Left" Width="118" Background="#00000000"/>
+            <ComboBoxItem Content="By Genre" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
 
     </Grid>
 </Window>

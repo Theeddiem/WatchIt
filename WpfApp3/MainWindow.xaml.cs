@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
+
 using System.Windows;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
@@ -28,7 +28,9 @@ namespace MainProgramUi
             client = new TMDbClient("a959178bb3475c959db8941953d19bad");
 
             InitializeComponent();
+
         }
+
 
         private void UpdateMoviesAndSeriesListBox()
         {
@@ -79,38 +81,15 @@ namespace MainProgramUi
      
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
         {
-            VistaFolderBrowserDialog folderBrowser = new VistaFolderBrowserDialog();
-            folderBrowser.ShowDialog();
-
-            string choosenPath = folderBrowser.SelectedPath;
-
             try
             {
-                List<string> dirs = (Directory.GetDirectories(choosenPath, "*", SearchOption.AllDirectories)).ToList();
-
-                dirs.Add(choosenPath);
-
-
-                foreach (string dir in dirs)
+       
+                foreach (var item in Utilities.GetMoviesFromPc())
                 {
-                    var allowedExtensions = new[] { ".mp4", ".avi", ".mkv" };
-                    var files = Directory
-                        .GetFiles(dir)
-                        .Where(file => allowedExtensions.Any(file.ToLower().EndsWith))
-                        .ToList();
-
-                    foreach (string filePath in files)
-                    {
-                        string fileName = Path.GetFileNameWithoutExtension(filePath);
-                        string s = trimMe(fileName);
-                        getDataListBox.Items.Add(s);
-
-                    }
-
+                    getDataListBox.Items.Add(item);
                 }
-
-
             }
+
             catch (Exception ex)
             {
 
@@ -119,44 +98,6 @@ namespace MainProgramUi
 
             UpdateMoviesAndSeriesListBox();
 
-        }
-
-        private string trimMe(string i_FileName)
-        {
-
-                string strEnd1080 = "1080";
-                string strEnd720 = "720";
-
-                int Start, End;
-
-                if ( i_FileName.Contains(strEnd1080))
-                {
-                    Start = 0;
-                    End = i_FileName.IndexOf(strEnd1080, Start);
-                    i_FileName = i_FileName.Substring(Start, End - Start);
-                }
-
-                else if( i_FileName.Contains(strEnd720))
-                {
-                    Start = 0;
-                    End = i_FileName.IndexOf(strEnd720, Start);
-                    i_FileName = i_FileName.Substring(Start, End - Start);
-                }
-
-                i_FileName = i_FileName.Replace(".", " ");
-
-
-
-            i_FileName = RemoveDigits(i_FileName);
-            return i_FileName;
-
-
-
-        }
-
-        public static string RemoveDigits(string key)
-        {
-            return Regex.Replace(key, @"\d", "");
         }
 
         private void ClearListBtn_Click(object sender, RoutedEventArgs e)
@@ -170,5 +111,6 @@ namespace MainProgramUi
 
             
         }
+
     }
 }
