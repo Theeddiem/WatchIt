@@ -24,12 +24,13 @@
         <Button x:Name="ClearListBtn" Content="Clear List&#xA;" HorizontalAlignment="Left" Margin="-156,77,0,0" VerticalAlignment="Top" Width="154" Height="30" Click="ClearListBtn_Click"/>
         <ListBox x:Name="MoviesListBox" Grid.Column="4" HorizontalAlignment="Left" Margin="148,85,0,0" VerticalAlignment="Top" Width="392" Height="500" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
         <ListBox x:Name="SeriesListBox" Grid.Column="5" HorizontalAlignment="Left" Height="500" Margin="292,85,0,0" VerticalAlignment="Top" Width="392" Grid.RowSpan="2"/>
-        <ComboBox x:Name="SortTypeComboBox" Grid.ColumnSpan="2" Grid.Column="4" HorizontalAlignment="Left" Margin="150,26,0,0" VerticalAlignment="Top" Width="120">
+        <ComboBox x:Name="SortTypeComboBox" Grid.ColumnSpan="2" Grid.Column="4" HorizontalAlignment="Left" Margin="150,26,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="SortTypeComboBox_SelectionChanged" SelectedIndex="-1">
             <ComboBoxItem Content="By Year" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem Content="By Rating" HorizontalAlignment="Left" Width="118" Background="#00000000"/>
             <ComboBoxItem Content="By Genre" HorizontalAlignment="Left" Width="118"/>
+            
         </ComboBox>
-        <Button Content="Button" Grid.Column="5" HorizontalAlignment="Left" Margin="72,36,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+     
 
     </Grid>
 </Window>

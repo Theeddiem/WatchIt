@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public enum EgreetingType
+    public enum SortType
     {
         Year,
         Rating,
         Genre
-  
     }
 }

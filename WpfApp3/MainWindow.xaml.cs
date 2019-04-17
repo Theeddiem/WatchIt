@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
@@ -76,9 +77,7 @@ namespace MainProgramUi
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
-
-       
+            {        
                 foreach (var item in Utilities.GetMoviesFromPc())
                 {
                     getDataListBox.Items.Add(item);
@@ -100,21 +99,33 @@ namespace MainProgramUi
             getDataListBox.Items.Clear();
         }
 
-  
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void SortTypeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            m_MoviesFound.Sort();
 
-            m_MoviesFound =m_MoviesFound.OrderByDescending(w => w.ReleasedYear).ToList();
+          ComboBoxItem s = (ComboBoxItem)SortTypeComboBox.SelectedValue;
 
+            if((string)s.Content == "By Year")
+            {
+                m_MoviesFound = m_MoviesFound.OrderByDescending(w => w.ReleasedYear).ToList();
+            }
+
+            if ((string)s.Content == "By Rating")
+            {
+                m_MoviesFound = m_MoviesFound.OrderByDescending(w => w.Rating).ToList();
+            }
+
+            if ((string)s.Content == "By Genre")
+            {
+                m_MoviesFound = m_MoviesFound.OrderBy(w => w.Genre).ToList();
+            }
 
             MoviesListBox.Items.Clear();
 
             foreach (var item in m_MoviesFound)
             {
-                SeriesListBox.Items.Add(item);
+                MoviesListBox.Items.Add(item);
             }
+
         }
     }
 }
