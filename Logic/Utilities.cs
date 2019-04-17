@@ -14,40 +14,51 @@ namespace Logic
 
        public static List<string> GetMoviesFromPc()
         {
-            VistaFolderBrowserDialog folderBrowser = new VistaFolderBrowserDialog();
-            folderBrowser.ShowDialog();
-
             List<string> titles = new List<string>();
-            string choosenPath = folderBrowser.SelectedPath;
-
-            if (choosenPath != "")
+            try
             {
 
-                
 
-                List<string> dirs = (Directory.GetDirectories(choosenPath, "*", SearchOption.AllDirectories)).ToList();
+                VistaFolderBrowserDialog folderBrowser = new VistaFolderBrowserDialog();
+                folderBrowser.ShowDialog();
 
-                dirs.Add(choosenPath);
+             
+                string choosenPath = folderBrowser.SelectedPath;
 
-                foreach (string dir in dirs)
+                if (choosenPath != "")
                 {
-                    var allowedExtensions = new[] { ".mp4", ".avi", ".mkv" };
-                    var files = Directory
-                        .GetFiles(dir)
-                        .Where(file => allowedExtensions.Any(file.ToLower().EndsWith))
-                        .ToList();
 
-                    foreach (string filePath in files)
+
+
+                    List<string> dirs = (Directory.GetDirectories(choosenPath, "*", SearchOption.AllDirectories)).ToList();
+
+                    dirs.Add(choosenPath);
+
+                    foreach (string dir in dirs)
                     {
-                        string fileName = Path.GetFileNameWithoutExtension(filePath);
-                        string s = trimMe(fileName);
-                        titles.Add(s);
+                        var allowedExtensions = new[] { ".mp4", ".avi", ".mkv" };
+                        var files = Directory
+                            .GetFiles(dir)
+                            .Where(file => allowedExtensions.Any(file.ToLower().EndsWith))
+                            .ToList();
+
+                        foreach (string filePath in files)
+                        {
+                            string fileName = Path.GetFileNameWithoutExtension(filePath);
+                            string s = trimMe(fileName);
+                            titles.Add(s);
+
+                        }
 
                     }
 
-                }
 
-                
+                }
+            }
+
+            catch(Exception ex)
+            {
+                Console.WriteLine();
             }
             return titles;
 
