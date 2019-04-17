@@ -6,13 +6,24 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public abstract class Video 
+    public abstract class Video : IEquatable<Video>
     {
         public string Title { get; set; }
         public string Genre { get; set; }
         public double Rating { get; set; }
         public int ReleasedYear { get; set; }
 
+        public  bool Equals(Video other)
+        {
+            return this.Title == other.Title &&
+             this.ReleasedYear == other.ReleasedYear;
+        }
+
+    
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
 
         public override string ToString()
         {

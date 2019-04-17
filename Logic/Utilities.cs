@@ -17,9 +17,13 @@ namespace Logic
             VistaFolderBrowserDialog folderBrowser = new VistaFolderBrowserDialog();
             folderBrowser.ShowDialog();
 
+            List<string> titles = new List<string>();
             string choosenPath = folderBrowser.SelectedPath;
 
-            List<string> titles = new List<string>();
+            if (choosenPath != "")
+            {
+
+                
 
                 List<string> dirs = (Directory.GetDirectories(choosenPath, "*", SearchOption.AllDirectories)).ToList();
 
@@ -42,7 +46,11 @@ namespace Logic
                     }
 
                 }
-                return titles;
+
+                
+            }
+            return titles;
+
         }
 
         public static string trimMe(string i_FileName)

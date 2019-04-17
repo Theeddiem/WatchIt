@@ -28,6 +28,7 @@ namespace MainProgramUi
 
         private void UpdateMoviesAndSeriesListBox()
         {
+                       
             try
             {
                 for (int i = 0; i < getDataListBox.Items.Count; i++)
@@ -50,13 +51,17 @@ namespace MainProgramUi
                                 genres += (item.Name + ", ");
                             }
 
-                            double S = movie.VoteAverage;
-
                             DateTime ReleaseYear = (DateTime)movie.ReleaseDate;
 
                             title = new Movie(movie.Title, genres, movie.VoteAverage, ReleaseYear.Year);
-                            m_MoviesFound.Add(title);
-                            MoviesListBox.Items.Add(title);
+
+                            if (!m_MoviesFound.Any(n => n.Title == title.Title))
+                            {
+                                m_MoviesFound.Add(title);
+                                MoviesListBox.Items.Add(title);
+                            }
+
+
                         }
                     }
 
@@ -76,11 +81,17 @@ namespace MainProgramUi
      
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
         {
+            bool toUpdate = false;
+
             try
             {        
                 foreach (var item in Utilities.GetMoviesFromPc())
                 {
-                    getDataListBox.Items.Add(item);
+                    if (!getDataListBox.Items.Contains(item))
+                    {
+                        getDataListBox.Items.Add(item);
+                        toUpdate = true;
+                    }
                 }
             }
 
@@ -90,13 +101,11 @@ namespace MainProgramUi
                 MessageBox.Show(ex.ToString());
             }
 
-            UpdateMoviesAndSeriesListBox();
+            if (toUpdate)
+            {
+                UpdateMoviesAndSeriesListBox();
+            }
 
-        }
-
-        private void ClearListBtn_Click(object sender, RoutedEventArgs e)
-        {
-            getDataListBox.Items.Clear();
         }
 
         private void SortTypeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -126,6 +135,11 @@ namespace MainProgramUi
                 MoviesListBox.Items.Add(item);
             }
 
+        }
+
+        private void ClearListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            getDataListBox.Items.Clear();
         }
     }
 }
