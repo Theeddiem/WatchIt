@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Shapes;
 using System.IO;
-using Path = System.IO.Path;
+using Path = System.IO.Path;;
 using System.Collections.Generic;
 using System.Net;
 using OMDbApiNet;
