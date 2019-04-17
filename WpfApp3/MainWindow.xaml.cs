@@ -1,17 +1,11 @@
 ﻿using Logic;
 using OMDbApiNet;
-using Ookii.Dialogs.Wpf;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
 using System.Windows;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
-
 using TMDbLib.Objects.Search;
-using Path = System.IO.Path;
+
 
 namespace MainProgramUi
 {
@@ -20,15 +14,12 @@ namespace MainProgramUi
     /// </summary>
     public partial class MainWindow : Window
     {
-        OmdbClient omdb;
+
         TMDbClient client;
         public MainWindow()
         {
-            omdb = new OmdbClient("fdeaf500");
             client = new TMDbClient("a959178bb3475c959db8941953d19bad");
-
             InitializeComponent();
-
         }
 
 

@@ -11,6 +11,7 @@ namespace Logic
 {
     public static class Utilities
     {
+
        public static List<string> GetMoviesFromPc()
         {
             VistaFolderBrowserDialog folderBrowser = new VistaFolderBrowserDialog();
