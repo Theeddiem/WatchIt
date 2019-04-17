@@ -10,10 +10,12 @@ namespace Logic
     {
         public string Title { get; set; }
         public string Genre { get; set; }
+        public string ImdbId { get; set; }
         public double Rating { get; set; }
         public int ReleasedYear { get; set; }
+        public string ImagePath { get; set; }
 
-        public  bool Equals(Video other)
+        public bool Equals(Video other)
         {
             return this.Title == other.Title &&
              this.ReleasedYear == other.ReleasedYear;

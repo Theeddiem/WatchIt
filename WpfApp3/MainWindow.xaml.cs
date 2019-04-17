@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
@@ -22,8 +23,9 @@ namespace MainProgramUi
 
         public MainWindow()
         {
-            client = new TMDbClient("a959178bb3475c959db8941953d19bad");
+          
             InitializeComponent();
+            client = new TMDbClient("a959178bb3475c959db8941953d19bad");
         }
 
         private void UpdateMoviesAndSeriesListBox()
@@ -45,20 +47,24 @@ namespace MainProgramUi
                         {
                             TMDbLib.Objects.Movies.Movie movie = client.GetMovieAsync(result.Id).Result;
 
+                            
+
                             string genres = "";
                             foreach (var item in movie.Genres)
                             {
                                 genres += (item.Name + ", ");
                             }
 
-                            DateTime ReleaseYear = (DateTime)movie.ReleaseDate;
 
-                            title = new Movie(movie.Title, genres, movie.VoteAverage, ReleaseYear.Year);
+                            DateTime ReleaseYear = (DateTime)movie.ReleaseDate;
+                            string imagePosterPath = string.Format("https://image.tmdb.org/t/p/original{0}", movie.PosterPath);
+                            title = new Movie(movie.Title, genres, movie.VoteAverage, ReleaseYear.Year, imagePosterPath,movie.ImdbId);
 
                             if (!m_MoviesFound.Any(n => n.Title == title.Title))
                             {
                                 m_MoviesFound.Add(title);
                                 MoviesListBox.Items.Add(title);
+                                
                             }
 
 
@@ -67,7 +73,7 @@ namespace MainProgramUi
 
                     else
                     {
-                        getDataListBox.Items[i] += "Not found try changeing the file name";
+                        getDataListBox.Items[i] += " : NOT FOUND!!! try changeing the file name";
 
                     }
                 }
@@ -141,5 +147,31 @@ namespace MainProgramUi
         {
             getDataListBox.Items.Clear();
         }
+
+        private void MoviesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (MoviesListBox.SelectedItem != null)
+            {
+                string url = (MoviesListBox.SelectedItem as Movie).ImagePath;
+                var bi = new BitmapImage();
+                bi.BeginInit();
+                bi.UriSource = new Uri(url);
+                bi.EndInit();
+                CoverImage.Source = bi;
+
+            }
+ 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (MoviesListBox.SelectedItem != null)
+            {
+                string imdbSite = string.Format("https://www.imdb.com/title/{0}", (MoviesListBox.SelectedItem as Movie).ImdbId);
+                System.Diagnostics.Process.Start(imdbSite);
+            }
+        }
     }
 }
+
