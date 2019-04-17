@@ -73,7 +73,7 @@ namespace MainProgramUi
 
                     else
                     {
-                        getDataListBox.Items[i] += " : NOT FOUND!!! try changeing the file name";
+                        getDataListBox.Items[i] += " : NOT FOUND!!! try changing the file name";
 
                     }
                 }
