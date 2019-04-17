@@ -6,16 +6,23 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public abstract class Video
+    public abstract class Video : IComparable<Video>
     {
-        protected string m_Name;
-        protected string m_Genre;
-        protected double m_Rating;
-        protected int m_ReleasedYear;
+        public string Title { get; set; }
+        public string Genre { get; set; }
+        public double Rating { get; set; }
+        public int ReleasedYear { get; set; }
+
+        public int CompareTo(Video other)
+        {
+            return (int)(Rating - other.Rating);
+        }
 
         public override string ToString()
         {
-            return string.Format("{0}  {1}, {2} {3}", m_Name, m_ReleasedYear, m_Rating, m_Genre);
+            return string.Format("{0}  {1}, {2} {3}", Title, ReleasedYear, Rating, Genre);
         }
+
+
     }
 }

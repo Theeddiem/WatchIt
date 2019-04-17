@@ -43,6 +43,7 @@
     <Compile Include="ImdbEntity.cs" />
     <Compile Include="Movie.cs" />
     <Compile Include="Series.cs" />
+    <Compile Include="SortType.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Video.cs" />
   </ItemGroup>

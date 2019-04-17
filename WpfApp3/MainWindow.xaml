@@ -29,6 +29,7 @@
             <ComboBoxItem Content="By Rating" HorizontalAlignment="Left" Width="118" Background="#00000000"/>
             <ComboBoxItem Content="By Genre" HorizontalAlignment="Left" Width="118"/>
         </ComboBox>
+        <Button Content="Button" Grid.Column="5" HorizontalAlignment="Left" Margin="72,36,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
 
     </Grid>
 </Window>

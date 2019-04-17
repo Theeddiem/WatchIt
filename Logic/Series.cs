@@ -8,12 +8,12 @@ namespace Logic
 {
     public class Series : Video
     {
-        public Series(string i_Name, string i_Genere, double i_Rating, int i_ReleasedYear)
+        public Series(string i_Title, string i_Genere, double i_Rating, int i_ReleasedYear)
         {
-            m_Name = i_Name;
-            m_Genre = i_Genere;
-            m_Rating = i_Rating;
-            m_ReleasedYear = i_ReleasedYear;
+            Title = i_Title;
+            Genre = i_Genere;
+            Rating = i_Rating;
+            ReleasedYear = i_ReleasedYear;
         }
     }
 }

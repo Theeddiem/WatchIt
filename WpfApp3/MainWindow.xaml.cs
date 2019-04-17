@@ -1,6 +1,8 @@
 ﻿using Logic;
 using OMDbApiNet;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
@@ -14,14 +16,14 @@ namespace MainProgramUi
     /// </summary>
     public partial class MainWindow : Window
     {
+        private TMDbClient client;
+        private List<Logic.Video> m_MoviesFound = new List<Logic.Video>();
 
-        TMDbClient client;
         public MainWindow()
         {
             client = new TMDbClient("a959178bb3475c959db8941953d19bad");
             InitializeComponent();
         }
-
 
         private void UpdateMoviesAndSeriesListBox()
         {
@@ -52,6 +54,7 @@ namespace MainProgramUi
                             DateTime ReleaseYear = (DateTime)movie.ReleaseDate;
 
                             title = new Movie(movie.Title, genres, movie.VoteAverage, ReleaseYear.Year);
+                            m_MoviesFound.Add(title);
                             MoviesListBox.Items.Add(title);
                         }
                     }
@@ -74,6 +77,7 @@ namespace MainProgramUi
         {
             try
             {
+
        
                 foreach (var item in Utilities.GetMoviesFromPc())
                 {
@@ -96,12 +100,21 @@ namespace MainProgramUi
             getDataListBox.Items.Clear();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+  
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-      
+            m_MoviesFound.Sort();
 
-            
+            m_MoviesFound =m_MoviesFound.OrderByDescending(w => w.ReleasedYear).ToList();
+
+
+            MoviesListBox.Items.Clear();
+
+            foreach (var item in m_MoviesFound)
+            {
+                SeriesListBox.Items.Add(item);
+            }
         }
-
     }
 }
