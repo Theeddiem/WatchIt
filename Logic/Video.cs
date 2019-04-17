@@ -10,8 +10,8 @@ namespace Logic
     {
         protected string m_Name;
         protected string m_Genre;
-        protected string m_Rating;
-        protected string m_ReleasedYear;
+        protected double m_Rating;
+        protected int m_ReleasedYear;
 
         public override string ToString()
         {

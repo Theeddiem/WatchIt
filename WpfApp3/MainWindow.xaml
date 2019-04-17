@@ -5,24 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainProgramUi"
         mc:Ignorable="d"
-        Title="MainWindow" Height="772.334" Width="1332.394">
-    <Grid>
+        Title="MainWindow" Height="772.334" Width="1636.894">
+    <Grid Width="1300">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="23*"/>
-            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="16*"/>
+            <ColumnDefinition Width="36*"/>
             <ColumnDefinition Width="9.604"/>
-            <ColumnDefinition Width="108*"/>
-            <ColumnDefinition Width="586*"/>
+            <ColumnDefinition Width="76*"/>
+            <ColumnDefinition Width="109*"/>
+            <ColumnDefinition Width="303*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="getMoviesFromPc" Content="Search Movies&#xA;" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top" Width="155" Height="31" Grid.ColumnSpan="6" Click="GetMoviesFromPc_Click"/>
-        <ListBox x:Name="getDataListBox" Grid.Column="3" HorizontalAlignment="Left" Height="363" Margin="85,24,0,0" VerticalAlignment="Top" Width="227" Grid.ColumnSpan="2"/>
-        <Button x:Name="ClearListBtn" Grid.ColumnSpan="4" Content="Clear List&#xA;" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="119" Height="39" Click="ClearListBtn_Click"/>
-        <Button Grid.ColumnSpan="3" Content="Button" HorizontalAlignment="Left" Margin="35,204,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="22" Grid.Column="1"/>
-        <ListBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
-        <ListBox x:Name="MoviesListBox" Grid.Column="4" HorizontalAlignment="Left" Height="388" Margin="142,22,0,0" VerticalAlignment="Top" Width="315">
-            <ListBoxItem Content="ListBoxItem" />
-        </ListBox>
-        <ListBox x:Name="SeriesListBox" Grid.Column="4" HorizontalAlignment="Left" Height="383" Margin="482,27,0,0" VerticalAlignment="Top" Width="336"/>
+        <Button x:Name="getMoviesFromPc" Content="Search Movies&#xA;" HorizontalAlignment="Left" Margin="-158,27,0,0" VerticalAlignment="Top" Width="155" Height="31" Click="GetMoviesFromPc_Click"/>
+        <ListBox x:Name="getDataListBox" Grid.Column="1" HorizontalAlignment="Left" Height="502" Margin="14,31,0,0" VerticalAlignment="Top" Width="392" Grid.ColumnSpan="4"/>
+        <Button x:Name="ClearListBtn" Content="Clear List&#xA;" HorizontalAlignment="Left" Margin="-156,77,0,0" VerticalAlignment="Top" Width="154" Height="30" Click="ClearListBtn_Click"/>
+        <ListBox x:Name="MoviesListBox" Grid.Column="4" HorizontalAlignment="Left" Margin="159,39,0,0" VerticalAlignment="Top" Width="392" Height="500" Grid.ColumnSpan="2"/>
+        <ListBox x:Name="SeriesListBox" Grid.Column="5" HorizontalAlignment="Left" Height="500" Margin="328,44,0,0" VerticalAlignment="Top" Width="392"/>
 
     </Grid>
 </Window>

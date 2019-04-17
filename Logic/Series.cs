@@ -8,7 +8,7 @@ namespace Logic
 {
     public class Series : Video
     {
-        public Series(string i_Name, string i_Genere, string i_Rating, string i_ReleasedYear)
+        public Series(string i_Name, string i_Genere, double i_Rating, int i_ReleasedYear)
         {
             m_Name = i_Name;
             m_Genre = i_Genere;

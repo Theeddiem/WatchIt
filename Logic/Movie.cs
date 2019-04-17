@@ -8,7 +8,7 @@ namespace Logic
 {
     public class Movie : Video
     {
-        public Movie(string i_Name, string i_Genere, string i_Rating, string i_ReleasedYear)
+        public Movie(string i_Name, string i_Genere, double i_Rating, int i_ReleasedYear)
         {
             m_Name = i_Name;
             m_Genre = i_Genere;
