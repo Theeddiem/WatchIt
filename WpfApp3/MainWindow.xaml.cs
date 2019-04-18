@@ -37,9 +37,19 @@ namespace MainProgramUi
                     string fullFileName = getDataListBox.Items[i].ToString();
                     SearchContainer<SearchMovie> results  = client.SearchMovieAsync(fullFileName).Result;
 
-                    if (results.TotalResults <= 0)
+                    if (results.TotalResults > 0)
                     {
-                       if( !forceSearch(fullFileName, (FileInfo)getDataListBox.Items[i],results))
+                        SearchMovie result = results.Results[0];
+
+                        if (result.MediaType == MediaType.Movie)
+                        {
+                            foundAMovie(result.Id, (FileInfo)getDataListBox.Items[i]);
+                        }
+                    }
+
+                    else
+                    {
+                       if(!forceSearch(fullFileName, (FileInfo)getDataListBox.Items[i],results))
                         {
                             getDataListBox.Items[i] += " : NOT FOUND!!! try changing the file name";
                         }
@@ -70,7 +80,6 @@ namespace MainProgramUi
 
                         if (result.MediaType == MediaType.Movie)
                         {
-
                             foundAMovie(result.Id, i_CurrentItem);
                         }
                         found = true;
@@ -136,7 +145,7 @@ namespace MainProgramUi
 
         }
 
-        private void SortTypeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void SortTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
           ComboBoxItem select = (ComboBoxItem)SortTypeComboBox.SelectedValue;
