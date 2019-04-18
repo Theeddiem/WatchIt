@@ -15,6 +15,7 @@ namespace Logic
         public int ReleasedYear { get; set; }
         public string ImagePath { get; set; }
 
+        public string FilePath { get; set; }
         public bool Equals(Video other)
         {
             return this.Title == other.Title &&

@@ -154,10 +154,10 @@
     <Resource Include="Resources\gg.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Image1.bmp" />
+    <Resource Include="Hadezign-Hobbies-Movies.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Hadezign-Hobbies-Movies.ico" />
+    <None Include="Resources\VlcICon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

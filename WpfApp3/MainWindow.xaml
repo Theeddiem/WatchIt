@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainProgramUi"
         mc:Ignorable="d"
-        Title="MainWindow" Height="636.334" Width="1108.894">
+        Title="WatchIt" Height="636.334" Width="1108.894">
     <Grid Margin="0,0,-389,0" HorizontalAlignment="Right" Width="1300">
         <Grid.Background>
             <ImageBrush/>
@@ -44,7 +44,7 @@
         </ComboBox>
         <Image x:Name="CoverImage" Grid.Column="5" HorizontalAlignment="Left" Height="358" Margin="41,60,0,0" VerticalAlignment="Top" Width="246" Grid.RowSpan="2" OpacityMask="Black"/>
         <Image Grid.Column="4" HorizontalAlignment="Left" Height="100" Margin="163,457,0,-4" Grid.Row="1" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2"/>
-        <Button Content="" Grid.Column="5" HorizontalAlignment="Left" Margin="40,272,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="52" Click="Button_Click">
+        <Button x:Name="ImdbBtn" Content="" Grid.Column="5" HorizontalAlignment="Left" Margin="40,272,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="52" Click="Button_Click">
             <Button.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/IMDbIcon.png" TileMode="Tile" Stretch="None"/>
             </Button.Background>
@@ -52,6 +52,11 @@
         <Label x:Name="MoviesLabel" Content="Movies" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="3" Margin="49,35,0,0" Width="83" FontWeight="Bold" FontSize="14"/>
         <Label x:Name="MoviesLabel_Copy" Content="Files Found On Your Pc" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-123,90,0,0" Width="267" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="4"/>
         <Label x:Name="MoviesLabel_Copy1" Content="Sort" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4" Margin="103,1,0,0" Width="52" FontWeight="Bold" FontSize="14"/>
+        <Button x:Name="PlayBtn" Content="" Grid.Column="5" HorizontalAlignment="Left" Margin="187,271,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="63" Click="PlayBtn_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/VlcICon.png" Stretch="None"/>
+            </Button.Background>
+        </Button>
 
 
     </Grid>

@@ -29,8 +29,7 @@ namespace MainProgramUi
         }
 
         private void UpdateMoviesAndSeriesListBox()
-        {
-                       
+        {       
             try
             {
                 for (int i = 0; i < getDataListBox.Items.Count; i++)
@@ -41,40 +40,16 @@ namespace MainProgramUi
                     {
                         SearchMovie result = results.Results[0];
 
-                        Logic.Video title = null; ;
-
                         if (result.MediaType == MediaType.Movie)
                         {
-                            TMDbLib.Objects.Movies.Movie movie = client.GetMovieAsync(result.Id).Result;
 
-                            
-
-                            string genres = "";
-                            foreach (var item in movie.Genres)
-                            {
-                                genres += (item.Name + ", ");
-                            }
-
-
-                            DateTime ReleaseYear = (DateTime)movie.ReleaseDate;
-                            string imagePosterPath = string.Format("https://image.tmdb.org/t/p/original{0}", movie.PosterPath);
-                            title = new Movie(movie.Title, genres, movie.VoteAverage, ReleaseYear.Year, imagePosterPath,movie.ImdbId);
-
-                            if (!m_MoviesFound.Any(n => n.Title == title.Title))
-                            {
-                                m_MoviesFound.Add(title);
-                                MoviesListBox.Items.Add(title);
-                                
-                            }
-
-
+                             foundMovie(result.Id, (FileInfo)getDataListBox.Items[i]);
                         }
                     }
 
                     else
                     {
                         getDataListBox.Items[i] += " : NOT FOUND!!! try changing the file name";
-
                     }
                 }
             }
@@ -84,6 +59,29 @@ namespace MainProgramUi
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void foundMovie(int i_MovieId,FileInfo path)
+        {
+            TMDbLib.Objects.Movies.Movie movie = client.GetMovieAsync(i_MovieId).Result;
+
+            string genres = "";
+            foreach (var item in movie.Genres)
+            {
+                genres += (item.Name + ", ");
+            }
+
+            DateTime ReleaseYear = (DateTime)movie.ReleaseDate;
+            string imagePosterPath = string.Format("https://image.tmdb.org/t/p/original{0}", movie.PosterPath);
+          
+            Logic.Movie title = new Movie(movie.Title, genres, movie.VoteAverage, ReleaseYear.Year, imagePosterPath, movie.ImdbId,path.ImagePath);
+
+            if (!m_MoviesFound.Any(n => n.Title == title.Title))
+            {
+                m_MoviesFound.Add(title);
+                MoviesListBox.Items.Add(title);
+
+            }
+        }
      
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
         {
@@ -91,7 +89,7 @@ namespace MainProgramUi
 
             try
             {        
-                foreach (var item in Utilities.GetMoviesFromPc())
+                foreach (FileInfo item in Utilities.GetMoviesFromPc())
                 {
                     if (!getDataListBox.Items.Contains(item))
                     {
@@ -159,9 +157,7 @@ namespace MainProgramUi
                 bi.UriSource = new Uri(url);
                 bi.EndInit();
                 CoverImage.Source = bi;
-
             }
- 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -170,6 +166,16 @@ namespace MainProgramUi
             {
                 string imdbSite = string.Format("https://www.imdb.com/title/{0}", (MoviesListBox.SelectedItem as Movie).ImdbId);
                 System.Diagnostics.Process.Start(imdbSite);
+                System.Diagnostics.Process.Start((MoviesListBox.SelectedItem as Movie).FilePath);
+
+            }
+        }
+
+        private void PlayBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MoviesListBox.SelectedItem != null)
+            {
+                System.Diagnostics.Process.Start((MoviesListBox.SelectedItem as Movie).FilePath);
             }
         }
     }

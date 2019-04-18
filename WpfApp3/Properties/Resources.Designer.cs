@@ -73,9 +73,9 @@ namespace WpfApp3.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Image1 {
+        internal static System.Drawing.Bitmap IMDbIcon {
             get {
-                object obj = ResourceManager.GetObject("Image1", resourceCulture);
+                object obj = ResourceManager.GetObject("IMDbIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace WpfApp3.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap IMDbIcon {
+        internal static System.Drawing.Bitmap VlcICon {
             get {
-                object obj = ResourceManager.GetObject("IMDbIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("VlcICon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
