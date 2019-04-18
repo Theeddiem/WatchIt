@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public class FileInfo  : IEquatable<FileInfo>
+    public class FileInfo 
     {
         public string ImagePath { get; set; }
 
@@ -23,25 +23,5 @@ namespace Logic
         {
             return Title;
         }
-
-        public bool Equals(FileInfo other)
-        {
-            return this.Title == other.Title;
-        }
-
-        public override int GetHashCode()
-        {
-            return this.Title.GetHashCode();
-        }
-
-        //public override int GetHashCode()
-        //{
-        //    return base.GetHashCode();
-        //}
-
-        //public override bool Equals(object obj)
-        //{
-        //    return this.Title == (FileInfo)(obj.Title);
-        //}
     }
 }

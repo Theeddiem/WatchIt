@@ -3,6 +3,7 @@ using OMDbApiNet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -23,55 +24,25 @@ namespace MainProgramUi
 
         public MainWindow()
         {
-          
             InitializeComponent();
             client = new TMDbClient("a959178bb3475c959db8941953d19bad");
         }
 
         private void UpdateMoviesAndSeriesListBox()
-        {       
+        {
             try
             {
                 for (int i = 0; i < getDataListBox.Items.Count; i++)
                 {
-
                     string fullFileName = getDataListBox.Items[i].ToString();
                     SearchContainer<SearchMovie> results  = client.SearchMovieAsync(fullFileName).Result;
 
-
                     if (results.TotalResults <= 0)
                     {
-                        for (int j = fullFileName.Length - 1; j >= 0; j--)
+                       if( !forceSearch(fullFileName, (FileInfo)getDataListBox.Items[i],results))
                         {
-                            if (char.IsSeparator(fullFileName[j]))
-                            {
-                                fullFileName = fullFileName.Substring(0, j);
-                                results = client.SearchMovieAsync(fullFileName).Result;
-                                if (results.TotalResults > 0)
-                                    break;
-
-                            }
+                            getDataListBox.Items[i] += " : NOT FOUND!!! try changing the file name";
                         }
-                    }
-
-                   
-
-
-                    if (results.TotalResults > 0 )
-                    {
-                        SearchMovie result = results.Results[0];
-
-                        if (result.MediaType == MediaType.Movie)
-                        {
-
-                             foundMovie(result.Id, (FileInfo)getDataListBox.Items[i]);
-                        }
-                    }
-
-                    else
-                    {
-                      
-                        getDataListBox.Items[i] += " : NOT FOUND!!! try changing the file name";
                     }
                 }
             }
@@ -82,20 +53,51 @@ namespace MainProgramUi
             }
         }
 
-        private void foundMovie(int i_MovieId,FileInfo path)
+        private bool forceSearch(string i_FullFileName, FileInfo i_CurrentItem, SearchContainer<SearchMovie> i_Results)
+        {
+            bool found = false;
+
+            for (int j = i_FullFileName.Length - 1; j >= 0; j--)
+            {
+                if (char.IsSeparator(i_FullFileName[j]))
+                {
+                    i_FullFileName = i_FullFileName.Substring(0, j);
+                    i_Results = client.SearchMovieAsync(i_FullFileName).Result;
+
+                    if (i_Results.TotalResults > 0)
+                    {
+                        SearchMovie result = i_Results.Results[0];
+
+                        if (result.MediaType == MediaType.Movie)
+                        {
+
+                            foundAMovie(result.Id, i_CurrentItem);
+                        }
+                        found = true;
+                        break;
+                    }
+
+                }
+            }
+
+            return found;
+        }
+
+        private void foundAMovie(int i_MovieId,FileInfo path)
         {
             TMDbLib.Objects.Movies.Movie movie = client.GetMovieAsync(i_MovieId).Result;
 
-            string genres = "";
+            StringBuilder genres = new StringBuilder("");
+
             foreach (var item in movie.Genres)
             {
-                genres += (item.Name + ", ");
+                genres.Append(item.Name + ", ");
             }
 
             DateTime ReleaseYear = (DateTime)movie.ReleaseDate;
             string imagePosterPath = string.Format("https://image.tmdb.org/t/p/original{0}", movie.PosterPath);
           
-            Logic.Movie title = new Movie(movie.Title, genres, movie.VoteAverage, ReleaseYear.Year, imagePosterPath, movie.ImdbId,path.ImagePath);
+            Movie title = new Movie(movie.Title, genres.ToString(), movie.VoteAverage, ReleaseYear.Year, imagePosterPath, movie.ImdbId,path.ImagePath);
 
             if (!m_MoviesFound.Any(n => n.Title == title.Title))
             {
@@ -137,19 +139,19 @@ namespace MainProgramUi
         private void SortTypeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
 
-          ComboBoxItem s = (ComboBoxItem)SortTypeComboBox.SelectedValue;
+          ComboBoxItem select = (ComboBoxItem)SortTypeComboBox.SelectedValue;
 
-            if((string)s.Content == "By Year")
+            if((string)select.Content == "By Year")
             {
                 m_MoviesFound = m_MoviesFound.OrderByDescending(w => w.ReleasedYear).ToList();
             }
 
-            if ((string)s.Content == "By Rating")
+            if ((string)select.Content == "By Rating")
             {
                 m_MoviesFound = m_MoviesFound.OrderByDescending(w => w.Rating).ToList();
             }
 
-            if ((string)s.Content == "By Genre")
+            if ((string)select.Content == "By Genre")
             {
                 m_MoviesFound = m_MoviesFound.OrderBy(w => w.Genre).ToList();
             }
@@ -182,7 +184,7 @@ namespace MainProgramUi
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ImdbBtn_Click(object sender, RoutedEventArgs e)
         {
             if (MoviesListBox.SelectedItem != null)
             {

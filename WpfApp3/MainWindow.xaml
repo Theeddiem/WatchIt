@@ -44,7 +44,7 @@
         </ComboBox>
         <Image x:Name="CoverImage" Grid.Column="5" HorizontalAlignment="Left" Height="358" Margin="41,60,0,0" VerticalAlignment="Top" Width="246" Grid.RowSpan="2" OpacityMask="Black"/>
         <Image Grid.Column="4" HorizontalAlignment="Left" Height="100" Margin="163,457,0,-4" Grid.Row="1" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2"/>
-        <Button x:Name="ImdbBtn" Content="" Grid.Column="5" HorizontalAlignment="Left" Margin="40,272,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="52" Click="Button_Click">
+        <Button x:Name="ImdbBtn" Content="" Grid.Column="5" HorizontalAlignment="Left" Margin="40,272,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="52" Click="ImdbBtn_Click">
             <Button.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/IMDbIcon.png" TileMode="Tile" Stretch="None"/>
             </Button.Background>
