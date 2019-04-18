@@ -49,6 +49,8 @@ namespace MainProgramUi
 
                     else
                     {
+                        string[] words = getDataListBox.Items[i].ToString().Split(' ');
+
                         getDataListBox.Items[i] += " : NOT FOUND!!! try changing the file name";
                     }
                 }

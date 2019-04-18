@@ -57,14 +57,13 @@ namespace Logic
         {
             string strEnd1080 = "1080";
             string strEnd720 = "720";
-            string strEnd = ".";
 
             int Start, End;
 
             if (i_FileName.Contains(strEnd720))
             {
                 Start = 0;
-                End = i_FileName.IndexOf(strEnd, Start);
+                End = i_FileName.IndexOf(strEnd720, Start);
                 i_FileName = i_FileName.Substring(Start, End - Start);
             }
 
@@ -76,14 +75,34 @@ namespace Logic
             }
 
             i_FileName = i_FileName.Replace(".", " ");
+            
+
 
             i_FileName = RemoveDigits(i_FileName);
+            i_FileName = removeLastSpaces(i_FileName);
             return i_FileName;
         }
 
         private static string RemoveDigits(string key)
         {
             return Regex.Replace(key, @"\d", "");
+        }
+
+        private static string removeLastSpaces(string key)
+        {
+            for (int i = key.Length-1; i >= 0; i--)
+            {
+                if (char.IsSeparator(key[i]))
+                {
+                    key = key.TrimEnd();
+                    i--;
+                }
+
+                else
+                    break;
+            }
+
+            return key;
         }
     }
 }
