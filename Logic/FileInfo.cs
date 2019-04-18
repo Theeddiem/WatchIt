@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public class FileInfo 
+    public class FileInfo  : IEquatable<FileInfo>
     {
         public string ImagePath { get; set; }
 
@@ -22,6 +22,16 @@ namespace Logic
         public override string ToString()
         {
             return Title;
+        }
+
+        public bool Equals(FileInfo other)
+        {
+            return this.Title == other.Title;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Title.GetHashCode();
         }
 
         //public override int GetHashCode()

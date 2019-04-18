@@ -91,7 +91,7 @@ namespace MainProgramUi
             {        
                 foreach (FileInfo item in Utilities.GetMoviesFromPc())
                 {
-                    if (!getDataListBox.Items.Contains(item))
+                    if (!getDataListBox.Items.Cast<FileInfo>().Any(x => x.Title == item.Title))
                     {
                         getDataListBox.Items.Add(item);
                         toUpdate = true;
@@ -107,7 +107,7 @@ namespace MainProgramUi
 
             if (toUpdate)
             {
-                UpdateMoviesAndSeriesListBox();
+               UpdateMoviesAndSeriesListBox();
             }
 
         }
