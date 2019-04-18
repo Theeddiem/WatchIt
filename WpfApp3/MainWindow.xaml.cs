@@ -34,7 +34,20 @@ namespace MainProgramUi
             {
                 for (int i = 0; i < getDataListBox.Items.Count; i++)
                 {
+
+
+                    //string[] words = getDataListBox.Items[i].ToString().Split(' ');
+
+                    //for (int j = words.Length - 1; j <= 0; j--)
+                    //{
+                    //    string newSearch = string.Concat(words[i]);
+
+                    // }
+
+
                     SearchContainer<SearchMovie> results = client.SearchMovieAsync(getDataListBox.Items[i].ToString()).Result;
+
+
 
                     if (results.TotalResults > 0 )
                     {
@@ -49,8 +62,7 @@ namespace MainProgramUi
 
                     else
                     {
-                        string[] words = getDataListBox.Items[i].ToString().Split(' ');
-
+                      
                         getDataListBox.Items[i] += " : NOT FOUND!!! try changing the file name";
                     }
                 }
