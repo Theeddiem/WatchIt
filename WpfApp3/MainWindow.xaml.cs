@@ -166,8 +166,6 @@ namespace MainProgramUi
             {
                 string imdbSite = string.Format("https://www.imdb.com/title/{0}", (MoviesListBox.SelectedItem as Movie).ImdbId);
                 System.Diagnostics.Process.Start(imdbSite);
-                System.Diagnostics.Process.Start((MoviesListBox.SelectedItem as Movie).FilePath);
-
             }
         }
 
