@@ -35,18 +35,26 @@ namespace MainProgramUi
                 for (int i = 0; i < getDataListBox.Items.Count; i++)
                 {
 
-
-                    //string[] words = getDataListBox.Items[i].ToString().Split(' ');
-
-                    //for (int j = words.Length - 1; j <= 0; j--)
-                    //{
-                    //    string newSearch = string.Concat(words[i]);
-
-                    // }
+                    string fullFileName = getDataListBox.Items[i].ToString();
+                    SearchContainer<SearchMovie> results  = client.SearchMovieAsync(fullFileName).Result;
 
 
-                    SearchContainer<SearchMovie> results = client.SearchMovieAsync(getDataListBox.Items[i].ToString()).Result;
+                    if (results.TotalResults <= 0)
+                    {
+                        for (int j = fullFileName.Length - 1; j >= 0; j--)
+                        {
+                            if (char.IsSeparator(fullFileName[j]))
+                            {
+                                fullFileName = fullFileName.Substring(0, j);
+                                results = client.SearchMovieAsync(fullFileName).Result;
+                                if (results.TotalResults > 0)
+                                    break;
 
+                            }
+                        }
+                    }
+
+                   
 
 
                     if (results.TotalResults > 0 )

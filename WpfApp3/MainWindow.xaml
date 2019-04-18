@@ -22,9 +22,9 @@
             <ColumnDefinition Width="109*"/>
             <ColumnDefinition Width="303*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="getMoviesFromPc" Content="Search The Pc&#xA;" Margin="-120,16,1,0" VerticalAlignment="Top" Height="30" Click="GetMoviesFromPc_Click" Width="157"/>
+        <Button x:Name="getMoviesFromPc" Content="Search The Pc&#xA;" Margin="-116,16,83,0" VerticalAlignment="Top" Height="30" Click="GetMoviesFromPc_Click" Width="157" Grid.ColumnSpan="2"/>
         <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="446" Margin="-119,118,0,0" VerticalAlignment="Top" Width="289" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
-        <Button x:Name="ClearListBtn" Content="Clear List&#xA;" HorizontalAlignment="Left" Margin="-121,55,0,0" VerticalAlignment="Top" Width="157" Height="30" Click="ClearListBtn_Click">
+        <Button x:Name="ClearListBtn" Content="Clear List&#xA;" HorizontalAlignment="Left" Margin="-116,55,0,0" VerticalAlignment="Top" Width="157" Height="30" Click="ClearListBtn_Click" Grid.ColumnSpan="2">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                     <GradientStop Color="#FFF3F3F3" Offset="0"/>
