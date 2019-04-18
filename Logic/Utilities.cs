@@ -40,7 +40,7 @@ namespace Logic
 
                     foreach (string filePath in files)
                         {
-                            string fileName = Path.GetFileName(filePath);
+                            string fileName = Path.GetFileNameWithoutExtension(filePath);
                             string finalFileName = trimMe(fileName);
                             FileInfo newTitle = new FileInfo(filePath, finalFileName);
                             titles.Add(newTitle);
