@@ -1,11 +1,15 @@
-﻿<Window x:Class="MainProgramUi.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainProgramUi"
+        xmlns:ViewModel="clr-namespace:ViewModel;assembly=ViewModel" x:Class="MainProgramUi.MainWindow"
         mc:Ignorable="d"
         Title="WatchIt" Height="636.334" Width="1108.894">
+    <Window.DataContext>
+        <ViewModel:ModelViewLogic/>
+    </Window.DataContext>
     <Grid Margin="0,0,-389,0" HorizontalAlignment="Right" Width="1300">
         <Grid.Background>
             <ImageBrush/>
@@ -35,7 +39,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <ListBox x:Name="MoviesListBox" Grid.Column="3" HorizontalAlignment="Left" Margin="55,64,0,0" VerticalAlignment="Top" Width="392" Height="500" Grid.ColumnSpan="3" Grid.RowSpan="2" SelectionChanged="MoviesListBox_SelectionChanged"/>
+        <ListBox x:Name="MoviesListBox" Grid.Column="3" HorizontalAlignment="Left" Margin="55,64,0,0" VerticalAlignment="Top" Width="392" Height="500" Grid.ColumnSpan="3" Grid.RowSpan="2" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}"/>
         <ComboBox x:Name="SortTypeComboBox" Grid.Column="4" HorizontalAlignment="Left" Margin="144,7,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="SortTypeComboBox_SelectionChanged" SelectedIndex="-1" Grid.ColumnSpan="2">
             <ComboBoxItem Content="By Year" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem Content="By Rating" HorizontalAlignment="Left" Width="118" Background="#00000000"/>

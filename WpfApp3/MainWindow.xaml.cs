@@ -25,50 +25,21 @@ namespace MainProgramUi
         public MainWindow()
         {
             InitializeComponent();
+            getDataListBox.ItemsSource = currentLogic.StoredFilesInPc;
+            MoviesListBox.ItemsSource = currentLogic.MoviesFound;
+
         }
      
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
         {
-            getMoviesFromPcButton();
+            currentLogic.getMoviesFromPc();
 
         }
-
-        private void getMoviesFromPcButton()
-        {
-            bool toUpdate = currentLogic.getMoviesFromPc();
-
-            if (toUpdate)
-            {
-                getDataListBox.Items.Clear();
-                foreach (var item in currentLogic.StoredFilesInPc)
-                {
-
-                    getDataListBox.Items.Add(item);
-                }
-                currentLogic.lalala();
-
-                MoviesListBox.Items.Clear();
-                foreach (var item in currentLogic.MoviesFound)
-                {
-                    MoviesListBox.Items.Add(item);
-                }
-            }
-        }
-
         private void SortTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
           ComboBoxItem select = (ComboBoxItem)SortTypeComboBox.SelectedValue;
 
-            currentLogic.sortType(select.Content.ToString());
-
-            MoviesListBox.Items.Clear();
-
-            foreach (var item in currentLogic.MoviesFound)
-            {
-                MoviesListBox.Items.Add(item);
-            }
-
+          currentLogic.sortType(select.Content.ToString());
         }
 
         private void ClearListBtn_Click(object sender, RoutedEventArgs e)

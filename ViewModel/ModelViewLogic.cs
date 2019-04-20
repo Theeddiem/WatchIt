@@ -1,6 +1,7 @@
 ﻿using Logic;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +13,17 @@ namespace ViewModel
 {
     public class ModelViewLogic
     {
-        public List<Logic.Video> MoviesFound { get; set; }
-        public List<FileInfo> StoredFilesInPc { get; set; }
+        public ObservableCollection<Logic.Video> MoviesFound { get; set; }
+        public ObservableCollection<FileInfo> StoredFilesInPc { get; set; }
         private TMDbClient m_Client;
 
         public ModelViewLogic()
         {
             m_Client = new TMDbClient("a959178bb3475c959db8941953d19bad");
-            MoviesFound = new List<Logic.Video>();
-            StoredFilesInPc = new List<FileInfo>();
+            MoviesFound = new ObservableCollection<Logic.Video>();
+            StoredFilesInPc = new ObservableCollection<FileInfo>();
         }
-        public bool getMoviesFromPc()
+        public void getMoviesFromPc()
         {
             bool toUpdate = false;
 
@@ -43,7 +44,11 @@ namespace ViewModel
                 Console.WriteLine(ex.ToString());
             }
 
-            return toUpdate;
+            if(toUpdate)
+            {
+                lalala();
+            }
+
         }
         public void lalala()
         {
@@ -120,27 +125,33 @@ namespace ViewModel
                 //MoviesListBox.Items.Add(movie);
             }
         }
-
         public void sortType(string i_SelectedValue)
         {
+            var filterd = MoviesFound.ToList();
 
             if (i_SelectedValue == "By Year")
             {
-                MoviesFound = MoviesFound.OrderByDescending(w => w.ReleasedYear).ToList();
+                filterd = filterd.OrderByDescending(w => w.ReleasedYear).ToList();
             }
 
             if (i_SelectedValue == "By Rating")
             {
-                MoviesFound = MoviesFound.OrderByDescending(w => w.Rating).ToList();
+                filterd = filterd.OrderByDescending(w => w.Rating).ToList(); 
             }
 
-            if (i_SelectedValue ==  "By Genre")
+            if (i_SelectedValue == "By Genre")
             {
-                MoviesFound = MoviesFound.OrderBy(w => w.Genre).ToList();
+                filterd = filterd.OrderByDescending(w => w.Genre).ToList();
+            
+            }
+
+            MoviesFound.Clear();
+
+            foreach (var item in filterd)
+            {
+                MoviesFound.Add(item);
             }
 
         }
-
-
     }
 }
