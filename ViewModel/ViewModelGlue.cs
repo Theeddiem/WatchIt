@@ -10,18 +10,20 @@ using TMDbLib.Objects.Search;
 
 namespace ViewModel
 {
-    public class ModelViewLogic
+    public class ViewModelGlue
     {
         public ObservableCollection<Video> MoviesFound { get; set; }
         public ObservableCollection<FileInfo> StoredFilesInPc { get; set; }
 
         private TMDbClient m_Client;
-        public ModelViewLogic()
+
+        public ViewModelGlue()
         {
             m_Client = new TMDbClient("a959178bb3475c959db8941953d19bad");
-            MoviesFound = new ObservableCollection<ViewModel.Video>();
+            MoviesFound = new ObservableCollection<Video>();
             StoredFilesInPc = new ObservableCollection<FileInfo>();
         }
+
         public void GetMoviesFromPc()
         {
             bool toUpdate = false;
@@ -59,6 +61,7 @@ namespace ViewModel
             }
 
         }
+
         public void GetVideoData()
         {
             try
@@ -93,6 +96,7 @@ namespace ViewModel
                 Console.WriteLine(ex.ToString());
             }
         }
+
         private bool forceSearch(string i_FullFileName, FileInfo i_CurrentItem, SearchContainer<SearchMovie> i_Results)
         {
             bool found = false;
@@ -121,6 +125,7 @@ namespace ViewModel
 
             return found;
         }
+
         private void foundAMovie(int i_MovieId, FileInfo i_Path)
         {
             Movie movie = new Movie();
@@ -134,6 +139,7 @@ namespace ViewModel
                 //MoviesListBox.Items.Add(movie);
             }
         }
+
         public void sortType(string i_SelectedValue)
         {
             var filterd = MoviesFound.ToList();

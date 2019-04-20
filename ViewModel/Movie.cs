@@ -6,6 +6,7 @@ namespace ViewModel
     public class Movie : Video
     {
         public TMDbLib.Objects.Movies.Movie ApiMovie { get; set; }
+
         public void InitializeClass()
         {
             if (ApiMovie != null)
