@@ -57,11 +57,11 @@ namespace ViewModel
 
             if(toUpdate)
             {
-                lalala();
+                GetVideoData();
             }
 
         }
-        public void lalala()
+        public void GetVideoData()
         {
             try
             {
@@ -82,7 +82,7 @@ namespace ViewModel
 
                     else
                     {
-                        if (!forceSearch(fullFileName, (FileInfo)StoredFilesInPc[i], results))
+                        if (!forceSearch(fullFileName, StoredFilesInPc[i], results))
                         {
                             StoredFilesInPc[i].FileName += " : NOT FOUND!!! try changing the file name";
                         }
