@@ -20,91 +20,11 @@ namespace MainProgramUi
     public partial class MainWindow : Window
     {
         ModelViewLogic currentLogic = new ModelViewLogic();
-        private TMDbClient client;
-        private List<Logic.Video> m_MoviesFound = new List<Logic.Video>();
+
 
         public MainWindow()
         {
             InitializeComponent();
-            client = new TMDbClient("a959178bb3475c959db8941953d19bad");
-        }
-
-        private void UpdateMoviesAndSeriesListBox()
-        {
-            try
-            {
-                for (int i = 0; i < getDataListBox.Items.Count; i++)
-                {
-                    string fullFileName = getDataListBox.Items[i].ToString();
-                    SearchContainer<SearchMovie> results  = client.SearchMovieAsync(fullFileName).Result;
-
-                    if (results.TotalResults > 0)
-                    {
-                        SearchMovie result = results.Results[0];
-
-                        if (result.MediaType == MediaType.Movie)
-                        {
-                            foundAMovie(result.Id, (FileInfo)getDataListBox.Items[i]);
-                        }
-                    }
-
-                    else
-                    {
-                       if(!forceSearch(fullFileName, (FileInfo)getDataListBox.Items[i],results))
-                        {
-                            getDataListBox.Items[i] += " : NOT FOUND!!! try changing the file name";
-                        }
-                    }
-                }
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        private bool forceSearch(string i_FullFileName, FileInfo i_CurrentItem, SearchContainer<SearchMovie> i_Results)
-        {
-            bool found = false;
-
-            for (int j = i_FullFileName.Length - 1; j >= 0; j--)
-            {
-                if (char.IsSeparator(i_FullFileName[j]))
-                {
-                    i_FullFileName = i_FullFileName.Substring(0, j);
-                    i_Results = client.SearchMovieAsync(i_FullFileName).Result;
-
-                    if (i_Results.TotalResults > 0)
-                    {
-                        SearchMovie result = i_Results.Results[0];
-
-                        if (result.MediaType == MediaType.Movie)
-                        {
-                            foundAMovie(result.Id, i_CurrentItem);
-                        }
-                        found = true;
-                        break;
-                    }
-
-                }
-            }
-
-            return found;
-        }
-
-        private void foundAMovie(int i_MovieId,FileInfo path)
-        {
-            Movie movie = new Movie();
-            movie.ApiMovie = client.GetMovieAsync(i_MovieId).Result;
-            movie.InitializeClass();
-            movie.FilePath = path.FilePath;
-
-            if (!m_MoviesFound.Any(n => n.Title == movie.Title))
-            {
-                m_MoviesFound.Add(movie);
-                MoviesListBox.Items.Add(movie);
-            }
         }
      
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
@@ -125,8 +45,6 @@ namespace MainProgramUi
 
                     getDataListBox.Items.Add(item);
                 }
-
-                //UpdateMoviesAndSeriesListBox();
                 currentLogic.lalala();
 
                 MoviesListBox.Items.Clear();
@@ -142,24 +60,11 @@ namespace MainProgramUi
 
           ComboBoxItem select = (ComboBoxItem)SortTypeComboBox.SelectedValue;
 
-            if ((string)select.Content == "By Year")
-            {
-                m_MoviesFound = m_MoviesFound.OrderByDescending(w => w.ReleasedYear).ToList();
-            }
-
-            if ((string)select.Content == "By Rating")
-            {
-                m_MoviesFound = m_MoviesFound.OrderByDescending(w => w.Rating).ToList();
-            }
-
-            if ((string)select.Content == "By Genre")
-            {
-                m_MoviesFound = m_MoviesFound.OrderBy(w => w.Genre).ToList();
-            }
+            currentLogic.sortType(select.Content.ToString());
 
             MoviesListBox.Items.Clear();
 
-            foreach (var item in m_MoviesFound)
+            foreach (var item in currentLogic.MoviesFound)
             {
                 MoviesListBox.Items.Add(item);
             }

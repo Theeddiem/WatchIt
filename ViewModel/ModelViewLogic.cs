@@ -45,7 +45,6 @@ namespace ViewModel
 
             return toUpdate;
         }
-
         public void lalala()
         {
             try
@@ -120,6 +119,26 @@ namespace ViewModel
                 MoviesFound.Add(movie);
                 //MoviesListBox.Items.Add(movie);
             }
+        }
+
+        public void sortType(string i_SelectedValue)
+        {
+
+            if (i_SelectedValue == "By Year")
+            {
+                MoviesFound = MoviesFound.OrderByDescending(w => w.ReleasedYear).ToList();
+            }
+
+            if (i_SelectedValue == "By Rating")
+            {
+                MoviesFound = MoviesFound.OrderByDescending(w => w.Rating).ToList();
+            }
+
+            if (i_SelectedValue ==  "By Genre")
+            {
+                MoviesFound = MoviesFound.OrderBy(w => w.Genre).ToList();
+            }
+
         }
 
 
