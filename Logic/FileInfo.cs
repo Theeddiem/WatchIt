@@ -8,20 +8,20 @@ namespace Logic
 {
     public class FileInfo 
     {
-        public string ImagePath { get; set; }
+        public string FilePath { get; set; }
 
-        public string Title { get; set; }
+        public string FileName { get; set; }
 
-        public FileInfo(string i_ImagePath, string i_Title)
+        public FileInfo(string i_FilePath, string i_FileName)
         {
-            ImagePath = i_ImagePath;
+            FilePath = i_FilePath;
 
-            Title = i_Title;
+            FileName = i_FileName;
         }
 
         public override string ToString()
         {
-            return Title;
+            return FileName;
         }
     }
 }

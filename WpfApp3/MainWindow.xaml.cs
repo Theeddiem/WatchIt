@@ -94,25 +94,15 @@ namespace MainProgramUi
 
         private void foundAMovie(int i_MovieId,FileInfo path)
         {
-            TMDbLib.Objects.Movies.Movie movie = client.GetMovieAsync(i_MovieId).Result;
+            Movie movie = new Movie();
+            movie.ApiMovie = client.GetMovieAsync(i_MovieId).Result;
+            movie.InitializeClass();
+            movie.FilePath = path.FilePath;
 
-            StringBuilder genres = new StringBuilder("");
-
-            foreach (var item in movie.Genres)
+            if (!m_MoviesFound.Any(n => n.Title == movie.Title))
             {
-                genres.Append(item.Name + ", ");
-            }
-
-            DateTime ReleaseYear = (DateTime)movie.ReleaseDate;
-            string imagePosterPath = string.Format("https://image.tmdb.org/t/p/original{0}", movie.PosterPath);
-          
-            Movie title = new Movie(movie.Title, genres.ToString(), movie.VoteAverage, ReleaseYear.Year, imagePosterPath, movie.ImdbId,path.ImagePath);
-
-            if (!m_MoviesFound.Any(n => n.Title == title.Title))
-            {
-                m_MoviesFound.Add(title);
-                MoviesListBox.Items.Add(title);
-
+                m_MoviesFound.Add(movie);
+                MoviesListBox.Items.Add(movie);
             }
         }
      
@@ -124,7 +114,7 @@ namespace MainProgramUi
             {        
                 foreach (FileInfo item in Utilities.GetMoviesFromPc())
                 {
-                    if (!getDataListBox.Items.Cast<FileInfo>().Any(x => x.Title == item.Title))
+                    if (!getDataListBox.Items.Cast<FileInfo>().Any(x => x.FileName == item.FileName))
                     {
                         getDataListBox.Items.Add(item);
                         toUpdate = true;
@@ -150,7 +140,7 @@ namespace MainProgramUi
 
           ComboBoxItem select = (ComboBoxItem)SortTypeComboBox.SelectedValue;
 
-            if((string)select.Content == "By Year")
+            if ((string)select.Content == "By Year")
             {
                 m_MoviesFound = m_MoviesFound.OrderByDescending(w => w.ReleasedYear).ToList();
             }

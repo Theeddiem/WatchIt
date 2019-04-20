@@ -12,9 +12,9 @@ namespace Logic
     public static class Utilities
     {
 
-       public static List<FileInfo> GetMoviesFromPc()
+       public static HashSet<FileInfo> GetMoviesFromPc()
         {
-            List<FileInfo> titles = new List<FileInfo>();
+            HashSet<FileInfo> titles = new HashSet<FileInfo>();
 
             VistaFolderBrowserDialog folderBrowser = new VistaFolderBrowserDialog();
             folderBrowser.ShowDialog();

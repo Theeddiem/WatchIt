@@ -6,33 +6,64 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public abstract class Video : IEquatable<Video>
+    public abstract class Video 
     {
-        public string Title { get; set; }
-        public string Genre { get; set; }
-        public string ImdbId { get; set; }
-        public double Rating { get; set; }
-        public int ReleasedYear { get; set; }
-        public string ImagePath { get; set; }
+        protected string m_Title;
 
-        public string FilePath { get; set; }
-        public bool Equals(Video other)
-        {
-            return this.Title == other.Title &&
-             this.ReleasedYear == other.ReleasedYear;
-        }
+        protected string m_Genre;
 
-    
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+        protected string m_ImdbId;
+ 
+        protected double m_Rating;    
+
+        protected int m_ReleasedYear;   
+
+        protected string m_ImagePath;
+       
+        protected string m_FilePath;
 
         public override string ToString()
         {
             return string.Format("{0}  {1}, {2} {3}", Title, ReleasedYear, Rating, Genre);
         }
 
+        public virtual string Title
+        {
+            get { return m_Title; }
+            set { m_Title = value; }
+        }
+        public virtual string Genre
+        {
+            get { return m_Genre; }
+            set { m_Genre = value; }
+        }
+        public virtual string ImdbId
+        {
+            get { return m_ImdbId; }
+            set { m_ImdbId = value; }
+        }
+        public virtual double Rating
+        {
+            get { return m_Rating; }
+            set { m_Rating = value; }
+        }
+        public virtual int ReleasedYear
+        {
+            get { return m_ReleasedYear; }
+            set { m_ReleasedYear = value; }
+        }
+
+        public virtual string ImagePath
+        {
+            get { return m_ImagePath; }
+            set { m_ImagePath = value; }
+        }
+
+        public virtual string FilePath
+        {
+            get { return m_FilePath; }
+            set { m_FilePath = value; }
+        }
 
     }
 }

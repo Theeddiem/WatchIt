@@ -4,20 +4,64 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace Logic
 {
     public class Movie : Video
     {
-        public Movie(string i_Title, string i_Genere, double i_Rating, int i_ReleasedYear, string i_ImagePath,string i_ImdbId ,string i_FilePath)
+        public TMDbLib.Objects.Movies.Movie ApiMovie { get; set; }
+        public void InitializeClass()
         {
-            Title = i_Title;
-            Genre = i_Genere;
-            Rating = i_Rating;
-            ReleasedYear = i_ReleasedYear;
-            ImagePath = i_ImagePath;
-            ImdbId = i_ImdbId;
-            FilePath = i_FilePath;
+            if (ApiMovie != null)
+            {
+                Title = initializeTitle();
+                Genre = initializeGenres();
+                Rating = initializeRating() ;
+                ReleasedYear = initializeReleasedYear();
+                ImagePath = initializeImagePath();
+                ImdbId = initializeIMDbId();
+                //FilePath = i_FilePath;
+            }
         }
+        public override string ToString()
+        {
+            return string.Format("{0}  {1}, {2} {3}", Title, ReleasedYear, Rating, Genre);
+        }
+        private string initializeTitle()
+        {
+            return ApiMovie.Title;
+        }
+        private double initializeRating()
+        {
+            return ApiMovie.VoteAverage;
+        }
+        private string initializeGenres()
+        {
+            StringBuilder genres = new StringBuilder("");
+
+            foreach (var item in ApiMovie.Genres)
+            {
+                genres.Append(item.Name + ", ");
+            }
+
+            return genres.ToString();
+        }
+        private string initializeIMDbId()
+        {
+            return ApiMovie.ImdbId;
+        }
+        private int initializeReleasedYear()
+        {
+            DateTime ReleaseYear = (DateTime)ApiMovie.ReleaseDate;
+
+            return ReleaseYear.Year;
+        }
+        private string initializeImagePath()
+        {
+            return string.Format("https://image.tmdb.org/t/p/original{0}", ApiMovie.PosterPath);
+        }   
+        public override string FilePath { get => base.FilePath; set => base.FilePath = value; }
 
     }
 }
