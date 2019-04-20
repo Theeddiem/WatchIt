@@ -40,7 +40,7 @@ namespace Logic
 
           return filePaths;
        }
-       public static string trimMe(string i_FileName)
+       public static string TrimFileName(string i_FileName)
         {
             string strEnd1080 = "1080";
             string strEnd720 = "720";
@@ -66,13 +66,13 @@ namespace Logic
             i_FileName = removeLastSpaces(i_FileName);
             return i_FileName;
         }
-       private static string removeLastSpaces(string key)
+       private static string removeLastSpaces(string i_Key)
         {
-            for (int i = key.Length-1; i >= 0; i--)
+            for (int i = i_Key.Length-1; i >= 0; i--)
             {
-                if (char.IsSeparator(key[i]))
+                if (char.IsSeparator(i_Key[i]))
                 {
-                    key = key.TrimEnd();
+                    i_Key = i_Key.TrimEnd();
                     i--;
                 }
 
@@ -80,7 +80,7 @@ namespace Logic
                     break;
             }
 
-            return key;
+            return i_Key;
         }
     }
 }

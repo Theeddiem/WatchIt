@@ -12,19 +12,16 @@ namespace MainProgramUi
     public partial class MainWindow : Window
     {
         ModelViewLogic currentLogic = new ModelViewLogic();
-
-
         public MainWindow()
         {
             InitializeComponent();
             getDataListBox.ItemsSource = currentLogic.StoredFilesInPc;
             MoviesListBox.ItemsSource = currentLogic.MoviesFound;
 
-        }
-     
+        }   
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
         {
-            currentLogic.getMoviesFromPc();
+            currentLogic.GetMoviesFromPc();
 
         }
         private void SortTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -33,12 +30,10 @@ namespace MainProgramUi
 
           currentLogic.sortType(select.Content.ToString());
         }
-
         private void ClearListBtn_Click(object sender, RoutedEventArgs e)
         {
             getDataListBox.Items.Clear();
         }
-
         private void MoviesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -52,12 +47,10 @@ namespace MainProgramUi
                 CoverImage.Source = bi;
             }
         }
-
         private void ImdbBtn_Click(object sender, RoutedEventArgs e)
         {
             imdbButton();
         }
-
         private void imdbButton()
         {
             if (MoviesListBox.SelectedItem != null)
@@ -66,12 +59,10 @@ namespace MainProgramUi
                 System.Diagnostics.Process.Start(imdbSite);
             }
         }
-
         private void PlayBtn_Click(object sender, RoutedEventArgs e)
         {
             playButton();
         }
-
         private void playButton()
         {
             if (MoviesListBox.SelectedItem != null)

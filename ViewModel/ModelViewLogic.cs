@@ -22,7 +22,7 @@ namespace ViewModel
             MoviesFound = new ObservableCollection<ViewModel.Video>();
             StoredFilesInPc = new ObservableCollection<FileInfo>();
         }
-        public void getMoviesFromPc()
+        public void GetMoviesFromPc()
         {
             bool toUpdate = false;
 
@@ -34,7 +34,7 @@ namespace ViewModel
                 foreach (string filePath in Utilities.GetFilePaths())
                 {
                     string fileName = Path.GetFileNameWithoutExtension(filePath);
-                    string finalFileName = Utilities.trimMe(fileName);
+                    string finalFileName = Utilities.TrimFileName(fileName);
                     FileInfo newFile = new FileInfo(filePath, finalFileName);
 
                     filesFound.Add(newFile);
@@ -123,12 +123,12 @@ namespace ViewModel
 
             return found;
         }
-        private void foundAMovie(int i_MovieId, FileInfo path)
+        private void foundAMovie(int i_MovieId, FileInfo i_Path)
         {
             Movie movie = new Movie();
             movie.ApiMovie = m_Client.GetMovieAsync(i_MovieId).Result;
             movie.InitializeClass();
-            movie.FilePath = path.FilePath;
+            movie.FilePath = i_Path.FilePath;
 
             if (!MoviesFound.Any(n => n.Title == movie.Title))
             {
