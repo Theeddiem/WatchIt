@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
-
+using ViewModel;
 
 namespace MainProgramUi
 {
@@ -19,6 +19,7 @@ namespace MainProgramUi
     /// </summary>
     public partial class MainWindow : Window
     {
+        ModelViewLogic currentLogic = new ModelViewLogic();
         private TMDbClient client;
         private List<Logic.Video> m_MoviesFound = new List<Logic.Video>();
 
@@ -108,31 +109,32 @@ namespace MainProgramUi
      
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
         {
-            bool toUpdate = false;
+            getMoviesFromPcButton();
 
-            try
-            {        
-                foreach (FileInfo item in Utilities.GetMoviesFromPc())
-                {
-                    if (!getDataListBox.Items.Cast<FileInfo>().Any(x => x.FileName == item.FileName))
-                    {
-                        getDataListBox.Items.Add(item);
-                        toUpdate = true;
-                    }
-                }
-            }
+        }
 
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
+        private void getMoviesFromPcButton()
+        {
+            bool toUpdate = currentLogic.getMoviesFromPc();
 
             if (toUpdate)
             {
-               UpdateMoviesAndSeriesListBox();
-            }
+                getDataListBox.Items.Clear();
+                foreach (var item in currentLogic.StoredFilesInPc)
+                {
 
+                    getDataListBox.Items.Add(item);
+                }
+
+                //UpdateMoviesAndSeriesListBox();
+                currentLogic.lalala();
+
+                MoviesListBox.Items.Clear();
+                foreach (var item in currentLogic.MoviesFound)
+                {
+                    MoviesListBox.Items.Add(item);
+                }
+            }
         }
 
         private void SortTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -174,7 +176,7 @@ namespace MainProgramUi
 
             if (MoviesListBox.SelectedItem != null)
             {
-                string url = (MoviesListBox.SelectedItem as Movie).ImagePath;
+                string url = (MoviesListBox.SelectedItem as Movie).ImagePathUrl;
                 var bi = new BitmapImage();
                 bi.BeginInit();
                 bi.UriSource = new Uri(url);
@@ -185,6 +187,11 @@ namespace MainProgramUi
 
         private void ImdbBtn_Click(object sender, RoutedEventArgs e)
         {
+            imdbButton();
+        }
+
+        private void imdbButton()
+        {
             if (MoviesListBox.SelectedItem != null)
             {
                 string imdbSite = string.Format("https://www.imdb.com/title/{0}", (MoviesListBox.SelectedItem as Movie).ImdbId);
@@ -193,6 +200,11 @@ namespace MainProgramUi
         }
 
         private void PlayBtn_Click(object sender, RoutedEventArgs e)
+        {
+            playButton();
+        }
+
+        private void playButton()
         {
             if (MoviesListBox.SelectedItem != null)
             {

@@ -19,9 +19,8 @@ namespace Logic
                 Genre = initializeGenres();
                 Rating = initializeRating() ;
                 ReleasedYear = initializeReleasedYear();
-                ImagePath = initializeImagePath();
+                ImagePathUrl = initializeImagePathUrl();
                 ImdbId = initializeIMDbId();
-                //FilePath = i_FilePath;
             }
         }
         public override string ToString()
@@ -57,11 +56,9 @@ namespace Logic
 
             return ReleaseYear.Year;
         }
-        private string initializeImagePath()
+        private string initializeImagePathUrl()
         {
             return string.Format("https://image.tmdb.org/t/p/original{0}", ApiMovie.PosterPath);
         }   
-        public override string FilePath { get => base.FilePath; set => base.FilePath = value; }
-
     }
 }

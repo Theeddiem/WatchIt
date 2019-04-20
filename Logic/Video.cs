@@ -53,7 +53,7 @@ namespace Logic
             set { m_ReleasedYear = value; }
         }
 
-        public virtual string ImagePath
+        public virtual string ImagePathUrl
         {
             get { return m_ImagePath; }
             set { m_ImagePath = value; }

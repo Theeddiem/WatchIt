@@ -135,6 +135,10 @@
       <Project>{b4473b74-fe99-4386-82c0-f5266723cc2b}</Project>
       <Name>Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj">
+      <Project>{073b093f-039a-42a8-bbb0-5440df12a88d}</Project>
+      <Name>ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
