@@ -42,12 +42,12 @@ namespace MainProgramUi
 
             if (MoviesListBox.SelectedItem != null)
             {
-                string url = (MoviesListBox.SelectedItem as Movie).ImagePathUrl;
-                var bi = new BitmapImage();
-                bi.BeginInit();
-                bi.UriSource = new Uri(url);
-                bi.EndInit();
-                CoverImage.Source = bi;
+                //string url = (MoviesListBox.SelectedItem as Movie).ImagePathUrl;
+                //var bi = new BitmapImage();
+                //bi.BeginInit();
+                //bi.UriSource = new Uri(url);
+                //bi.EndInit();
+                CoverImage.Source = (MoviesListBox.SelectedItem as Movie).CoverImage;
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Windows.Media.Imaging;
 
 namespace ViewModel
 {
@@ -17,6 +18,7 @@ namespace ViewModel
                 ReleasedYear = initializeReleasedYear();
                 ImagePathUrl = initializeImagePathUrl();
                 ImdbId = initializeIMDbId();
+                CoverImage = initializeImageCoverImage();
             }
         }
 
@@ -65,7 +67,19 @@ namespace ViewModel
         private string initializeImagePathUrl()
         {
             return string.Format("https://image.tmdb.org/t/p/original{0}", ApiMovie.PosterPath);
-        }   
+        }
+
+        private BitmapImage initializeImageCoverImage()
+        {
+            string url = this.ImagePathUrl;
+            var bi = new BitmapImage();
+            bi.BeginInit();
+            bi.UriSource = new Uri(url);
+            bi.EndInit();
+
+
+            return bi;
+        }
 
     }
 }

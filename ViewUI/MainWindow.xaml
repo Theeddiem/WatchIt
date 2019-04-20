@@ -28,32 +28,35 @@
         </Grid.ColumnDefinitions>
         <Button x:Name="getMoviesFromPc" Content="Search The Pc&#xA;" Margin="-116,16,83,0" VerticalAlignment="Top" Height="30" Click="GetMoviesFromPc_Click" Width="157" Grid.ColumnSpan="2"/>
         <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="446" Margin="-119,118,0,0" VerticalAlignment="Top" Width="289" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
-        <Button x:Name="ClearListBtn" Content="Clear List&#xA;" HorizontalAlignment="Left" Margin="-116,55,0,0" VerticalAlignment="Top" Width="157" Height="30" Click="ClearListBtn_Click" Grid.ColumnSpan="2">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
-                    <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
-                    <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
-                    <GradientStop Color="#FFCDCDCD" Offset="1"/>
-                    <GradientStop Color="Gainsboro" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
         <ListBox x:Name="MoviesListBox" Grid.Column="3" HorizontalAlignment="Left" Margin="55,64,0,0" VerticalAlignment="Top" Width="392" Height="500" Grid.ColumnSpan="3" Grid.RowSpan="2" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}">
             <ListBox.ItemTemplate>
-            <DataTemplate>
-                    <StackPanel Margin="0,0,0,2"> <!--left top right bot-->
-                        <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=Title}" FontSize="14"  Foreground="MidnightBlue" FontWeight="Bold"/>
+                <DataTemplate>
+
+                    <!--left top right bot-->
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,1">
+                        <Image Source="{Binding Path = CoverImage}" Stretch="Fill" Height="150" Width="100" Margin="0,0,5,0" />
+
+                        <StackPanel Orientation="Vertical">
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Path=Title}" FontSize="14"  Foreground="MidnightBlue" FontWeight="Bold"/>
+                                <TextBlock Text=" " />
+                                <TextBlock Text="{Binding Path=ReleasedYear}" FontSize="14"  Foreground="MidnightBlue" FontWeight="Bold"/>
+                                <TextBlock Margin="0,0,5,0" />
+                                <TextBlock Text="{Binding Path=Rating}" FontSize="14" />
+                                <TextBlock Text="/10" FontSize="14" />
+                            </StackPanel>
+
                             <TextBlock Text=" " />
-                            <TextBlock Text="{Binding Path=ReleasedYear}" FontSize="14"  Foreground="MidnightBlue" FontWeight="Bold"/>
-                            <TextBlock Text="  " />
-                            <TextBlock Text="{Binding Path=Rating}" FontSize="14" />
+                            <TextBlock Text="{Binding Path=Genre}" />
+                            <TextBlock Text=" " />
                         </StackPanel>
-                        <TextBlock Text="{Binding Path=Genre}" />
+
                     </StackPanel>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
 

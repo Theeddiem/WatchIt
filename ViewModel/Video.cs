@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace ViewModel
 {
     public abstract class Video 
     {
+
+
         protected string m_Title;
 
         protected string m_Genre;
@@ -21,6 +24,9 @@ namespace ViewModel
         protected string m_ImagePath;
        
         protected string m_FilePath;
+
+        protected BitmapImage m_CoverImage;
+
 
         public override string ToString()
         {
@@ -63,6 +69,12 @@ namespace ViewModel
         {
             get { return m_FilePath; }
             set { m_FilePath = value; }
+        }
+
+        public virtual BitmapImage CoverImage
+        {
+            get { return m_CoverImage; }
+            set { m_CoverImage = value; }
         }
 
     }
