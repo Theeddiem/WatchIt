@@ -39,7 +39,19 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <ListBox x:Name="MoviesListBox" Grid.Column="3" HorizontalAlignment="Left" Margin="55,64,0,0" VerticalAlignment="Top" Width="392" Height="500" Grid.ColumnSpan="3" Grid.RowSpan="2" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}"/>
+        <ListBox x:Name="MoviesListBox" Grid.Column="3" HorizontalAlignment="Left" Margin="55,64,0,0" VerticalAlignment="Top" Width="392" Height="500" Grid.ColumnSpan="3" Grid.RowSpan="2" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}"> 
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <StackPanel>
+                        <TextBlock Text="{Binding Path=Title}" FontSize="14" />
+                        <TextBlock Text="{Binding Path=Rating}" FontSize="14" />
+                        <TextBlock Text="{Binding Path=Genre}" />
+                    </StackPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+        </ListBox>
+
+
         <ComboBox x:Name="SortTypeComboBox" Grid.Column="4" HorizontalAlignment="Left" Margin="144,7,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="SortTypeComboBox_SelectionChanged" SelectedIndex="-1" Grid.ColumnSpan="2">
             <ComboBoxItem Content="By Year" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem Content="By Rating" HorizontalAlignment="Left" Width="118" Background="#00000000"/>

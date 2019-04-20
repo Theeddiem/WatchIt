@@ -19,18 +19,22 @@ namespace ViewModel
                 ImdbId = initializeIMDbId();
             }
         }
+
         public override string ToString()
         {
             return string.Format("{0}  {1}, {2} {3}", Title, ReleasedYear, Rating, Genre);
         }
+
         private string initializeTitle()
         {
             return ApiMovie.Title;
         }
+
         private double initializeRating()
         {
             return ApiMovie.VoteAverage;
         }
+
         private string initializeGenres()
         {
             StringBuilder genres = new StringBuilder("");
@@ -40,21 +44,28 @@ namespace ViewModel
                 genres.Append(item.Name + ", ");
             }
 
-            return genres.ToString();
+            string temp = genres.ToString();
+            temp = temp.TrimEnd(',',' ');
+
+            return temp;
         }
+
         private string initializeIMDbId()
         {
             return ApiMovie.ImdbId;
         }
+
         private int initializeReleasedYear()
         {
             DateTime ReleaseYear = (DateTime)ApiMovie.ReleaseDate;
 
             return ReleaseYear.Year;
         }
+
         private string initializeImagePathUrl()
         {
             return string.Format("https://image.tmdb.org/t/p/original{0}", ApiMovie.PosterPath);
         }   
+
     }
 }
