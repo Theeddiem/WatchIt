@@ -39,12 +39,17 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <ListBox x:Name="MoviesListBox" Grid.Column="3" HorizontalAlignment="Left" Margin="55,64,0,0" VerticalAlignment="Top" Width="392" Height="500" Grid.ColumnSpan="3" Grid.RowSpan="2" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}"> 
-        <ListBox.ItemTemplate>
+        <ListBox x:Name="MoviesListBox" Grid.Column="3" HorizontalAlignment="Left" Margin="55,64,0,0" VerticalAlignment="Top" Width="392" Height="500" Grid.ColumnSpan="3" Grid.RowSpan="2" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}">
+            <ListBox.ItemTemplate>
             <DataTemplate>
-                <StackPanel>
-                        <TextBlock Text="{Binding Path=Title}" FontSize="14" />
-                        <TextBlock Text="{Binding Path=Rating}" FontSize="14" />
+                    <StackPanel Margin="0,0,0,2"> <!--left top right bot-->
+                        <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Title}" FontSize="14"  Foreground="MidnightBlue" FontWeight="Bold"/>
+                            <TextBlock Text=" " />
+                            <TextBlock Text="{Binding Path=ReleasedYear}" FontSize="14"  Foreground="MidnightBlue" FontWeight="Bold"/>
+                            <TextBlock Text="  " />
+                            <TextBlock Text="{Binding Path=Rating}" FontSize="14" />
+                        </StackPanel>
                         <TextBlock Text="{Binding Path=Genre}" />
                     </StackPanel>
             </DataTemplate>
