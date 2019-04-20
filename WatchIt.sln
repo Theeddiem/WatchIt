@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainProgramUi", "WpfApp3\MainProgramUi.csproj", "{B8A9146D-242C-4824-9C6D-9773359CD698}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewUi", "WpfApp3\ViewUi.csproj", "{B8A9146D-242C-4824-9C6D-9773359CD698}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{B4473B74-FE99-4386-82C0-F5266723CC2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelLogic", "Logic\ModelLogic.csproj", "{B4473B74-FE99-4386-82C0-F5266723CC2B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{073B093F-039A-42A8-BBB0-5440DF12A88D}"
 EndProject

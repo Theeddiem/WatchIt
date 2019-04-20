@@ -1,4 +1,4 @@
-﻿using Logic;
+﻿using ModelLogic;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,13 +30,11 @@ namespace ViewModel
 
             try
             {
-
                 foreach (string filePath in Utilities.GetFilePaths())
                 {
                     string fileName = Path.GetFileNameWithoutExtension(filePath);
                     string finalFileName = Utilities.TrimFileName(fileName);
                     FileInfo newFile = new FileInfo(filePath, finalFileName);
-
                     filesFound.Add(newFile);
                 }
 
