@@ -57,7 +57,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Logic\ModelLogic.csproj">
+    <ProjectReference Include="..\ModelLogic\ModelLogic.csproj">
       <Project>{b4473b74-fe99-4386-82c0-f5266723cc2b}</Project>
       <Name>ModelLogic</Name>
     </ProjectReference>

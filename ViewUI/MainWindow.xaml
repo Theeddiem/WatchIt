@@ -7,9 +7,9 @@
         xmlns:ViewModel="clr-namespace:ViewModel;assembly=ViewModel" x:Class="MainProgramUi.MainWindow"
         mc:Ignorable="d"
         Title="WatchIt" Height="636.334" Width="1108.894">
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <ViewModel:ModelViewLogic/>
-    </Window.DataContext>
+    </Window.DataContext>-->
     <Grid Margin="0,0,-389,0" HorizontalAlignment="Right" Width="1300">
         <Grid.Background>
             <ImageBrush/>
