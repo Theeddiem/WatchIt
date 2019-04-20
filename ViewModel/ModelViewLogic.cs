@@ -2,9 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
@@ -13,23 +12,35 @@ namespace ViewModel
 {
     public class ModelViewLogic
     {
-        public ObservableCollection<Logic.Video> MoviesFound { get; set; }
+        public ObservableCollection<Video> MoviesFound { get; set; }
         public ObservableCollection<FileInfo> StoredFilesInPc { get; set; }
-        private TMDbClient m_Client;
 
+        private TMDbClient m_Client;
         public ModelViewLogic()
         {
             m_Client = new TMDbClient("a959178bb3475c959db8941953d19bad");
-            MoviesFound = new ObservableCollection<Logic.Video>();
+            MoviesFound = new ObservableCollection<ViewModel.Video>();
             StoredFilesInPc = new ObservableCollection<FileInfo>();
         }
         public void getMoviesFromPc()
         {
             bool toUpdate = false;
 
+            List<FileInfo> filesFound = new List<FileInfo>();
+
             try
             {
-                foreach (FileInfo item in Utilities.GetMoviesFromPc())
+
+                foreach (string filePath in Utilities.GetFilePaths())
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(filePath);
+                    string finalFileName = Utilities.trimMe(fileName);
+                    FileInfo newFile = new FileInfo(filePath, finalFileName);
+
+                    filesFound.Add(newFile);
+                }
+
+                foreach (FileInfo item in filesFound)
                 {
                     if (!StoredFilesInPc.Any(x => x.FileName == item.FileName))
                     {

@@ -1,15 +1,7 @@
-﻿using Logic;
-using OMDbApiNet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using TMDbLib.Client;
-using TMDbLib.Objects.General;
-using TMDbLib.Objects.Search;
 using ViewModel;
 
 namespace MainProgramUi

@@ -1,21 +1,16 @@
 ﻿using Ookii.Dialogs.Wpf;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
-
-using Path = System.IO.Path;
 
 namespace Logic
 {
     public static class Utilities
     {
+       public static List<string> GetFilePaths()
+       {
 
-       public static List<FileInfo> GetMoviesFromPc()
-        {
-            List<FileInfo> titles = new List<FileInfo>();
-
+            List<string> filePaths = new List<string>();
             VistaFolderBrowserDialog folderBrowser = new VistaFolderBrowserDialog();
             folderBrowser.ShowDialog();
 
@@ -27,30 +22,25 @@ namespace Logic
 
                     dirs.Add(choosenPath);
 
-                    foreach (string dir in dirs)
-                    {
-                    var allowedExtensions = new[] { ".mp4", ".avi", ".mkv" };
-                    var files = Directory
-                        .GetFiles(dir)
-                        .Where(file => allowedExtensions.Any(file.ToLower().EndsWith))
-                        .ToList();
-
-                    foreach (string filePath in files)
+                        foreach (string dir in dirs)
                         {
-                            string fileName = Path.GetFileNameWithoutExtension(filePath);
-                            string finalFileName = trimMe(fileName);
-                            FileInfo newTitle = new FileInfo(filePath, finalFileName);
-                            titles.Add(newTitle);
-                        }
+                            var allowedExtensions = new[] { ".mp4", ".avi", ".mkv" };
+                            var files = Directory
+                                .GetFiles(dir)
+                                .Where(file => allowedExtensions.Any(file.ToLower().EndsWith))
+                                .ToList();
 
-                    }
+                            foreach (string filePath in files)
+                            {
+                                filePaths.Add(filePath);
+                            }
+
+                        }
                 }
 
-        return titles;
-
+          return filePaths;
        }
-
-        public static string trimMe(string i_FileName)
+       public static string trimMe(string i_FileName)
         {
             string strEnd1080 = "1080";
             string strEnd720 = "720";
@@ -76,9 +66,7 @@ namespace Logic
             i_FileName = removeLastSpaces(i_FileName);
             return i_FileName;
         }
-
-
-        private static string removeLastSpaces(string key)
+       private static string removeLastSpaces(string key)
         {
             for (int i = key.Length-1; i >= 0; i--)
             {
