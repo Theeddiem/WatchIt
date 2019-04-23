@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ViewModel
 {
-    public abstract class Video 
+    [Serializable]
+    public abstract class Video  
     {
-
-
         protected string m_Title;
 
         protected string m_Genre;
@@ -21,17 +22,20 @@ namespace ViewModel
 
         protected int m_ReleasedYear;   
 
-        protected string m_ImagePath;
+        protected string m_ImagePathUrl;
        
         protected string m_FilePath;
 
-        protected BitmapImage m_CoverImage;
+        //[NonSerialized]
+        //protected BitmapImage m_CoverImage;
 
 
         public override string ToString()
         {
             return string.Format("{0}  {1}, {2} {3}", Title, ReleasedYear, Rating, Genre);
         }
+
+
 
         public virtual string Title
         {
@@ -61,8 +65,8 @@ namespace ViewModel
 
         public virtual string ImagePathUrl
         {
-            get { return m_ImagePath; }
-            set { m_ImagePath = value; }
+            get { return m_ImagePathUrl; }
+            set { m_ImagePathUrl = value; }
         }
 
         public virtual string FilePath
@@ -71,11 +75,11 @@ namespace ViewModel
             set { m_FilePath = value; }
         }
 
-        public virtual BitmapImage CoverImage
-        {
-            get { return m_CoverImage; }
-            set { m_CoverImage = value; }
-        }
+        //public virtual BitmapImage CoverImage
+        //{
+        //    get { return m_CoverImage; }
+        //    set { m_CoverImage = value; }
+        //}
 
     }
 }

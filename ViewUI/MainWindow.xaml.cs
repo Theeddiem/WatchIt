@@ -16,8 +16,23 @@ namespace MainProgramUi
         public MainWindow()
         {
             InitializeComponent();
+
+            if(m_ViewModelGlue.CurrentSettings.LoadMovies())
+            {
+                m_ViewModelGlue.MoviesFound = m_ViewModelGlue.CurrentSettings.MoviesFound;
+            }
+
+
+            if (m_ViewModelGlue.CurrentSettings.LoadFiles())
+            {
+                m_ViewModelGlue.StoredFilesInPc = m_ViewModelGlue.CurrentSettings.StoredFilesInPc;
+            }
+
+
+            //m_ViewModelGlue.MoviesFound = m_ViewModelGlue.CurrentSettings.MoviesFound;
             getDataListBox.ItemsSource = m_ViewModelGlue.StoredFilesInPc;
             MoviesListBox.ItemsSource = m_ViewModelGlue.MoviesFound;
+
         }   
 
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
@@ -42,12 +57,12 @@ namespace MainProgramUi
 
             if (MoviesListBox.SelectedItem != null)
             {
-                //string url = (MoviesListBox.SelectedItem as Movie).ImagePathUrl;
-                //var bi = new BitmapImage();
-                //bi.BeginInit();
-                //bi.UriSource = new Uri(url);
-                //bi.EndInit();
-                CoverImage.Source = (MoviesListBox.SelectedItem as Movie).CoverImage;
+                string url = (MoviesListBox.SelectedItem as Movie).ImagePathUrl;
+                var bi = new BitmapImage();
+                bi.BeginInit();
+                bi.UriSource = new Uri(url);
+                bi.EndInit();
+              //  CoverImage.Source = (MoviesListBox.SelectedItem as Movie).CoverImage;
             }
         }
 

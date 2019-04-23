@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Media.Imaging;
+using System.Xml.Serialization;
 
 namespace ViewModel
 {
+
     public class Movie : Video
     {
+
+        [XmlIgnore]
         public TMDbLib.Objects.Movies.Movie ApiMovie { get; set; }
 
         public void InitializeClass()
@@ -18,7 +23,7 @@ namespace ViewModel
                 ReleasedYear = initializeReleasedYear();
                 ImagePathUrl = initializeImagePathUrl();
                 ImdbId = initializeIMDbId();
-                CoverImage = initializeImageCoverImage();
+                //CoverImage = initializeImageCoverImage();
             }
         }
 

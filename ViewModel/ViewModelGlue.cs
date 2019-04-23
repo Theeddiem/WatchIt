@@ -12,16 +12,19 @@ namespace ViewModel
 {
     public class ViewModelGlue
     {
-        public ObservableCollection<Video> MoviesFound { get; set; }
-        public ObservableCollection<FileInfo> StoredFilesInPc { get; set; }
 
+        public ObservableCollection<Movie> MoviesFound { get; set; }
+        public ObservableCollection<FileInfo> StoredFilesInPc { get; set; }
+        public SaveSetting CurrentSettings { get; }
         private TMDbClient m_Client;
+
 
         public ViewModelGlue()
         {
             m_Client = new TMDbClient("a959178bb3475c959db8941953d19bad");
-            MoviesFound = new ObservableCollection<Video>();
+            MoviesFound = new ObservableCollection<Movie>();
             StoredFilesInPc = new ObservableCollection<FileInfo>();
+            CurrentSettings = new SaveSetting(MoviesFound,StoredFilesInPc);
         }
 
         public void GetMoviesFromPc()
@@ -48,6 +51,7 @@ namespace ViewModel
                         toUpdate = true;
                     }
                 }
+
             }
 
             catch (Exception ex)
@@ -89,14 +93,20 @@ namespace ViewModel
                         }
                     }
                 }
+
+
+                //CurrentSettings.MoviesFound = MoviesFound;
+                CurrentSettings.Save();
             }
 
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
+
         }
 
+      
         private bool forceSearch(string i_FullFileName, FileInfo i_CurrentItem, SearchContainer<SearchMovie> i_Results)
         {
             bool found = false;
@@ -122,7 +132,7 @@ namespace ViewModel
 
                 }
             }
-
+ //delegete to do
             return found;
         }
 
