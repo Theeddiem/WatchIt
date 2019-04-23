@@ -22,43 +22,32 @@ namespace ViewModel
         {
             if (ApiMovie != null)
             {
-                Title = initializeTitle();
-                Genre = initializeGenres();
-                Rating = initializeRating() ;
-                ReleasedYear = initializeReleasedYear();
-                ImagePathUrl = initializeImagePathUrl();
-                ImdbId = initializeIMDbId();
-                CoverImage = initializeImageCoverImage();
+                 initializeTitle();
+                 initializeGenres();
+                 initializeRating() ;
+                 initializeReleasedYear();
+                 initializeImagePathUrl();
+                 initializeIMDbId();
+                 initializeImageCoverImage();
             }
         }
-
-
-        //public BitmapSource getImage()
-        //{
-        //    return Convert.ToBase64String()
-        //}
-
-        //private string initializeTheImage()
-        //{
-        //    return Utilities.ImageToBase64(CoverImage);
-        //}
 
         public override string ToString()
         {
             return string.Format("{0}  {1}, {2} {3}", Title, ReleasedYear, Rating, Genre);
         }
 
-        private string initializeTitle()
+        private void initializeTitle()
         {
-            return ApiMovie.Title;
+            Title = ApiMovie.Title;
         }
 
-        private double initializeRating()
+        private void initializeRating()
         {
-            return ApiMovie.VoteAverage;
+            Rating = ApiMovie.VoteAverage;
         }
 
-        private string initializeGenres()
+        private void initializeGenres()
         {
             StringBuilder genres = new StringBuilder("");
 
@@ -70,37 +59,35 @@ namespace ViewModel
             string temp = genres.ToString();
             temp = temp.TrimEnd(',',' ');
 
-            return temp;
+            Genre = temp;
         }
 
-        private string initializeIMDbId()
+        private void initializeIMDbId()
         {
-            return ApiMovie.ImdbId;
+            ImdbId = ApiMovie.ImdbId;
         }
 
-        private int initializeReleasedYear()
+        private void initializeReleasedYear()
         {
-            DateTime ReleaseYear = (DateTime)ApiMovie.ReleaseDate;
+            DateTime dateYear= (DateTime)ApiMovie.ReleaseDate;
 
-            return ReleaseYear.Year;
+            ReleasedYear = dateYear.Year;
         }
 
-        private string initializeImagePathUrl()
+        private void initializeImagePathUrl()
         {
-            return string.Format("https://image.tmdb.org/t/p/original{0}", ApiMovie.PosterPath);
+            ImagePathUrl = string.Format("https://image.tmdb.org/t/p/original{0}", ApiMovie.PosterPath);
         }
 
-        public BitmapImage initializeImageCoverImage()
+        public void initializeImageCoverImage()
         {
-            string url = this.ImagePathUrl;
             var bi = new BitmapImage();
             bi.BeginInit();
-            bi.UriSource = new Uri(url);
+            bi.UriSource = new Uri(ImagePathUrl);
             bi.EndInit();
 
             CoverImage = bi;
 
-            return bi;
         }
 
     }
