@@ -22,6 +22,7 @@ namespace MainProgramUi
             if(m_ViewModelGlue.CurrentSettings.LoadMovies())
             {
                 m_ViewModelGlue.MoviesFound = m_ViewModelGlue.CurrentSettings.MoviesFound;
+                m_ViewModelGlue.LoopMov();
             }
 
 
@@ -62,7 +63,7 @@ namespace MainProgramUi
                 bi.BeginInit();
                 bi.UriSource = new Uri(url);
                 bi.EndInit();
-                (MoviesListBox.SelectedItem as Movie).initializeImageCoverImage();
+               // (MoviesListBox.SelectedItem as Movie).initializeImageCoverImage();
                 CoverImage.Source = (MoviesListBox.SelectedItem as Movie).CoverImage;
 
             }
