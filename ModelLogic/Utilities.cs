@@ -1,7 +1,11 @@
 ﻿using Ookii.Dialogs.Wpf;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace ModelLogic
 {

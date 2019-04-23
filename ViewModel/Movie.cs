@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModelLogic;
+using System;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Media.Imaging;
@@ -13,6 +14,10 @@ namespace ViewModel
         [XmlIgnore]
         public TMDbLib.Objects.Movies.Movie ApiMovie { get; set; }
 
+        public Movie()
+        {
+   
+        }
         public void InitializeClass()
         {
             if (ApiMovie != null)
@@ -23,9 +28,20 @@ namespace ViewModel
                 ReleasedYear = initializeReleasedYear();
                 ImagePathUrl = initializeImagePathUrl();
                 ImdbId = initializeIMDbId();
-                //CoverImage = initializeImageCoverImage();
+                CoverImage = initializeImageCoverImage();
             }
         }
+
+
+        //public BitmapSource getImage()
+        //{
+        //    return Convert.ToBase64String()
+        //}
+
+        //private string initializeTheImage()
+        //{
+        //    return Utilities.ImageToBase64(CoverImage);
+        //}
 
         public override string ToString()
         {
@@ -74,7 +90,7 @@ namespace ViewModel
             return string.Format("https://image.tmdb.org/t/p/original{0}", ApiMovie.PosterPath);
         }
 
-        private BitmapImage initializeImageCoverImage()
+        public BitmapImage initializeImageCoverImage()
         {
             string url = this.ImagePathUrl;
             var bi = new BitmapImage();
@@ -82,6 +98,7 @@ namespace ViewModel
             bi.UriSource = new Uri(url);
             bi.EndInit();
 
+            CoverImage = bi;
 
             return bi;
         }

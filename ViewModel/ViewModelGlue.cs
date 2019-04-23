@@ -94,8 +94,6 @@ namespace ViewModel
                     }
                 }
 
-
-                //CurrentSettings.MoviesFound = MoviesFound;
                 CurrentSettings.Save();
             }
 

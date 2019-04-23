@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 namespace ViewModel
 {
@@ -26,15 +27,14 @@ namespace ViewModel
        
         protected string m_FilePath;
 
-        //[NonSerialized]
-        //protected BitmapImage m_CoverImage;
 
+        [XmlIgnore]
+        protected BitmapImage m_CoverImage;
 
         public override string ToString()
         {
             return string.Format("{0}  {1}, {2} {3}", Title, ReleasedYear, Rating, Genre);
         }
-
 
 
         public virtual string Title
@@ -75,11 +75,12 @@ namespace ViewModel
             set { m_FilePath = value; }
         }
 
-        //public virtual BitmapImage CoverImage
-        //{
-        //    get { return m_CoverImage; }
-        //    set { m_CoverImage = value; }
-        //}
+        [XmlIgnore]
+        public virtual BitmapImage CoverImage
+        {
+            get { return m_CoverImage; }
+            set { m_CoverImage = value; }
+        }
 
     }
 }

@@ -8,7 +8,7 @@ namespace ViewModel
 
         public string FileName { get; set; }
 
-        public FileInfo() { } // paramtless constocur for needed for serlliaziotn
+        public FileInfo() { } //Parameterless constructor needed for Serialization
 
         public FileInfo(string i_FilePath, string i_FileName)
         {

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -28,8 +30,6 @@ namespace MainProgramUi
                 m_ViewModelGlue.StoredFilesInPc = m_ViewModelGlue.CurrentSettings.StoredFilesInPc;
             }
 
-
-            //m_ViewModelGlue.MoviesFound = m_ViewModelGlue.CurrentSettings.MoviesFound;
             getDataListBox.ItemsSource = m_ViewModelGlue.StoredFilesInPc;
             MoviesListBox.ItemsSource = m_ViewModelGlue.MoviesFound;
 
@@ -62,10 +62,13 @@ namespace MainProgramUi
                 bi.BeginInit();
                 bi.UriSource = new Uri(url);
                 bi.EndInit();
-              //  CoverImage.Source = (MoviesListBox.SelectedItem as Movie).CoverImage;
+                (MoviesListBox.SelectedItem as Movie).initializeImageCoverImage();
+                CoverImage.Source = (MoviesListBox.SelectedItem as Movie).CoverImage;
+
             }
         }
 
+ 
         private void ImdbBtn_Click(object sender, RoutedEventArgs e)
         {
             imdbButton();
