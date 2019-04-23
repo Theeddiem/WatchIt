@@ -86,8 +86,14 @@ namespace MainProgramUi
         {
             if (MoviesListBox.SelectedItem != null)
             {
+                // addd if file exists
                 System.Diagnostics.Process.Start((MoviesListBox.SelectedItem as Video).FilePath);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+           m_ViewModelGlue.CurrentSettings.Save();
         }
     }
 }

@@ -40,6 +40,7 @@ namespace ViewModel
             bool toUpdate = false;
 
             List<FileInfo> filesFound = new List<FileInfo>();
+            List<FileInfo> newFilesFound = new List<FileInfo>();
 
             try
             {
@@ -56,6 +57,7 @@ namespace ViewModel
                     if (!StoredFilesInPc.Any(x => x.FileName == item.FileName))
                     {
                         StoredFilesInPc.Add(item);
+                        newFilesFound.Add(item);
                         toUpdate = true;
                     }
                 }
@@ -69,18 +71,18 @@ namespace ViewModel
 
             if(toUpdate)
             {
-                GetVideoData();
+                GetVideoData(newFilesFound);
             }
 
         }
 
-        public void GetVideoData()
+        public void GetVideoData(List<FileInfo> i_NewFilesFound)
         {
             try
             {
-                for (int i = 0; i < StoredFilesInPc.Count; i++)
+                for (int i = 0; i < i_NewFilesFound.Count; i++)
                 {
-                    string fullFileName = StoredFilesInPc[i].ToString();
+                    string fullFileName = i_NewFilesFound[i].ToString();
                     SearchContainer<SearchMovie> results = m_Client.SearchMovieAsync(fullFileName).Result;
 
                     if (results.TotalResults > 0)
@@ -89,20 +91,20 @@ namespace ViewModel
 
                         if (result.MediaType == MediaType.Movie)
                         {
-                            foundAMovie(result.Id, StoredFilesInPc[i]);
+                            foundAMovie(result.Id, i_NewFilesFound[i]);
                         }
                     }
 
                     else
                     {
-                        if (!forceSearch(fullFileName, StoredFilesInPc[i], results))
+                        if (!forceSearch(fullFileName, i_NewFilesFound[i], results))
                         {
-                            StoredFilesInPc[i].FileName += " : NOT FOUND!!! try changing the file name";
+                            i_NewFilesFound[i].FileName += " : NOT FOUND!!! try changing the file name";
                         }
                     }
                 }
 
-                CurrentSettings.Save();
+                
             }
 
             catch (Exception ex)
@@ -138,7 +140,7 @@ namespace ViewModel
 
                 }
             }
- //delegete to do
+
             return found;
         }
 
