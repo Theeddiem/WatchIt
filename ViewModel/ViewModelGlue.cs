@@ -27,7 +27,7 @@ namespace ViewModel
             CurrentSettings = new SaveSetting(MoviesFound,StoredFilesInPc);
         }
 
-        public void LoopMov()
+        public void LoadImageForEachMovie()
         {
             foreach (var item in MoviesFound)
             {

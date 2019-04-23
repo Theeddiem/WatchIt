@@ -22,7 +22,7 @@ namespace MainProgramUi
             if(m_ViewModelGlue.CurrentSettings.LoadMovies())
             {
                 m_ViewModelGlue.MoviesFound = m_ViewModelGlue.CurrentSettings.MoviesFound;
-                m_ViewModelGlue.LoopMov();
+                m_ViewModelGlue.LoadImageForEachMovie();
             }
 
 
@@ -58,14 +58,7 @@ namespace MainProgramUi
 
             if (MoviesListBox.SelectedItem != null)
             {
-                string url = (MoviesListBox.SelectedItem as Movie).ImagePathUrl;
-                var bi = new BitmapImage();
-                bi.BeginInit();
-                bi.UriSource = new Uri(url);
-                bi.EndInit();
-               // (MoviesListBox.SelectedItem as Movie).initializeImageCoverImage();
                 CoverImage.Source = (MoviesListBox.SelectedItem as Movie).CoverImage;
-
             }
         }
 
@@ -93,7 +86,7 @@ namespace MainProgramUi
         {
             if (MoviesListBox.SelectedItem != null)
             {
-                System.Diagnostics.Process.Start((MoviesListBox.SelectedItem as Movie).FilePath);
+                System.Diagnostics.Process.Start((MoviesListBox.SelectedItem as Video).FilePath);
             }
         }
     }
