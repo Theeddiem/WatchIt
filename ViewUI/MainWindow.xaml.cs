@@ -86,8 +86,11 @@ namespace MainProgramUi
         {
             if (MoviesListBox.SelectedItem != null)
             {
-                // addd if file exists
-                System.Diagnostics.Process.Start((MoviesListBox.SelectedItem as Video).FilePath);
+                string filePath = (MoviesListBox.SelectedItem as Video).FilePath;
+                if (File.Exists(filePath))
+                {
+                    System.Diagnostics.Process.Start(filePath);
+                }
             }
         }
      
