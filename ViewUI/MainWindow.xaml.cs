@@ -95,6 +95,13 @@ namespace MainProgramUi
         {
             m_ViewModelGlue.CurrentSettings.Save();
         }
+
+        private void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
+        {
+           string fileFolder =  Path.GetDirectoryName((MoviesListBox.SelectedItem as Video).FilePath);
+           System.Diagnostics.Process.Start(fileFolder);
+
+        }
     }
 }
 

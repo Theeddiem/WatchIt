@@ -107,9 +107,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -142,13 +142,16 @@
     <Resource Include="Resources\IMDbIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\gg.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\VlcICon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="WatchItIco.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FolderIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconFolder2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
