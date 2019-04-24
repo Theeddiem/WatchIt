@@ -101,8 +101,21 @@ namespace MainProgramUi
 
         private void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
         {
-           string fileFolder =  Path.GetDirectoryName((MoviesListBox.SelectedItem as Video).FilePath);
-           System.Diagnostics.Process.Start(fileFolder);
+            if (MoviesListBox.SelectedItem != null)
+            {
+
+                string fileFolder = Path.GetDirectoryName((MoviesListBox.SelectedItem as Video).FilePath);
+                System.Diagnostics.Process.Start(fileFolder);
+            }
+
+        }
+
+        private void EditMovieBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MoviesListBox.SelectedItem != null)
+            {
+               
+            }
 
         }
     }
