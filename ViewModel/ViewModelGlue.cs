@@ -144,42 +144,62 @@ namespace ViewModel
             return found;
         }
 
-        public List<Movie> MoviesResults (Movie i_IncorrentMovie)
+        public List<Movie> MoviesResults(Movie i_IncorrentMovie)
         {
             string fileName = i_IncorrentMovie.CuttedFileName;
             SearchContainer<SearchMovie> results = m_Client.SearchMovieAsync(fileName).Result;
             List<Movie> reSearchMoviesFound = new List<Movie>();
 
             for (int j = fileName.Length - 1; j >= 0; j--)
+            {
+                if (char.IsSeparator(fileName[j]))
                 {
-                    if (char.IsSeparator(fileName[j]))
+                    fileName = fileName.Substring(0, j);
+                    results = m_Client.SearchMovieAsync(fileName).Result;
+
+                    if (results.TotalResults / 5 >= 1) // at least 5 results 
                     {
-                        fileName = fileName.Substring(0, j);
-                        results = m_Client.SearchMovieAsync(fileName).Result;
-
-                        if (results.TotalResults >= 1)
+                        for (int i = results.Results.Count - 1; i >= results.Results.Count - 5; i--)
                         {
-
-                            for (int i = 0; i < 5; i++)
+                            if (results.Results[i].MediaType == MediaType.Movie)
                             {
-                                if (results.Results[i].MediaType == MediaType.Movie)
-                                {
-                                    Movie movie = new Movie();
-                                    movie.ApiMovie = m_Client.GetMovieAsync(results.Results[i].Id).Result;
-                                    movie.InitializeClass();
-                                    movie.FilePath = i_IncorrentMovie.FilePath;
-                                    movie.CuttedFileName = i_IncorrentMovie.CuttedFileName;
-                                    reSearchMoviesFound.Add(movie);
-                                }
+                                createMovieInstance(results.Results[i].Id, i_IncorrentMovie, reSearchMoviesFound);
                             }
+                        }
 
                         break;
 
-                        }
                     }
+
+                    else
+                    {
+                        foreach (var item in results.Results)
+                        {
+                            if (item.MediaType == MediaType.Movie)
+                            {
+                                createMovieInstance(item.Id, i_IncorrentMovie, reSearchMoviesFound);
+                            }
+                        }
+
+                    }
+                    break;
+                }
+
+              
             }
 
             return reSearchMoviesFound;
+        }
+
+
+            private void createMovieInstance (int i_results,Movie i_IncorrentMovie, List<Movie> i_reSearchMoviesFound)
+        {
+            Movie movie = new Movie();
+            movie.ApiMovie = m_Client.GetMovieAsync(i_results).Result;
+            movie.InitializeClass();
+            movie.FilePath = i_IncorrentMovie.FilePath;
+            movie.CuttedFileName = i_IncorrentMovie.CuttedFileName;
+            i_reSearchMoviesFound.Add(movie);
         }
 
         public void changeRefMovies(Movie i_IncorrentMovie,Movie i_CorrectMovie)

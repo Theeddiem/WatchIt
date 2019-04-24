@@ -69,7 +69,12 @@ namespace ViewModel
 
         private void initializeReleasedYear()
         {
-            DateTime dateYear= (DateTime)ApiMovie.ReleaseDate;
+
+            DateTime dateYear = new DateTime(9999, 9, 9);
+            if(ApiMovie.ReleaseDate != null) 
+              dateYear = (DateTime)ApiMovie.ReleaseDate;
+
+
 
             ReleasedYear = dateYear.Year;
         }
