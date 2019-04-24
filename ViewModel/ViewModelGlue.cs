@@ -144,17 +144,67 @@ namespace ViewModel
             return found;
         }
 
+        public List<Movie> MoviesResults (Movie i_IncorrentMovie)
+        {
+            string fileName = i_IncorrentMovie.CuttedFileName;
+            SearchContainer<SearchMovie> results = m_Client.SearchMovieAsync(fileName).Result;
+            List<Movie> reSearchMoviesFound = new List<Movie>();
+
+            for (int j = fileName.Length - 1; j >= 0; j--)
+                {
+                    if (char.IsSeparator(fileName[j]))
+                    {
+                        fileName = fileName.Substring(0, j);
+                        results = m_Client.SearchMovieAsync(fileName).Result;
+
+                        if (results.TotalResults >= 1)
+                        {
+
+                            for (int i = 0; i < 5; i++)
+                            {
+                                if (results.Results[i].MediaType == MediaType.Movie)
+                                {
+                                    Movie movie = new Movie();
+                                    movie.ApiMovie = m_Client.GetMovieAsync(results.Results[i].Id).Result;
+                                    movie.InitializeClass();
+                                    movie.FilePath = i_IncorrentMovie.FilePath;
+                                    movie.CuttedFileName = i_IncorrentMovie.CuttedFileName;
+                                    reSearchMoviesFound.Add(movie);
+                                }
+                            }
+
+                        break;
+
+                        }
+                    }
+            }
+
+            return reSearchMoviesFound;
+        }
+
+        public void changeRefMovies(Movie i_IncorrentMovie,Movie i_CorrectMovie)
+        {
+            for (int i = 0; i < MoviesFound.Count; i++)
+            {
+                if (MoviesFound[i].Title == i_IncorrentMovie.Title)
+                {
+                    MoviesFound[i] = i_CorrectMovie;
+                    break;
+                }
+            }
+        }
+
         private void foundAMovie(int i_MovieId, FileInfo i_Path)
         {
             Movie movie = new Movie();
             movie.ApiMovie = m_Client.GetMovieAsync(i_MovieId).Result;
             movie.InitializeClass();
             movie.FilePath = i_Path.FilePath;
+            movie.CuttedFileName = i_Path.FileName;
 
             if (!MoviesFound.Any(n => n.Title == movie.Title))
             {
                 MoviesFound.Add(movie);
-                //MoviesListBox.Items.Add(movie);
             }
         }
 

@@ -24,8 +24,10 @@ namespace ViewModel
         protected int m_ReleasedYear;   
 
         protected string m_ImagePathUrl;
-       
+
         protected string m_FilePath;
+
+        protected string m_CuttedFileNamePc;
 
 
         [XmlIgnore]
@@ -73,6 +75,12 @@ namespace ViewModel
         {
             get { return m_FilePath; }
             set { m_FilePath = value; }
+        }
+
+        public virtual string CuttedFileName
+        {
+            get { return m_CuttedFileNamePc; }
+            set { m_CuttedFileNamePc = value; }
         }
 
         [XmlIgnore]

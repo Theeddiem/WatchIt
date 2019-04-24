@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows;
@@ -114,7 +115,22 @@ namespace MainProgramUi
         {
             if (MoviesListBox.SelectedItem != null)
             {
-               
+                FixedListBox.Items.Clear();
+                foreach (var item in m_ViewModelGlue.MoviesResults(MoviesListBox.SelectedItem as Movie))
+                {
+                    FixedListBox.Items.Add(item);
+                }
+            }
+
+        }
+
+        private void FixedListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FixedListBox.SelectedItem != null)
+            {
+                CoverImage.Source = (FixedListBox.SelectedItem as Movie).CoverImage;
+
+                m_ViewModelGlue.changeRefMovies(MoviesListBox.SelectedItem as Movie, FixedListBox.SelectedItem as Movie);
             }
 
         }

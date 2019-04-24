@@ -86,11 +86,12 @@
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/FolderIcon.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="EditMovieBtn" Content="" Grid.Column="5" HorizontalAlignment="Left" Margin="27,387,0,0" Grid.Row="1" VerticalAlignment="Top" Width="67" Height="60" Click="EditMovieBtn_Click">
+        <Button x:Name="EditMovieBtn" Content="" Grid.Column="5" HorizontalAlignment="Left" Margin="4,404,0,0" Grid.Row="1" VerticalAlignment="Top" Width="46" Height="46" Click="EditMovieBtn_Click">
             <Button.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/EditIcon.png"/>
             </Button.Background>
         </Button>
+        <ListBox x:Name="FixedListBox" Grid.Column="5" HorizontalAlignment="Left" Height="123" Margin="62,365,0,0" Grid.Row="1" VerticalAlignment="Top" Width="253" SelectionChanged="FixedListBox_SelectionChanged"/>
 
 
     </Grid>
