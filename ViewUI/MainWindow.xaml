@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:MainProgramUi"
         xmlns:ViewModel="clr-namespace:ViewModel;assembly=ViewModel" x:Class="MainProgramUi.MainWindow"
         mc:Ignorable="d"
-        Title="WatchIt" Height="636.334" Width="1108.894">
+        Title="WatchIt" Height="696" Width="1250" ResizeMode="CanMinimize" Closed="Window_Closed">
     <!--<Window.DataContext>
         <ViewModel:ModelViewLogic/>
     </Window.DataContext>-->
-    <Grid Margin="0,0,-389,0" HorizontalAlignment="Right" Width="1300">
+    <Grid Margin="0,0,-389,0" HorizontalAlignment="Right" Width="1300" MaxWidth="1300" MinWidth="1300">
         <Grid.Background>
             <ImageBrush/>
         </Grid.Background>
@@ -26,9 +26,9 @@
             <ColumnDefinition Width="109*"/>
             <ColumnDefinition Width="303*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="getMoviesFromPc" Content="Search The Pc&#xA;" Margin="-116,16,83,0" VerticalAlignment="Top" Height="30" Click="GetMoviesFromPc_Click" Width="157" Grid.ColumnSpan="2"/>
-        <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="446" Margin="-119,118,0,0" VerticalAlignment="Top" Width="289" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
-        <ListBox x:Name="MoviesListBox" Grid.Column="3" HorizontalAlignment="Left" Margin="55,64,0,0" VerticalAlignment="Top" Width="392" Height="500" Grid.ColumnSpan="3" Grid.RowSpan="2" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}">
+        <Button x:Name="getMoviesFromPc" Content="Search The Pc&#xA;" Margin="-293,18,174,0" VerticalAlignment="Top" Height="30" Click="GetMoviesFromPc_Click" Width="157"/>
+        <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="501" Margin="-296,124,0,0" VerticalAlignment="Top" Width="289" Grid.RowSpan="2"/>
+        <ListBox x:Name="MoviesListBox" HorizontalAlignment="Left" Margin="20,46,0,0" VerticalAlignment="Top" Width="520" Height="580" Grid.ColumnSpan="5" Grid.RowSpan="2" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
 
@@ -60,28 +60,27 @@
         </ListBox>
 
 
-        <ComboBox x:Name="SortTypeComboBox" Grid.Column="4" HorizontalAlignment="Left" Margin="144,7,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="SortTypeComboBox_SelectionChanged" SelectedIndex="-1" Grid.ColumnSpan="2">
+        <ComboBox x:Name="SortTypeComboBox" Grid.Column="4" HorizontalAlignment="Left" Margin="110,7,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="SortTypeComboBox_SelectionChanged" SelectedIndex="-1" RenderTransformOrigin="-0.138,0.545">
             <ComboBoxItem Content="By Year" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem Content="By Rating" HorizontalAlignment="Left" Width="118" Background="#00000000"/>
             <ComboBoxItem Content="By Genre" HorizontalAlignment="Left" Width="118"/>
 
         </ComboBox>
-        <Image x:Name="CoverImage" Grid.Column="5" HorizontalAlignment="Left" Height="358" Margin="41,60,0,0" VerticalAlignment="Top" Width="246" Grid.RowSpan="2" OpacityMask="Black"/>
+        <Image x:Name="CoverImage" Grid.Column="5" HorizontalAlignment="Left" Height="400" Margin="22,48,0,0" VerticalAlignment="Top" Width="265" Grid.RowSpan="2" OpacityMask="Black"/>
         <Image Grid.Column="4" HorizontalAlignment="Left" Height="100" Margin="163,457,0,-4" Grid.Row="1" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2"/>
-        <Button x:Name="ImdbBtn" Content="" Grid.Column="5" HorizontalAlignment="Left" Margin="40,272,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="52" Click="ImdbBtn_Click">
+        <Button x:Name="ImdbBtn" Content="" Grid.Column="5" HorizontalAlignment="Left" Margin="34,301,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="52" Click="ImdbBtn_Click">
             <Button.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/IMDbIcon.png" TileMode="Tile" Stretch="None"/>
             </Button.Background>
         </Button>
-        <Label x:Name="MoviesLabel" Content="Movies" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="3" Margin="49,35,0,0" Width="83" FontWeight="Bold" FontSize="14"/>
-        <Label x:Name="MoviesLabel_Copy" Content="Files Found On Your Pc" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-123,90,0,0" Width="267" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="4"/>
-        <Label x:Name="MoviesLabel_Copy1" Content="Sort" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4" Margin="103,1,0,0" Width="52" FontWeight="Bold" FontSize="14"/>
-        <Button x:Name="PlayBtn" Content="" Grid.Column="5" HorizontalAlignment="Left" Margin="187,271,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Height="63" Click="PlayBtn_Click">
+        <Label x:Name="MoviesLabel" Content="Movies" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,18,0,0" Width="83" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="2" RenderTransformOrigin="0.506,0.052"/>
+        <Label x:Name="MoviesLabel_Copy" Content="Files Found On Your Pc" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-297,90,0,0" Width="267" FontWeight="Bold" FontSize="14"/>
+        <Label x:Name="MoviesLabel_Copy1" Content="Sort" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4" Margin="61,2,0,0" Width="52" FontWeight="Bold" FontSize="14" RenderTransformOrigin="0.038,0.569"/>
+        <Button x:Name="PlayBtn" Content="" Grid.Column="5" HorizontalAlignment="Left" Margin="190,296,0,0" Grid.Row="1" VerticalAlignment="Top" Width="60" Height="56" Click="PlayBtn_Click" RenderTransformOrigin="0.375,1.089">
             <Button.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/VlcICon.png" Stretch="None"/>
             </Button.Background>
         </Button>
-        <Button Content="Save" HorizontalAlignment="Left" Margin="-158,59,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
 
     </Grid>

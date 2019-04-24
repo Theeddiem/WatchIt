@@ -90,10 +90,10 @@ namespace MainProgramUi
                 System.Diagnostics.Process.Start((MoviesListBox.SelectedItem as Video).FilePath);
             }
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+     
+        private void Window_Closed(object sender, EventArgs e)
         {
-           m_ViewModelGlue.CurrentSettings.Save();
+            m_ViewModelGlue.CurrentSettings.Save();
         }
     }
 }
