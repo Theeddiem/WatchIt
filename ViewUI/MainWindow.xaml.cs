@@ -49,11 +49,6 @@ namespace MainProgramUi
           m_ViewModelGlue.sortType(select.Content.ToString());
         }
 
-        private void ClearListBtn_Click(object sender, RoutedEventArgs e)
-        {
-            getDataListBox.Items.Clear();
-        }
-
         private void MoviesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -61,6 +56,8 @@ namespace MainProgramUi
             {
                 CoverImage.Source = (MoviesListBox.SelectedItem as Movie).CoverImage;
             }
+
+            FixedListBox.Visibility = Visibility.Hidden;
         }
 
  
@@ -94,11 +91,6 @@ namespace MainProgramUi
                 }
             }
         }
-     
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            m_ViewModelGlue.CurrentSettings.Save();
-        }
 
         private void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -116,6 +108,7 @@ namespace MainProgramUi
             if (MoviesListBox.SelectedItem != null)
             {
                 FixedListBox.Items.Clear();
+                FixedListBox.Visibility = Visibility.Visible;
                 foreach (var item in m_ViewModelGlue.MoviesResults(MoviesListBox.SelectedItem as Movie))
                 {
                     FixedListBox.Items.Add(item);
@@ -133,6 +126,12 @@ namespace MainProgramUi
                 m_ViewModelGlue.changeRefMovies(MoviesListBox.SelectedItem as Movie, FixedListBox.SelectedItem as Movie);
             }
 
+        }
+
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            m_ViewModelGlue.CurrentSettings.Save();
         }
     }
 }
