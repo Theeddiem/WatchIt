@@ -7,12 +7,21 @@
         xmlns:ViewModel="clr-namespace:ViewModel;assembly=ViewModel" x:Class="MainProgramUi.MainWindow"
         mc:Ignorable="d"
         Title="WatchIt" Height="696" Width="1250" ResizeMode="CanMinimize" Closed="Window_Closed">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="0"/>
+            <GradientStop Color="#FFB2AAAA" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <!--<Window.DataContext>
         <ViewModel:ModelViewLogic/>
     </Window.DataContext>-->
     <Grid Margin="0,0,-389,0" HorizontalAlignment="Right" Width="1300" MaxWidth="1300" MinWidth="1300">
         <Grid.Background>
-            <ImageBrush/>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="0"/>
+                <GradientStop Color="#FFB2AAAA" Offset="1"/>
+            </LinearGradientBrush>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="189*"/>
@@ -27,7 +36,7 @@
             <ColumnDefinition Width="303*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="getMoviesFromPc" Content="Search The Pc&#xA;" Margin="-293,18,174,0" VerticalAlignment="Top" Height="30" Click="GetMoviesFromPc_Click" Width="157"/>
-        <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="501" Margin="-296,124,0,0" VerticalAlignment="Top" Width="289" Grid.RowSpan="2"/>
+        <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="501" Margin="-296,124,0,0" VerticalAlignment="Top" Width="289" Grid.RowSpan="2" Background="White"/>
         <ListBox x:Name="MoviesListBox" HorizontalAlignment="Left" Margin="20,46,0,0" VerticalAlignment="Top" Width="520" Height="580" Grid.ColumnSpan="5" Grid.RowSpan="2" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -73,8 +82,8 @@
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/IMDbIcon.png" TileMode="Tile" Stretch="None"/>
             </Button.Background>
         </Button>
-        <Label x:Name="MoviesLabel" Content="Movies" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,18,0,0" Width="83" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="2" RenderTransformOrigin="0.506,0.052"/>
-        <Label x:Name="MoviesLabel_Copy" Content="Files Found On Your Pc" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-297,90,0,0" Width="267" FontWeight="Bold" FontSize="14"/>
+        <Label x:Name="MoviesLabel" Content="Movies" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,18,0,0" Width="83" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="2" RenderTransformOrigin="0.506,0.052" Foreground="#FF00F1D1"/>
+        <Label x:Name="MoviesLabel_Copy" Content="Files Found On Your Pc" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-297,90,0,0" Width="267" FontWeight="Bold" FontSize="14" Foreground="#FF00F1D1"/>
         <Label x:Name="MoviesLabel_Copy1" Content="Sort" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4" Margin="61,2,0,0" Width="52" FontWeight="Bold" FontSize="14" RenderTransformOrigin="0.038,0.569"/>
         <Button x:Name="PlayBtn" Content="" Grid.Column="5" HorizontalAlignment="Left" Margin="229,287,0,0" Grid.Row="1" VerticalAlignment="Top" Width="50" Height="52" Click="PlayBtn_Click" RenderTransformOrigin="0.375,1.089">
             <Button.Background>
