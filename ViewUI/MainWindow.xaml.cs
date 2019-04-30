@@ -96,9 +96,12 @@ namespace MainProgramUi
         {
             if (MoviesListBox.SelectedItem != null)
             {
-
+                
                 string fileFolder = Path.GetDirectoryName((MoviesListBox.SelectedItem as Video).FilePath);
-                System.Diagnostics.Process.Start(fileFolder);
+                if (File.Exists(fileFolder))
+                {
+                    System.Diagnostics.Process.Start(fileFolder);
+                }
             }
 
         }

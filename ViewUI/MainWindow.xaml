@@ -9,9 +9,9 @@
         Title="WatchIt" Height="696" Width="1474.6" ResizeMode="CanMinimize" Closed="Window_Closed">
     <Grid>
         <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="0"/>
-                <GradientStop Color="#FF53BBD3" Offset="1"/>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="1"/>
+                <GradientStop Color="#FF53BBD3"/>
             </LinearGradientBrush>
         </Grid.Background>
         <Grid.ColumnDefinitions>
@@ -58,9 +58,9 @@
             <ComboBoxItem Content="By Genre" HorizontalAlignment="Left" Width="118"/>
 
         </ComboBox>
-        <Image x:Name="CoverImage" HorizontalAlignment="Left" Height="400" Margin="521,74,0,0" VerticalAlignment="Top" Width="277" OpacityMask="Black" Grid.Column="1"/>
+        <Image x:Name="CoverImage" HorizontalAlignment="Left" Height="400" Margin="521,66,0,0" VerticalAlignment="Top" Width="277" OpacityMask="Black" Grid.Column="1"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="163,457,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="ImdbBtn" Content="" HorizontalAlignment="Left" Margin="518,499,0,0" VerticalAlignment="Top" Width="111" Height="46" Click="ImdbBtn_Click" Foreground="White" Grid.Column="1">
+        <Button x:Name="ImdbBtn" Content="" HorizontalAlignment="Left" Margin="528,485,0,0" VerticalAlignment="Top" Width="111" Height="46" Click="ImdbBtn_Click" Foreground="White" Grid.Column="1">
             <Button.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/IMDbIcon.png" TileMode="Tile" Stretch="None"/>
             </Button.Background>
@@ -68,22 +68,22 @@
         <Label x:Name="MoviesLabel" Content="Movies" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="416,30,0,0" Width="83" FontWeight="Bold" FontSize="14" RenderTransformOrigin="0.506,0.052" Foreground="#FF00F1D1"/>
         <Label x:Name="FilesFoundOnYourPcLabel" Content="Files Found On Your Pc" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,30,0,0" Width="267" FontWeight="Bold" FontSize="14" Foreground="#FF00F1D1"/>
         <Label x:Name="Sortlabel" Content="Sort" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="236,30,0,0" Width="52" FontWeight="Bold" FontSize="14" RenderTransformOrigin="0.038,0.569" Grid.Column="1" Foreground="#FF00F1D1"/>
-        <Button x:Name="PlayBtn" Content="" HorizontalAlignment="Left" Margin="734,499,0,0" VerticalAlignment="Top" Width="50" Height="52" Click="PlayBtn_Click" RenderTransformOrigin="0.375,1.089" Grid.Column="1">
+        <Button x:Name="PlayBtn" Content="" HorizontalAlignment="Left" Margin="744,485,0,0" VerticalAlignment="Top" Width="50" Height="52" Click="PlayBtn_Click" RenderTransformOrigin="0.375,1.089" Grid.Column="1">
             <Button.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/VlcICon.png" Stretch="None"/>
             </Button.Background>
         </Button>
-        <Button x:Name="OpenFolderBtn" Content="" HorizontalAlignment="Left" Margin="656,499,0,0" VerticalAlignment="Top" Width="55" Height="51" Click="OpenFolderBtn_Click" BorderThickness="0" Grid.Column="1">
+        <Button x:Name="OpenFolderBtn" Content="" HorizontalAlignment="Left" Margin="666,485,0,0" VerticalAlignment="Top" Width="55" Height="51" Click="OpenFolderBtn_Click" BorderThickness="0" Grid.Column="1">
             <Button.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/FolderIcon.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="EditMovieBtn" Content="" HorizontalAlignment="Left" Margin="519,559,0,0" VerticalAlignment="Top" Width="46" Height="46" Click="EditMovieBtn_Click" Grid.Column="1">
+        <Button x:Name="EditMovieBtn" Content="" HorizontalAlignment="Left" Margin="531,557,0,0" VerticalAlignment="Top" Width="46" Height="46" Click="EditMovieBtn_Click" Grid.Column="1" RenderTransformOrigin="0.37,0.87">
             <Button.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/EditIcon.png"/>
             </Button.Background>
         </Button>
-        <ListBox x:Name="FixedListBox" HorizontalAlignment="Left" Height="123" Margin="62,365,0,0" VerticalAlignment="Top" Width="253" SelectionChanged="FixedListBox_SelectionChanged" Visibility="Hidden"/>
+        <ListBox x:Name="FixedListBox" HorizontalAlignment="Left" Height="99" Margin="593,557,0,0" VerticalAlignment="Top" Width="347" SelectionChanged="FixedListBox_SelectionChanged" Visibility="Hidden" Grid.Column="1" RenderTransformOrigin="0.6,0.424" Background="#FFF3F1F5"/>
 
 
     </Grid>
