@@ -18,9 +18,9 @@
             <ColumnDefinition Width="521*"/>
             <ColumnDefinition Width="948*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="getMoviesFromPc" Content="Search The Pc&#xA;" Margin="54,52,309,0" VerticalAlignment="Top" Height="30" Click="GetMoviesFromPc_Click" Width="157"/>
-        <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="501" Margin="36,136,0,0" VerticalAlignment="Top" Width="289" Background="White" Visibility="Visible"/>
-        <ListBox x:Name="MoviesListBox" HorizontalAlignment="Left" Margin="5,66,0,0" VerticalAlignment="Top" Width="520" Height="580" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}" Grid.Column="1">
+        <Button x:Name="getMoviesFromPc" Content="Search The Pc&#xA;" Margin="31,64,333,0" VerticalAlignment="Top" Height="30" Click="GetMoviesFromPc_Click" Width="157"/>
+        <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="539" Margin="31,106,0,0" VerticalAlignment="Top" Width="289" Background="#FFF3F1F5" Visibility="Visible"/>
+        <ListBox x:Name="MoviesListBox" HorizontalAlignment="Left" Margin="416,66,0,0" VerticalAlignment="Top" Width="520" Height="580" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}" Background="#FFF3F1F5" Grid.ColumnSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
 
@@ -52,33 +52,33 @@
         </ListBox>
 
 
-        <ComboBox x:Name="SortTypeComboBox" HorizontalAlignment="Left" Margin="399,23,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="SortTypeComboBox_SelectionChanged" SelectedIndex="-1" RenderTransformOrigin="-0.138,0.545" Grid.Column="1">
+        <ComboBox x:Name="SortTypeComboBox" HorizontalAlignment="Left" Margin="299,34,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="SortTypeComboBox_SelectionChanged" SelectedIndex="-1" RenderTransformOrigin="-0.138,0.545" Grid.Column="1">
             <ComboBoxItem Content="By Year" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem Content="By Rating" HorizontalAlignment="Left" Width="118" Background="#00000000"/>
             <ComboBoxItem Content="By Genre" HorizontalAlignment="Left" Width="118"/>
 
         </ComboBox>
-        <Image x:Name="CoverImage" HorizontalAlignment="Left" Height="400" Margin="587,76,0,0" VerticalAlignment="Top" Width="277" OpacityMask="Black" Grid.Column="1"/>
+        <Image x:Name="CoverImage" HorizontalAlignment="Left" Height="400" Margin="521,74,0,0" VerticalAlignment="Top" Width="277" OpacityMask="Black" Grid.Column="1"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="163,457,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="ImdbBtn" Content="" HorizontalAlignment="Left" Margin="596,485,0,0" VerticalAlignment="Top" Width="111" Height="46" Click="ImdbBtn_Click" Foreground="White" Grid.Column="1">
+        <Button x:Name="ImdbBtn" Content="" HorizontalAlignment="Left" Margin="518,499,0,0" VerticalAlignment="Top" Width="111" Height="46" Click="ImdbBtn_Click" Foreground="White" Grid.Column="1">
             <Button.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/IMDbIcon.png" TileMode="Tile" Stretch="None"/>
             </Button.Background>
         </Button>
-        <Label x:Name="MoviesLabel" Content="Movies" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="9,32,0,0" Width="83" FontWeight="Bold" FontSize="14" RenderTransformOrigin="0.506,0.052" Foreground="#FF00F1D1" Grid.Column="1"/>
-        <Label x:Name="MoviesLabel_Copy" Content="Files Found On Your Pc" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="63,14,0,0" Width="267" FontWeight="Bold" FontSize="14" Foreground="#FF00F1D1"/>
-        <Label x:Name="MoviesLabel_Copy1" Content="Sort" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="334,20,0,0" Width="52" FontWeight="Bold" FontSize="14" RenderTransformOrigin="0.038,0.569" Grid.Column="1"/>
-        <Button x:Name="PlayBtn" Content="" HorizontalAlignment="Left" Margin="812,485,0,0" VerticalAlignment="Top" Width="50" Height="52" Click="PlayBtn_Click" RenderTransformOrigin="0.375,1.089" Grid.Column="1">
+        <Label x:Name="MoviesLabel" Content="Movies" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="416,30,0,0" Width="83" FontWeight="Bold" FontSize="14" RenderTransformOrigin="0.506,0.052" Foreground="#FF00F1D1"/>
+        <Label x:Name="FilesFoundOnYourPcLabel" Content="Files Found On Your Pc" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,30,0,0" Width="267" FontWeight="Bold" FontSize="14" Foreground="#FF00F1D1"/>
+        <Label x:Name="Sortlabel" Content="Sort" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="236,30,0,0" Width="52" FontWeight="Bold" FontSize="14" RenderTransformOrigin="0.038,0.569" Grid.Column="1" Foreground="#FF00F1D1"/>
+        <Button x:Name="PlayBtn" Content="" HorizontalAlignment="Left" Margin="734,499,0,0" VerticalAlignment="Top" Width="50" Height="52" Click="PlayBtn_Click" RenderTransformOrigin="0.375,1.089" Grid.Column="1">
             <Button.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/VlcICon.png" Stretch="None"/>
             </Button.Background>
         </Button>
-        <Button x:Name="OpenFolderBtn" Content="" HorizontalAlignment="Left" Margin="734,485,0,0" VerticalAlignment="Top" Width="55" Height="51" Click="OpenFolderBtn_Click" BorderThickness="0" Grid.Column="1">
+        <Button x:Name="OpenFolderBtn" Content="" HorizontalAlignment="Left" Margin="656,499,0,0" VerticalAlignment="Top" Width="55" Height="51" Click="OpenFolderBtn_Click" BorderThickness="0" Grid.Column="1">
             <Button.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/FolderIcon.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="EditMovieBtn" Content="" HorizontalAlignment="Left" Margin="601,551,0,0" VerticalAlignment="Top" Width="46" Height="46" Click="EditMovieBtn_Click" Grid.Column="1">
+        <Button x:Name="EditMovieBtn" Content="" HorizontalAlignment="Left" Margin="519,559,0,0" VerticalAlignment="Top" Width="46" Height="46" Click="EditMovieBtn_Click" Grid.Column="1">
             <Button.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/EditIcon.png"/>
             </Button.Background>
