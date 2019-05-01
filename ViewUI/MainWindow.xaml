@@ -69,11 +69,6 @@
         </ComboBox>
         <Image x:Name="CoverImage" HorizontalAlignment="Left" Height="400" Margin="521,66,0,0" VerticalAlignment="Top" Width="277" OpacityMask="Black" Grid.Column="1"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="163,457,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="ImdbBtn" Content="" HorizontalAlignment="Left" Margin="521,486,0,0" VerticalAlignment="Top" Width="118" Height="46" Click="ImdbBtn_Click" Foreground="White" Grid.Column="1" BorderThickness="0">
-            <Button.Background>
-                <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/IMDbIcon.png" TileMode="Tile" Stretch="None"/>
-            </Button.Background>
-        </Button>
         <Label x:Name="MoviesLabel" Content="Movies" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="416,30,0,0" Width="83" FontWeight="Bold" FontSize="16" RenderTransformOrigin="0.506,0.052" Foreground="#FF00F1D1"/>
         <Label x:Name="FilesFoundOnYourPcLabel" Content="Files Found On Your Pc" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="31,30,0,0" Width="267" FontWeight="Bold" FontSize="16" Foreground="#FF00F1D1"/>
         <Label x:Name="Sortlabel" Content="Sort" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="249,27,0,0" Width="52" FontWeight="Bold" FontSize="16" RenderTransformOrigin="0.038,0.569" Grid.Column="1" Foreground="#FF00F1D1" BorderThickness="0">
@@ -84,24 +79,28 @@
                 </LinearGradientBrush>
             </Label.BorderBrush>
         </Label>
-        <Button x:Name="PlayBtn" Content="" HorizontalAlignment="Left" Margin="732,486,0,0" VerticalAlignment="Top" Width="49" Height="46" Click="PlayBtn_Click" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0">
-            <Button.Background>
-                <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/VlcICon.png" Stretch="None"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="OpenFolderBtn" Content="" HorizontalAlignment="Left" Margin="653,482,0,0" VerticalAlignment="Top" Width="66" Height="57" Click="OpenFolderBtn_Click" BorderThickness="0" Grid.Column="1" RenderTransformOrigin="0.731,0.526">
-            <Button.Background>
-                <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/FolderIcon.png"/>
-            </Button.Background>
+      
+        
+        <Button x:Name="ImdbBtn"  HorizontalAlignment="Left" Margin="510,479,0,0" VerticalAlignment="Top" Width="66" Height="57" Click="ImdbBtn_Click" Foreground="White" Grid.Column="1" BorderThickness="0" Background="{x:Null}">
+            <materialDesign:PackIcon Kind="Web" Foreground="white" Width="36" Height="48" />
         </Button>
 
-        <Button x:Name="EditMovieBtn" Content="" HorizontalAlignment="Left" Margin="521,548,0,0" VerticalAlignment="Top" Width="56" Height="55" Click="EditMovieBtn_Click" Grid.Column="1" RenderTransformOrigin="0.37,0.87" BorderThickness="0">
-            <Button.Background>
-                <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/EditIcon.png"/>
-            </Button.Background>
+        <Button x:Name="OpenFolderBtn" HorizontalAlignment="Left" Margin="590,479,0,0" VerticalAlignment="Top" Width="66" Height="57" Click="OpenFolderBtn_Click" BorderThickness="0" Grid.Column="1" RenderTransformOrigin="0.731,0.526" Background="{x:Null}">
+
+        <materialDesign:PackIcon Kind="FolderOpen" Foreground="white" Width="36" Height="48" />
+        </Button>
+
+        <Button x:Name="PlayBtn" HorizontalAlignment="Left" Margin="670,479,0,0" VerticalAlignment="Top" Width="66" Height="57" Click="PlayBtn_Click" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}">
+            <materialDesign:PackIcon Kind="PlayCircle" Foreground="white" Width="36" Height="48" />
+        </Button>
+
+        <Button x:Name="EditMovieBtn" HorizontalAlignment="Left" Margin="750,479,0,0" VerticalAlignment="Top" Width="66" Height="57" Click="EditMovieBtn_Click" Grid.Column="1" RenderTransformOrigin="0.37,0.87" BorderThickness="0" Background="{x:Null}">
+            <materialDesign:PackIcon Kind="TableSearch" Foreground="white" Width="36" Height="48" />
         </Button>
         <ListBox x:Name="FixedListBox" HorizontalAlignment="Left" Height="99" Margin="593,557,0,0" VerticalAlignment="Top" Width="347" SelectionChanged="FixedListBox_SelectionChanged" Visibility="Hidden" Grid.Column="1" RenderTransformOrigin="0.6,0.424" Background="#FFF3F1F5"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="357,258,0,0" VerticalAlignment="Top" Width="75"/>
 
+        <materialDesign:PackIcon Kind="FolderRemove" />
 
     </Grid>
 </Window>
