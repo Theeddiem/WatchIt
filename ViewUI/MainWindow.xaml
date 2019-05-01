@@ -19,17 +19,17 @@
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="1"/>
-                <GradientStop Color="#FF53BBD3"/>
+                <GradientStop Color="Black" Offset="0.866"/>
+                <GradientStop Color="#FF2B444F"/>
             </LinearGradientBrush>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="521*"/>
             <ColumnDefinition Width="948*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="getMoviesFromPc"  Style="{StaticResource MaterialDesignRaisedDarkButton}"  Content="Search The Pc&#xA;" Margin="29,62,353,0" VerticalAlignment="Top" Height="32" Click="GetMoviesFromPc_Click" Background="#FF48A0B4" BorderThickness="1" BorderBrush="Black"/>
-        <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="539" Margin="31,106,0,0" VerticalAlignment="Top" Width="289" Background="#FFC2F3FF" Visibility="Visible"/>
-        <ListBox x:Name="MoviesListBox" HorizontalAlignment="Left" Margin="416,66,0,0" VerticalAlignment="Top" Width="520" Height="580" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}" Background="#FFC2F3FF" Grid.ColumnSpan="2">
+        <Button x:Name="getMoviesFromPc"  Style="{StaticResource MaterialDesignRaisedDarkButton}"  Content="Search The Pc&#xA;" Margin="29,62,353,0" VerticalAlignment="Top" Height="32" Click="GetMoviesFromPc_Click" Background="#FF829FAE" BorderThickness="1" BorderBrush="Black"/>
+        <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="539" Margin="31,106,0,0" VerticalAlignment="Top" Width="289" Background="#FFC1C5C7" Visibility="Visible"/>
+        <ListBox x:Name="MoviesListBox" HorizontalAlignment="Left" Margin="416,66,0,0" VerticalAlignment="Top" Width="520" Height="580" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}" Background="#FFC1C5C7" Grid.ColumnSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
 
