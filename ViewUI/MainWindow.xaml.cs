@@ -33,6 +33,9 @@ namespace MainProgramUi
             getDataListBox.ItemsSource = m_ViewModelGlue.StoredFilesInPc;
             MoviesListBox.ItemsSource = m_ViewModelGlue.MoviesFound;
 
+            m_ViewModelGlue.sortType("By Rating");
+            SortTypeComboBox.SelectedIndex = 1;
+
         }   
 
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
