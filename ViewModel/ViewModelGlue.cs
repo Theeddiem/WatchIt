@@ -192,7 +192,7 @@ namespace ViewModel
         }
 
 
-            private void createMovieInstance (int i_results,Movie i_IncorrentMovie, List<Movie> i_reSearchMoviesFound)
+        private void createMovieInstance (int i_results,Movie i_IncorrentMovie, List<Movie> i_reSearchMoviesFound)
         {
             Movie movie = new Movie();
             movie.ApiMovie = m_Client.GetMovieAsync(i_results).Result;
@@ -256,5 +256,34 @@ namespace ViewModel
             }
 
         }
+
+        /// <summary>
+        /// button on Ui
+        /// </summary>
+
+        public void OpenFolder(Video i_Video)
+        {
+            string folderPath = Path.GetDirectoryName(i_Video.FilePath);
+            if (Directory.Exists(folderPath))
+            {
+                System.Diagnostics.Process.Start(folderPath);
+            }
+        }
+
+        public void PlayFile(Video i_Video)
+        {
+            string filePath = i_Video.FilePath;
+            if (File.Exists(filePath))
+            {
+                System.Diagnostics.Process.Start(filePath);
+            }
+        }
+
+        public void OpenImdbSite(Video i_Video)
+        {
+            string imdbSite = string.Format("https://www.imdb.com/title/{0}", i_Video.ImdbId);
+            System.Diagnostics.Process.Start(imdbSite);
+        }
+
     }
 }

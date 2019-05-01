@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 using ViewModel;
 
 namespace MainProgramUi
@@ -63,46 +61,26 @@ namespace MainProgramUi
  
         private void ImdbBtn_Click(object sender, RoutedEventArgs e)
         {
-            imdbButton();
-        }
-
-        private void imdbButton()
-        {
             if (MoviesListBox.SelectedItem != null)
             {
-                string imdbSite = string.Format("https://www.imdb.com/title/{0}", (MoviesListBox.SelectedItem as Movie).ImdbId);
-                System.Diagnostics.Process.Start(imdbSite);
+                m_ViewModelGlue.OpenImdbSite(MoviesListBox.SelectedItem as Video);
             }
         }
 
         private void PlayBtn_Click(object sender, RoutedEventArgs e)
         {
-            playButton();
-        }
-
-        private void playButton()
-        {
             if (MoviesListBox.SelectedItem != null)
             {
-                string filePath = (MoviesListBox.SelectedItem as Video).FilePath;
-                if (File.Exists(filePath))
-                {
-                    System.Diagnostics.Process.Start(filePath);
-                }
+                m_ViewModelGlue.PlayFile(MoviesListBox.SelectedItem as Video);
             }
         }
 
         private void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
         {
             if (MoviesListBox.SelectedItem != null)
-            {             
-                string folderPath = Path.GetDirectoryName((MoviesListBox.SelectedItem as Video).FilePath);
-                if (Directory.Exists(folderPath))
-                {
-                    System.Diagnostics.Process.Start(folderPath);
-                }
+            {
+                m_ViewModelGlue.OpenFolder(MoviesListBox.SelectedItem as Video);
             }
-
         }
 
         private void EditMovieBtn_Click(object sender, RoutedEventArgs e)
