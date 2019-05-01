@@ -95,12 +95,11 @@ namespace MainProgramUi
         private void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
         {
             if (MoviesListBox.SelectedItem != null)
-            {
-                
-                string fileFolder = Path.GetDirectoryName((MoviesListBox.SelectedItem as Video).FilePath);
-                if (File.Exists(fileFolder))
+            {             
+                string folderPath = Path.GetDirectoryName((MoviesListBox.SelectedItem as Video).FilePath);
+                if (Directory.Exists(folderPath))
                 {
-                    System.Diagnostics.Process.Start(fileFolder);
+                    System.Diagnostics.Process.Start(folderPath);
                 }
             }
 
