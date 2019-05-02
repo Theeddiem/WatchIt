@@ -157,9 +157,9 @@ namespace ViewModel
                     fileName = fileName.Substring(0, j);
                     results = m_Client.SearchMovieAsync(fileName).Result;
 
-                    if (results.TotalResults / 5 >= 1) // at least 5 results 
+                    if (results.TotalResults / 3 >= 1) // at least 3 results 
                     {
-                        for (int i = results.Results.Count - 1; i >= results.Results.Count - 5; i--)
+                        for (int i = results.Results.Count - 1; i >= results.Results.Count - 3; i--)
                         {
                             if (results.Results[i].MediaType == MediaType.Movie)
                             {

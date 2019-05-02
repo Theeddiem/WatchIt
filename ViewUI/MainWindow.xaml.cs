@@ -55,7 +55,7 @@ namespace MainProgramUi
                 CoverImage.Source = (MoviesListBox.SelectedItem as Movie).CoverImage;
             }
 
-            FixedListBox.Visibility = Visibility.Hidden;
+            showHideControls(Visibility.Hidden);
         }
 
  
@@ -88,7 +88,8 @@ namespace MainProgramUi
             if (MoviesListBox.SelectedItem != null)
             {
                 FixedListBox.Items.Clear();
-                FixedListBox.Visibility = Visibility.Visible;
+                showHideControls(Visibility.Visible);
+
                 foreach (var item in m_ViewModelGlue.MoviesResults(MoviesListBox.SelectedItem as Movie))
                 {
                     FixedListBox.Items.Add(item);
@@ -97,13 +98,18 @@ namespace MainProgramUi
 
         }
 
+        private void showHideControls(Visibility i_Choise)
+        {
+            FixedListBox.Visibility = i_Choise;
+            AcceptButton.Visibility = i_Choise;
+            NextPageButton.Visibility = i_Choise;
+        }
+
         private void FixedListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (FixedListBox.SelectedItem != null)
             {
                 CoverImage.Source = (FixedListBox.SelectedItem as Movie).CoverImage;
-
-                m_ViewModelGlue.changeRefMovies(MoviesListBox.SelectedItem as Movie, FixedListBox.SelectedItem as Movie);
             }
 
         }
@@ -112,6 +118,14 @@ namespace MainProgramUi
         private void Window_Closed(object sender, EventArgs e)
         {
             m_ViewModelGlue.CurrentSettings.Save();
+        }
+
+        private void AcceptButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (FixedListBox.SelectedItem != null)
+            {
+                m_ViewModelGlue.changeRefMovies(MoviesListBox.SelectedItem as Movie, FixedListBox.SelectedItem as Movie);
+            }
         }
     }
 }
