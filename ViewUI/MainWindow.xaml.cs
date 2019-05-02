@@ -127,6 +127,11 @@ namespace MainProgramUi
                 m_ViewModelGlue.changeRefMovies(MoviesListBox.SelectedItem as Movie, FixedListBox.SelectedItem as Movie);
             }
         }
+
+        private void NextPageButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
 
