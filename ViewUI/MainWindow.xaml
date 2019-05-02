@@ -27,8 +27,8 @@
             <ColumnDefinition Width="521*"/>
             <ColumnDefinition Width="948*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="getMoviesFromPc"  Style="{StaticResource MaterialDesignRaisedDarkButton}"  Content="Search The Pc&#xA;" Margin="29,62,0,0" VerticalAlignment="Top" Height="32" Click="GetMoviesFromPc_Click" Background="#FF829FAE" BorderThickness="1" BorderBrush="Black" FontWeight="Normal" HorizontalAlignment="Left" Width="141" FontSize="16"/>
-        <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="539" Margin="31,106,0,0" VerticalAlignment="Top" Width="289" Background="#FFC1C5C7" Visibility="Visible"/>
+        <Button x:Name="getMoviesFromPc"  Style="{StaticResource MaterialDesignRaisedDarkButton}"  Content="Search The Pc&#xA;" Margin="30,62,0,0" VerticalAlignment="Top" Height="32" Click="GetMoviesFromPc_Click" Background="#FF829FAE" BorderThickness="1" BorderBrush="Black" FontWeight="Normal" HorizontalAlignment="Left" Width="141" FontSize="16"/>
+
         <ListBox x:Name="MoviesListBox" HorizontalAlignment="Left" Margin="416,66,0,0" VerticalAlignment="Top" Width="520" Height="580" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}" Background="#FFC1C5C7" Grid.ColumnSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -102,7 +102,21 @@
         <Button x:Name="NextPageButton"   HorizontalAlignment="Left" Margin="837,585,0,0" VerticalAlignment="Top" Width="66" Height="57" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}" Click="NextPageButton_Click">
             <materialDesign:PackIcon Kind="PageNextOutline" Foreground="white" Width="36" Height="48" />
         </Button>
-
+   
+               
+        <DockPanel Margin="30,100,0,0">
+            <StackPanel>
+                <Expander Header="On Pc" Width="310"  HorizontalAlignment="Left" Background="#FFC1C5C7">
+                    <StackPanel>
+                        <ScrollViewer Height="540">
+                            <ListBox>
+                                <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="540" Margin="0,0,0,0" VerticalAlignment="Top" Width="310" Background="#FFC1C5C7" Visibility="Visible"/>
+                            </ListBox>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+        </DockPanel>
 
 
 
