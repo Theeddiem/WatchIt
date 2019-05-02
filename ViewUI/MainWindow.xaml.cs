@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using ViewModel;
@@ -59,14 +58,52 @@ namespace MainProgramUi
             showHideControls(Visibility.Hidden);
         }
 
-      
+       private void labelTimer()
+       {
+
+               this.Dispatcher.Invoke(() =>
+            {
+                WarrningLabel.Visibility = Visibility.Visible;
+                Timer timer = new Timer(3000);
+                timer.Elapsed += dispatcherTimer_Tick;
+                timer.Start();
+               
+            });
+
+            //private void dispatcherTimer_Tick(object sender, EventArgs e)
+            //{
+            //    // code goes here
+            //}
+            //this.Dispatcher.Invoke(() =>
+            //{
+            //    WarrningLabel.Visibility = Visibility.Visible;
+            //    System.Threading.Thread.Sleep(5000);
+            //    WarrningLabel.Visibility = Visibility.Hidden;
+            //});
+            //WarrningLabel.Visibility = Visibility.Visible;
+            //System.Threading.Thread.Sleep(5000);
+            ////Timer timer = new Timer();
+            ////timer.Interval = (200);
+            ////timer.Start();
+            //WarrningLabel.Visibility = Visibility.Hidden;
+
+        }
+
+        private void dispatcherTimer_Tick(Object obj, ElapsedEventArgs e)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                WarrningLabel.Visibility = Visibility.Hidden;
+            });
+        }
+
         private bool ask() // do it in a a thred 
         {
             bool movieSelected = true;
             WarrningLabel.Visibility = Visibility.Hidden;
             if (MoviesListBox.SelectedItem == null)
             {
-                WarrningLabel.Visibility = Visibility.Visible;
+                new System.Threading.Thread(labelTimer).Start();
                 movieSelected = false;
 
             }
