@@ -33,6 +33,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
 
+
                     <!--left top right bot-->
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,1">
@@ -62,7 +63,7 @@
 
 
         <ComboBox x:Name="SortTypeComboBox" materialDesign:HintAssist.Hint="Sort"  
-        materialDesign:HintAssist.HintOpacity=".45" HorizontalAlignment="Left" Margin="299,34,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="SortTypeComboBox_SelectionChanged" SelectedIndex="-1" RenderTransformOrigin="-0.138,0.545" Grid.Column="1" BorderBrush="#89000000" BorderThickness="0">
+        materialDesign:HintAssist.HintOpacity="1" HorizontalAlignment="Left" Margin="299,34,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="SortTypeComboBox_SelectionChanged" SelectedIndex="-1" RenderTransformOrigin="-0.138,0.545" Grid.Column="1" BorderBrush="#89020000" BorderThickness="0" Foreground="#DDC1BEBE" Background="Transparent">
             <ComboBoxItem Content="By Year" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem Content="By Rating" HorizontalAlignment="Left" Width="118" Background="#00000000"/>
             <ComboBoxItem Content="By Genre" HorizontalAlignment="Left" Width="118"/>
@@ -89,5 +90,8 @@
         </Button>
         <ListBox x:Name="FixedListBox" HorizontalAlignment="Left" Height="99" Margin="593,557,0,0" VerticalAlignment="Top" Width="347" SelectionChanged="FixedListBox_SelectionChanged" Visibility="Hidden" Grid.Column="1" RenderTransformOrigin="0.6,0.424" Background="#FFF3F1F5"/>
 
+
+
+    
     </Grid>
 </Window>
