@@ -32,6 +32,7 @@ namespace MainProgramUi
 
             getDataListBox.ItemsSource = m_ViewModelGlue.StoredFilesInPc;
             MoviesListBox.ItemsSource = m_ViewModelGlue.MoviesFound;
+            FixedListBox.ItemsSource = m_ViewModelGlue.reSearchMoviesFound;
 
         }   
 
@@ -87,13 +88,10 @@ namespace MainProgramUi
         {
             if (MoviesListBox.SelectedItem != null)
             {
-                FixedListBox.Items.Clear();
                 showHideControls(Visibility.Visible);
-
-                foreach (var item in m_ViewModelGlue.MoviesResults(MoviesListBox.SelectedItem as Movie))
-                {
-                    FixedListBox.Items.Add(item);
-                }
+                m_ViewModelGlue.PageNumber = 0;
+                m_ViewModelGlue.MoviesResults(MoviesListBox.SelectedItem as Movie, m_ViewModelGlue.PageNumber);
+                PageLabel.Content = m_ViewModelGlue.PageNumber;
             }
 
         }
@@ -103,6 +101,7 @@ namespace MainProgramUi
             FixedListBox.Visibility = i_Choise;
             AcceptButton.Visibility = i_Choise;
             NextPageButton.Visibility = i_Choise;
+            PreviousPageButton.Visibility = i_Choise;
         }
 
         private void FixedListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -130,7 +129,20 @@ namespace MainProgramUi
 
         private void NextPageButton_Click(object sender, RoutedEventArgs e)
         {
+            if (MoviesListBox.SelectedItem != null)
+            {
+                m_ViewModelGlue.MoviesResults(MoviesListBox.SelectedItem as Movie, ++m_ViewModelGlue.PageNumber);
+                PageLabel.Content = m_ViewModelGlue.PageNumber;
+            }
+        }
 
+        private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MoviesListBox.SelectedItem != null)
+            {
+                m_ViewModelGlue.MoviesResults(MoviesListBox.SelectedItem as Movie, --m_ViewModelGlue.PageNumber);
+                PageLabel.Content = m_ViewModelGlue.PageNumber;
+            }
         }
     }
 }

@@ -15,9 +15,11 @@ namespace ViewModel
 
         public ObservableCollection<Movie> MoviesFound { get; set; }
         public ObservableCollection<FileInfo> StoredFilesInPc { get; set; }
+        public ObservableCollection<Movie> reSearchMoviesFound  { get; set; }
         public SaveSetting CurrentSettings { get; }
         private TMDbClient m_Client;
 
+        public int PageNumber { get; set; }
 
         public ViewModelGlue()
         {
@@ -25,6 +27,8 @@ namespace ViewModel
             MoviesFound = new ObservableCollection<Movie>();
             StoredFilesInPc = new ObservableCollection<FileInfo>();
             CurrentSettings = new SaveSetting(MoviesFound,StoredFilesInPc);
+            reSearchMoviesFound = new ObservableCollection<Movie>();
+            PageNumber = 0;
         }
 
         public void LoadImageForEachMovie()
@@ -144,11 +148,17 @@ namespace ViewModel
             return found;
         }
 
-        public List<Movie> MoviesResults(Movie i_IncorrentMovie)
+
+        public void MoviesResults(Movie i_IncorrentMovie, int i_currentPage) // i_currentPage = 0,3,6,9,12;
         {
+            if(PageNumber<0)
+            {
+                PageNumber = 0;
+            }
+            reSearchMoviesFound.Clear();
             string fileName = i_IncorrentMovie.CuttedFileName;
             SearchContainer<SearchMovie> results = m_Client.SearchMovieAsync(fileName).Result;
-            List<Movie> reSearchMoviesFound = new List<Movie>();
+            byte numOfResultsWanted = 3;
 
             for (int j = fileName.Length - 1; j >= 0; j--)
             {
@@ -157,21 +167,25 @@ namespace ViewModel
                     fileName = fileName.Substring(0, j);
                     results = m_Client.SearchMovieAsync(fileName).Result;
 
-                    if (results.TotalResults / 3 >= 1) // at least 3 results 
+                    if (results.TotalResults / numOfResultsWanted >= 1) // at least 3 results 
                     {
-                        for (int i = results.Results.Count - 1; i >= results.Results.Count - 3; i--)
+                        int perPage = i_currentPage * numOfResultsWanted + numOfResultsWanted;
+                        int index = i_currentPage * numOfResultsWanted;
+                        while (index < results.TotalResults && index < perPage)
                         {
-                            if (results.Results[i].MediaType == MediaType.Movie)
+                            if (results.Results[index].MediaType == MediaType.Movie)
                             {
-                                createMovieInstance(results.Results[i].Id, i_IncorrentMovie, reSearchMoviesFound);
+                                createMovieInstance(results.Results[index].Id, i_IncorrentMovie, reSearchMoviesFound);
                             }
+
+                            index++;
                         }
 
                         break;
 
                     }
 
-                    else
+                    else // if less than 3 results, take all and that's it.
                     {
                         foreach (var item in results.Results)
                         {
@@ -183,16 +197,11 @@ namespace ViewModel
 
                     }
                     break;
-                }
-
-              
+                }            
             }
-
-            return reSearchMoviesFound;
         }
 
-
-        private void createMovieInstance (int i_results,Movie i_IncorrentMovie, List<Movie> i_reSearchMoviesFound)
+        private void createMovieInstance (int i_results,Movie i_IncorrentMovie, ObservableCollection<Movie> i_reSearchMoviesFound)
         {
             Movie movie = new Movie();
             movie.ApiMovie = m_Client.GetMovieAsync(i_results).Result;

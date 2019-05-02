@@ -27,12 +27,33 @@
             <ColumnDefinition Width="521*"/>
             <ColumnDefinition Width="948*"/>
         </Grid.ColumnDefinitions>
+
         <Button x:Name="getMoviesFromPc"  Style="{StaticResource MaterialDesignRaisedDarkButton}"  Content="Search The Pc&#xA;" Margin="30,62,0,0" VerticalAlignment="Top" Height="32" Click="GetMoviesFromPc_Click" Background="#FF829FAE" BorderThickness="1" BorderBrush="Black" FontWeight="Normal" HorizontalAlignment="Left" Width="141" FontSize="16"/>
 
-        <ListBox x:Name="MoviesListBox" HorizontalAlignment="Left" Margin="416,66,0,0" VerticalAlignment="Top" Width="520" Height="580" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}" Background="#FFC1C5C7" Grid.ColumnSpan="2">
+        <DockPanel Margin="30,100,0,0">
+            <StackPanel>
+                <Expander Header="On Pc" Width="310"   HorizontalAlignment="Left" Background="#FFC1C5C7">
+                    <StackPanel>
+                        <ScrollViewer Height="500">
+                            <ListBox>
+                                <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="500" Margin="0,0,0,0" VerticalAlignment="Top" Width="310" Background="#FFC1C5C7" Visibility="Visible"/>
+                            </ListBox>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+        </DockPanel>
+
+        <ComboBox x:Name="SortTypeComboBox" materialDesign:HintAssist.Hint="Sort"  
+        materialDesign:HintAssist.HintOpacity="1" HorizontalAlignment="Left" Margin="271,32,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="SortTypeComboBox_SelectionChanged" SelectedIndex="-1" RenderTransformOrigin="-0.138,0.545" Grid.Column="1" BorderBrush="#89020000" BorderThickness="0" Foreground="#DDC1BEBE" Background="Transparent">
+            <ComboBoxItem Content="By Year" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="By Rating" HorizontalAlignment="Left" Width="118" Background="#00000000"/>
+            <ComboBoxItem Content="By Genre" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+
+        <ListBox x:Name="MoviesListBox" HorizontalAlignment="Left" Margin="388,64,0,0" VerticalAlignment="Top" Width="520" Height="580" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}" Background="#FFC1C5C7" Grid.ColumnSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-
 
                     <!--left top right bot-->
 
@@ -61,65 +82,38 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
+        <Image x:Name="CoverImage" HorizontalAlignment="Left" Height="400" Margin="493,64,0,0" VerticalAlignment="Top" Width="277" OpacityMask="Black" Grid.Column="1"/>
 
-        <ComboBox x:Name="SortTypeComboBox" materialDesign:HintAssist.Hint="Sort"  
-        materialDesign:HintAssist.HintOpacity="1" HorizontalAlignment="Left" Margin="299,34,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="SortTypeComboBox_SelectionChanged" SelectedIndex="-1" RenderTransformOrigin="-0.138,0.545" Grid.Column="1" BorderBrush="#89020000" BorderThickness="0" Foreground="#DDC1BEBE" Background="Transparent">
-            <ComboBoxItem Content="By Year" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="By Rating" HorizontalAlignment="Left" Width="118" Background="#00000000"/>
-            <ComboBoxItem Content="By Genre" HorizontalAlignment="Left" Width="118"/>
-
-        </ComboBox>
-        <Image x:Name="CoverImage" HorizontalAlignment="Left" Height="400" Margin="521,66,0,0" VerticalAlignment="Top" Width="277" OpacityMask="Black" Grid.Column="1"/>
-        <Image HorizontalAlignment="Left" Height="100" Margin="163,457,0,0" VerticalAlignment="Top" Width="100"/>
-
-        <Button x:Name="EditMovieBtn" HorizontalAlignment="Left" Margin="508,467,0,0" VerticalAlignment="Top" Width="66" Height="57" Click="EditMovieBtn_Click" Grid.Column="1" RenderTransformOrigin="0.37,0.87" BorderThickness="0" Background="{x:Null}">
+        <Button x:Name="EditMovieBtn" HorizontalAlignment="Left" Margin="480,465,0,0" VerticalAlignment="Top" Width="68" Height="57" Click="EditMovieBtn_Click" Grid.Column="1" RenderTransformOrigin="0.37,0.87" BorderThickness="0" Background="{x:Null}">
             <materialDesign:PackIcon Kind="TableSearch" Foreground="white" Width="36" Height="48" />
         </Button>
 
-
-
-        <Button x:Name="ImdbBtn"  HorizontalAlignment="Left" Margin="588,467,0,0" VerticalAlignment="Top" Width="66" Height="57" Click="ImdbBtn_Click" Foreground="White" Grid.Column="1" BorderThickness="0" Background="{x:Null}">
+        <Button x:Name="ImdbBtn"  HorizontalAlignment="Left" Margin="560,465,0,0" VerticalAlignment="Top" Width="68" Height="57" Click="ImdbBtn_Click" Foreground="White" Grid.Column="1" BorderThickness="0" Background="{x:Null}">
             <materialDesign:PackIcon Kind="Web" Foreground="white" Width="36" Height="48" RenderTransformOrigin="6.75,0.417" />
         </Button>
 
-        <Button x:Name="OpenFolderBtn" HorizontalAlignment="Left" Margin="668,467,0,0" VerticalAlignment="Top" Width="66" Height="57" Click="OpenFolderBtn_Click" BorderThickness="0" Grid.Column="1" RenderTransformOrigin="0.731,0.526" Background="{x:Null}">
-
+        <Button x:Name="OpenFolderBtn" HorizontalAlignment="Left" Margin="640,465,0,0" VerticalAlignment="Top" Width="68" Height="57" Click="OpenFolderBtn_Click" BorderThickness="0" Grid.Column="1" RenderTransformOrigin="0.731,0.526" Background="{x:Null}">
             <materialDesign:PackIcon Kind="FolderOpen" Foreground="white" Width="36" Height="48" />
         </Button>
 
-        <Button x:Name="PlayBtn" HorizontalAlignment="Left" Margin="748,467,0,0" VerticalAlignment="Top" Width="66" Height="57" Click="PlayBtn_Click" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}">
+        <Button x:Name="PlayBtn" HorizontalAlignment="Left" Margin="720,465,0,0" VerticalAlignment="Top" Width="68" Height="57" Click="PlayBtn_Click" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}">
             <materialDesign:PackIcon Kind="PlayCircle" Foreground="white" Width="36" Height="48" />
         </Button>
 
+        <ListBox x:Name="FixedListBox"   HorizontalAlignment="Left" Height="121" Margin="462,520,0,0" VerticalAlignment="Top" Width="347" SelectionChanged="FixedListBox_SelectionChanged"  Grid.Column="1" RenderTransformOrigin="0.6,0.424" Background="#FFC1C5C7"/>
 
-        <ListBox x:Name="FixedListBox"   HorizontalAlignment="Left" Height="121" Margin="490,522,0,0" VerticalAlignment="Top" Width="347" SelectionChanged="FixedListBox_SelectionChanged"  Grid.Column="1" RenderTransformOrigin="0.6,0.424" Background="#FFC1C5C7"/>
-
-        <Button x:Name="AcceptButton"   HorizontalAlignment="Left" Margin="837,525,0,0" VerticalAlignment="Top" Width="66" Height="57" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}" Click="AcceptButton_Click">
+        <Button x:Name="AcceptButton"   HorizontalAlignment="Left" Margin="809,523,0,0" VerticalAlignment="Top" Width="68" Height="57" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}" Click="AcceptButton_Click">
             <materialDesign:PackIcon Kind="CheckOutline" Foreground="white" Width="36" Height="48" />
         </Button>
 
-
-        <Button x:Name="NextPageButton"   HorizontalAlignment="Left" Margin="837,585,0,0" VerticalAlignment="Top" Width="66" Height="57" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}" Click="NextPageButton_Click">
+        <Button x:Name="NextPageButton"   HorizontalAlignment="Left" Margin="809,583,0,0" VerticalAlignment="Top" Width="68" Height="57" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}" Click="NextPageButton_Click">
             <materialDesign:PackIcon Kind="PageNextOutline" Foreground="white" Width="36" Height="48" />
         </Button>
-   
-               
-        <DockPanel Margin="30,100,0,0">
-            <StackPanel>
-                <Expander Header="On Pc" Width="310"   HorizontalAlignment="Left" Background="#FFC1C5C7">
-                    <StackPanel>
-                        <ScrollViewer Height="500">
-                            <ListBox>
-                                <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="500" Margin="0,0,0,0" VerticalAlignment="Top" Width="310" Background="#FFC1C5C7" Visibility="Visible"/>
-                            </ListBox>
-                        </ScrollViewer>
-                    </StackPanel>
-                </Expander>
-            </StackPanel>
-        </DockPanel>
 
-
-
+        <Button x:Name="PreviousPageButton"  HorizontalAlignment="Left" Margin="397,583,0,0" VerticalAlignment="Top" Width="68" Height="57" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}" Click="PreviousPageButton_Click">
+            <materialDesign:PackIcon Kind="PagePreviousOutline" Foreground="white" Width="36" Height="48" />
+        </Button>
+        <Label x:Name="PageLabel" Content="1&#xD;&#xA;" Grid.Column="1" HorizontalAlignment="Left" Margin="624,615,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Height="41" Width="39"/>
 
     </Grid>
 </Window>
