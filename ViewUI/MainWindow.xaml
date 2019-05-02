@@ -110,7 +110,7 @@
                     <StackPanel>
                         <ScrollViewer Height="500">
                             <ListBox>
-                                <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="540" Margin="0,0,0,0" VerticalAlignment="Top" Width="310" Background="#FFC1C5C7" Visibility="Visible"/>
+                                <ListBox x:Name="getDataListBox" HorizontalAlignment="Left" Height="500" Margin="0,0,0,0" VerticalAlignment="Top" Width="310" Background="#FFC1C5C7" Visibility="Visible"/>
                             </ListBox>
                         </ScrollViewer>
                     </StackPanel>
