@@ -86,7 +86,12 @@ namespace MainProgramUi
 
         private void EditMovieBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (MoviesListBox.SelectedItem != null)
+            if(FixedListBox.Visibility == Visibility.Visible)
+            {
+                showHideControls(Visibility.Hidden);
+            }
+
+            else if (MoviesListBox.SelectedItem != null)
             {
                 showHideControls(Visibility.Visible);
                 m_ViewModelGlue.PageNumber = 0;
