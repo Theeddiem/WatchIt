@@ -114,6 +114,7 @@
             <materialDesign:PackIcon Kind="MenuLeft" Foreground="white" Width="36" Height="48" />
         </Button>
         <Label x:Name="PageLabel" Content="1&#xA;" Grid.Column="1" HorizontalAlignment="Left" Margin="624,615,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Height="41" Width="39"/>
+        <Label x:Name="WarrningLabel" Content="*Select A movie first"  Visibility="Hidden"  HorizontalAlignment="Left" Margin="388,35,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF" Width="263" Grid.ColumnSpan="2" />
 
     </Grid>
 </Window>

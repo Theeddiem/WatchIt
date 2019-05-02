@@ -117,7 +117,6 @@ namespace ViewModel
             }
 
         }
-
       
         private bool forceSearch(string i_FullFileName, FileInfo i_CurrentItem, SearchContainer<SearchMovie> i_Results)
         {
@@ -147,7 +146,6 @@ namespace ViewModel
 
             return found;
         }
-
 
         public void MoviesResults(Movie i_IncorrentMovie, int i_currentPage) // i_currentPage = 0,3,6,9,12;
         {

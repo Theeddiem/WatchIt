@@ -59,7 +59,22 @@ namespace MainProgramUi
             showHideControls(Visibility.Hidden);
         }
 
- 
+      
+        private bool ask() // do it in a a thred 
+        {
+            bool movieSelected = true;
+            WarrningLabel.Visibility = Visibility.Hidden;
+            if (MoviesListBox.SelectedItem == null)
+            {
+                WarrningLabel.Visibility = Visibility.Visible;
+                movieSelected = false;
+
+            }
+
+            return movieSelected;
+        }
+    
+        
         private void ImdbBtn_Click(object sender, RoutedEventArgs e)
         {
             if (MoviesListBox.SelectedItem != null)
@@ -70,7 +85,7 @@ namespace MainProgramUi
 
         private void PlayBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (MoviesListBox.SelectedItem != null)
+            if (ask())
             {
                 m_ViewModelGlue.PlayFile(MoviesListBox.SelectedItem as Video);
             }
