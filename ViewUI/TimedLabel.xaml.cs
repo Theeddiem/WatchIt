@@ -21,11 +21,13 @@ namespace ViewUI
     /// </summary>
     public partial class TimedLabel : UserControl
     {
-        public double I_interval { get; set; }
+        public double m_Interval { get; set; }
+        private Timer m_Timer;
         public TimedLabel()
         {
             InitializeComponent();
-            I_interval = 1200;
+            m_Interval = 1200;
+            m_Timer = new Timer(m_Interval); ;
         }
 
         public void startTimedLabel()
@@ -33,9 +35,9 @@ namespace ViewUI
             this.Dispatcher.Invoke(() =>
             {
                 this.Visibility = Visibility.Visible;
-                Timer timer = new Timer(I_interval);
-                timer.Elapsed += dispatcherTimer_Tick;
-                timer.Start();
+
+                m_Timer.Elapsed += dispatcherTimer_Tick;
+                m_Timer.Start();
 
             });
 
@@ -45,6 +47,8 @@ namespace ViewUI
             this.Dispatcher.Invoke(() =>
             {
                 this.Visibility = Visibility.Hidden;
+                m_Timer.Stop();
+
             });
         }
     }
