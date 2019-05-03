@@ -42,7 +42,7 @@ namespace ViewModel
             for (int i = 0; i < ApiMovie.Overview.Length; i++)
             {
                 genres.Append(ApiMovie.Overview[i]);
-                if(char.IsSeparator(ApiMovie.Overview[i]) && count / 40 >=1)
+                if(char.IsSeparator(ApiMovie.Overview[i]) && count / 35 >=1)
                 {
                     genres.Append("\n");
                     count = 0;

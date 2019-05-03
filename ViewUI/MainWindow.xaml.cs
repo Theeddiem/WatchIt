@@ -167,18 +167,7 @@ namespace MainProgramUi
 
         private void CoverImage_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-
             OverViewLabel.Content = (MoviesListBox.SelectedItem as Movie).Overview;
-        }
-
-        private void OverViewLabel_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            //OverViewLabel.Content = "";
-        }
-
-        private void Grid_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            OverViewLabel.Content = "";
         }
     }
 }
