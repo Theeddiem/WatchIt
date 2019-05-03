@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainProgramUi"
         xmlns:ViewModel="clr-namespace:ViewModel;assembly=ViewModel"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="MainProgramUi.MainWindow"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:ViewUI="clr-namespace:ViewUI" x:Class="MainProgramUi.MainWindow"
         mc:Ignorable="d"
          TextElement.Foreground="{DynamicResource MaterialDesignBody}"
          TextElement.FontWeight="Regular"
@@ -58,21 +58,21 @@
                     <!--left top right bot-->
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,1">
-                        <Image Source="{Binding Path = CoverImage}" Stretch="Fill" Height="150" Width="100" Margin="0,0,5,0" />
+                        <Image Source="{Binding CoverImage}" Stretch="Fill" Height="150" Width="100" Margin="0,0,5,0" />
 
                         <StackPanel Orientation="Vertical">
 
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Path=Title}" FontSize="14"  Foreground="MidnightBlue" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Title}" FontSize="14"  Foreground="MidnightBlue" FontWeight="Bold"/>
                                 <TextBlock Text=" " />
-                                <TextBlock Text="{Binding Path=ReleasedYear}" FontSize="14"  Foreground="MidnightBlue" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding ReleasedYear}" FontSize="14"  Foreground="MidnightBlue" FontWeight="Bold"/>
                                 <TextBlock Margin="0,0,5,0" />
-                                <TextBlock Text="{Binding Path=Rating}" FontSize="14" />
+                                <TextBlock Text="{Binding Rating}" FontSize="14" />
                                 <TextBlock Text="/10" FontSize="14" />
                             </StackPanel>
 
                             <TextBlock Text=" " />
-                            <TextBlock Text="{Binding Path=Genre}" />
+                            <TextBlock Text="{Binding Genre}" />
                             <TextBlock Text=" " />
                         </StackPanel>
 
@@ -114,7 +114,7 @@
             <materialDesign:PackIcon Kind="MenuLeft" Foreground="white" Width="36" Height="48" />
         </Button>
         <Label x:Name="PageLabel" Content="1&#xA;" Grid.Column="1" HorizontalAlignment="Left" Margin="624,615,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Height="41" Width="39"/>
-        <Label x:Name="WarrningLabel" Content="*Select A movie first"  Visibility="Hidden"  HorizontalAlignment="Left" Margin="388,35,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF" Width="263" Grid.ColumnSpan="2" />
-
+        <ViewUI:TimedLabel x:Name="WarrningLabel" Content="*Select A movie first"  Visibility="Hidden"  HorizontalAlignment="Left" Margin="388,35,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF" Width="263" Grid.ColumnSpan="2" />
+       
     </Grid>
 </Window>

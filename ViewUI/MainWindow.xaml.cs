@@ -58,44 +58,6 @@ namespace MainProgramUi
             showHideControls(Visibility.Hidden);
         }
 
-       private void labelTimer()
-       {
-
-               this.Dispatcher.Invoke(() =>
-            {
-                WarrningLabel.Visibility = Visibility.Visible;
-                Timer timer = new Timer(3000);
-                timer.Elapsed += dispatcherTimer_Tick;
-                timer.Start();
-               
-            });
-
-            //private void dispatcherTimer_Tick(object sender, EventArgs e)
-            //{
-            //    // code goes here
-            //}
-            //this.Dispatcher.Invoke(() =>
-            //{
-            //    WarrningLabel.Visibility = Visibility.Visible;
-            //    System.Threading.Thread.Sleep(5000);
-            //    WarrningLabel.Visibility = Visibility.Hidden;
-            //});
-            //WarrningLabel.Visibility = Visibility.Visible;
-            //System.Threading.Thread.Sleep(5000);
-            ////Timer timer = new Timer();
-            ////timer.Interval = (200);
-            ////timer.Start();
-            //WarrningLabel.Visibility = Visibility.Hidden;
-
-        }
-
-        private void dispatcherTimer_Tick(Object obj, ElapsedEventArgs e)
-        {
-            this.Dispatcher.Invoke(() =>
-            {
-                WarrningLabel.Visibility = Visibility.Hidden;
-            });
-        }
 
         private bool ask() // do it in a a thred 
         {
@@ -103,7 +65,7 @@ namespace MainProgramUi
             WarrningLabel.Visibility = Visibility.Hidden;
             if (MoviesListBox.SelectedItem == null)
             {
-                new System.Threading.Thread(labelTimer).Start();
+                new System.Threading.Thread(WarrningLabel.startTimedLabel).Start();
                 movieSelected = false;
 
             }
