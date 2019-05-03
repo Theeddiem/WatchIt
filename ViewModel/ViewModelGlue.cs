@@ -238,29 +238,32 @@ namespace ViewModel
 
         public void sortType(string i_SelectedValue)
         {
-            var filterd = MoviesFound.ToList();
-
-            if (i_SelectedValue == "By Year")
+            if (MoviesFound.Count > 1)
             {
-                filterd = filterd.OrderByDescending(w => w.ReleasedYear).ToList();
-            }
+                var filterd = MoviesFound.ToList();
 
-            if (i_SelectedValue == "By Rating")
-            {
-                filterd = filterd.OrderByDescending(w => w.Rating).ToList(); 
-            }
+                if (i_SelectedValue == "By Year")
+                {
+                    filterd = filterd.OrderByDescending(w => w.ReleasedYear).ToList();
+                }
 
-            if (i_SelectedValue == "By Genre")
-            {
-                filterd = filterd.OrderByDescending(w => w.Genre).ToList();
-            
-            }
+                if (i_SelectedValue == "By Rating")
+                {
+                    filterd = filterd.OrderByDescending(w => w.Rating).ToList();
+                }
 
-            MoviesFound.Clear();
+                if (i_SelectedValue == "By Genre")
+                {
+                    filterd = filterd.OrderByDescending(w => w.Genre).ToList();
 
-            foreach (var item in filterd)
-            {
-                MoviesFound.Add(item);
+                }
+
+                MoviesFound.Clear();
+
+                foreach (var item in filterd)
+                {
+                    MoviesFound.Add(item);
+                }
             }
 
         }

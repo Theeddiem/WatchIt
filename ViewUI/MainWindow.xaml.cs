@@ -17,7 +17,7 @@ namespace MainProgramUi
         {
             InitializeComponent();
 
-            if(m_ViewModelGlue.CurrentSettings.LoadMovies())
+            if (m_ViewModelGlue.CurrentSettings.LoadMovies())
             {
                 m_ViewModelGlue.MoviesFound = m_ViewModelGlue.CurrentSettings.MoviesFound;
                 m_ViewModelGlue.LoadImageForEachMovie();
@@ -33,7 +33,7 @@ namespace MainProgramUi
             MoviesListBox.ItemsSource = m_ViewModelGlue.MoviesFound;
             FixedListBox.ItemsSource = m_ViewModelGlue.reSearchMoviesFound;
 
-        }   
+        }
 
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
         {
@@ -42,9 +42,9 @@ namespace MainProgramUi
 
         private void SortTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-          ComboBoxItem select = (ComboBoxItem)SortTypeComboBox.SelectedValue;
+            ComboBoxItem select = (ComboBoxItem)SortTypeComboBox.SelectedValue;
 
-          m_ViewModelGlue.sortType(select.Content.ToString());
+            m_ViewModelGlue.sortType(select.Content.ToString());
         }
 
         private void MoviesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,7 +59,7 @@ namespace MainProgramUi
         }
 
 
-        private bool movieIsSelected() 
+        private bool movieIsSelected()
         {
             bool movieSelected = true;
             WarrningLabel.Visibility = Visibility.Hidden;
@@ -72,14 +72,14 @@ namespace MainProgramUi
 
             return movieSelected;
         }
-    
-        
+
+
         private void ImdbBtn_Click(object sender, RoutedEventArgs e)
         {
             if (movieIsSelected())
             {
                 m_ViewModelGlue.OpenImdbSite(MoviesListBox.SelectedItem as Video);
-          
+
             }
         }
 
@@ -101,7 +101,7 @@ namespace MainProgramUi
 
         private void EditMovieBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(FixedListBox.Visibility == Visibility.Visible)
+            if (FixedListBox.Visibility == Visibility.Visible)
             {
                 showHideControls(Visibility.Hidden);
             }
@@ -167,18 +167,18 @@ namespace MainProgramUi
 
         private void CoverImage_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            CoverImage.Visibility = Visibility.Hidden;
-           // OverViewLabel.Content = (MoviesListBox.SelectedItem as Movie).Overview;
+
+            OverViewLabel.Content = (MoviesListBox.SelectedItem as Movie).Overview;
         }
 
-        private void CoverImage_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        private void OverViewLabel_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-           // CoverImage.Visibility = Visibility.Visible;
+            //OverViewLabel.Content = "";
         }
 
-        private void CoverImage_DragLeave(object sender, DragEventArgs e)
+        private void Grid_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            //CoverImage.Visibility = Visibility.Visible;
+            OverViewLabel.Content = "";
         }
     }
 }

@@ -36,7 +36,22 @@ namespace ViewModel
 
         private void initializeOverview()
         {
-            Overview =  ApiMovie.Overview;
+            StringBuilder genres = new StringBuilder("");
+
+            int count = 0;
+            for (int i = 0; i < ApiMovie.Overview.Length; i++)
+            {
+                genres.Append(ApiMovie.Overview[i]);
+                if(char.IsSeparator(ApiMovie.Overview[i]) && count / 40 >=1)
+                {
+                    genres.Append("\n");
+                    count = 0;
+                }
+                count++;
+            }
+
+
+            Overview = genres.ToString();
         }
 
         public override string ToString()
