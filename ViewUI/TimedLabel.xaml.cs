@@ -36,18 +36,18 @@ namespace ViewUI
             {
                 this.Visibility = Visibility.Visible;
 
-                m_Timer.Elapsed += dispatcherTimer_Tick;
+                m_Timer.Elapsed += tick;
                 m_Timer.Start();
 
             });
 
         }
-        private void dispatcherTimer_Tick(Object obj, ElapsedEventArgs e)
+        private void tick(Object obj, ElapsedEventArgs e)
         {
             this.Dispatcher.Invoke(() =>
             {
-                this.Visibility = Visibility.Hidden;
                 m_Timer.Stop();
+                this.Visibility = Visibility.Hidden;
 
             });
         }

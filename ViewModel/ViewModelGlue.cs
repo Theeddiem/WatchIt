@@ -149,7 +149,8 @@ namespace ViewModel
 
         public void MoviesResults(Movie i_IncorrentMovie, int i_currentPage) // i_currentPage = 0,3,6,9,12;
         {
-            if(PageNumber<0)
+
+            if (PageNumber<0)
             {
                 PageNumber = 0;
             }

@@ -59,7 +59,7 @@ namespace MainProgramUi
         }
 
 
-        private bool ask() // do it in a a thred 
+        private bool movieIsSelected() 
         {
             bool movieSelected = true;
             WarrningLabel.Visibility = Visibility.Hidden;
@@ -76,15 +76,16 @@ namespace MainProgramUi
         
         private void ImdbBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (MoviesListBox.SelectedItem != null)
+            if (movieIsSelected())
             {
                 m_ViewModelGlue.OpenImdbSite(MoviesListBox.SelectedItem as Video);
+          
             }
         }
 
         private void PlayBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (ask())
+            if (movieIsSelected())
             {
                 m_ViewModelGlue.PlayFile(MoviesListBox.SelectedItem as Video);
             }
@@ -92,7 +93,7 @@ namespace MainProgramUi
 
         private void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (MoviesListBox.SelectedItem != null)
+            if (movieIsSelected())
             {
                 m_ViewModelGlue.OpenFolder(MoviesListBox.SelectedItem as Video);
             }
@@ -105,7 +106,7 @@ namespace MainProgramUi
                 showHideControls(Visibility.Hidden);
             }
 
-            else if (MoviesListBox.SelectedItem != null)
+            else if (movieIsSelected())
             {
                 showHideControls(Visibility.Visible);
                 m_ViewModelGlue.PageNumber = 0;
@@ -162,6 +163,22 @@ namespace MainProgramUi
                 m_ViewModelGlue.MoviesResults(MoviesListBox.SelectedItem as Movie, --m_ViewModelGlue.PageNumber);
                 PageLabel.Content = m_ViewModelGlue.PageNumber;
             }
+        }
+
+        private void CoverImage_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            CoverImage.Visibility = Visibility.Hidden;
+           // OverViewLabel.Content = (MoviesListBox.SelectedItem as Movie).Overview;
+        }
+
+        private void CoverImage_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+           // CoverImage.Visibility = Visibility.Visible;
+        }
+
+        private void CoverImage_DragLeave(object sender, DragEventArgs e)
+        {
+            //CoverImage.Visibility = Visibility.Visible;
         }
     }
 }

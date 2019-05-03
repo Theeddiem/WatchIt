@@ -29,6 +29,8 @@ namespace ViewModel
 
         protected string m_CuttedFileNamePc;
 
+        protected string m_Overview;
+
 
         [XmlIgnore]
         protected BitmapImage m_CoverImage;
@@ -38,6 +40,11 @@ namespace ViewModel
             return string.Format("{0}  {1}, {2} {3}", Title, ReleasedYear, Rating, Genre);
         }
 
+        public virtual string Overview
+        {
+            get { return m_Overview; }
+            set { m_Overview = value; }
+        }
 
         public virtual string Title
         {

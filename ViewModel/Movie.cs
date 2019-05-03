@@ -29,7 +29,14 @@ namespace ViewModel
                  initializeImagePathUrl();
                  initializeIMDbId();
                  initializeImageCoverImage();
+                 initializeOverview();
+               
             }
+        }
+
+        private void initializeOverview()
+        {
+            Overview =  ApiMovie.Overview;
         }
 
         public override string ToString()

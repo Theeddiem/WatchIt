@@ -82,7 +82,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Image x:Name="CoverImage" HorizontalAlignment="Left" Height="400" Margin="493,64,0,0" VerticalAlignment="Top" Width="277" OpacityMask="Black" Grid.Column="1"/>
+        <Image x:Name="CoverImage" HorizontalAlignment="Left" Height="400" Margin="493,64,0,0" VerticalAlignment="Top" Width="277" OpacityMask="Black" Grid.Column="1" MouseEnter="CoverImage_MouseEnter" MouseLeave="CoverImage_MouseLeave" DragLeave="CoverImage_DragLeave"/>
 
         <Button x:Name="EditMovieBtn" HorizontalAlignment="Left" Margin="480,465,0,0" VerticalAlignment="Top" Width="68" Height="57" Click="EditMovieBtn_Click" Grid.Column="1" RenderTransformOrigin="0.37,0.87" BorderThickness="0" Background="{x:Null}">
             <materialDesign:PackIcon Kind="TableSearch" Foreground="white" Width="36" Height="48" />
@@ -115,6 +115,8 @@
         </Button>
         <Label x:Name="PageLabel" Content="1&#xA;" Grid.Column="1" HorizontalAlignment="Left" Margin="624,615,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Height="41" Width="39"/>
         <ViewUI:TimedLabel x:Name="WarrningLabel" Content="*Select A movie first"  Visibility="Hidden"  HorizontalAlignment="Left" Margin="388,35,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF" Width="263" Grid.ColumnSpan="2" />
-       
+        <Label x:Name="OverViewLabel" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="105,38,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF"/>
+
+
     </Grid>
 </Window>
