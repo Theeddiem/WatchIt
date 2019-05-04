@@ -57,7 +57,7 @@
             <ComboBoxItem Content="By Genre" HorizontalAlignment="Left" Width="118"/>
         </ComboBox>
 
-        <ListBox x:Name="MoviesListBox" HorizontalAlignment="Left" Margin="290,54,0,0" VerticalAlignment="Top" Width="732" Height="600" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}" Background="{x:Null}" Grid.ColumnSpan="2">
+        <ListBox x:Name="MoviesListBox" HorizontalAlignment="Left" Margin="290,54,0,0" VerticalAlignment="Top" Width="732" Height="600" SelectionChanged="MoviesListBox_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding MoviesFound}" Background="{x:Null}" Grid.ColumnSpan="2" ScrollViewer.VerticalScrollBarVisibility="Auto">
 
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -73,8 +73,8 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <!--left top right bot-->
-     
-                        <StackPanel Orientation="Vertical" Height="285" Width="215">
+
+                    <StackPanel Orientation="Vertical" Height="285" Width="215">
 
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding Title}" Margin="28,0,0,0" FontSize="14"  Foreground="White" FontWeight="Bold"/>
@@ -93,7 +93,7 @@
 
                     </StackPanel>
 
-                       
+
 
 
                 </DataTemplate>
@@ -103,10 +103,10 @@
         </ListBox>
 
         <Label x:Name="OverViewLabel" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="544,144,0,0" VerticalAlignment="Top" Height="252" Width="269" Foreground="#DDFFFFFF" FontSize="13"/>
-            <Image x:Name="CoverImage" HorizontalAlignment="Left" Height="403" Margin="541,55,0,0"
-               VerticalAlignment="Top" Width="362" OpacityMask="Black" Grid.Column="1" MouseEnter="CoverImage_MouseEnter">
-       
-        <Image.Style>
+        <Image x:Name="CoverImage" Height="403" Margin="497,64,89,204"
+                Width="362" OpacityMask="Black" Grid.Column="1" MouseEnter="CoverImage_MouseEnter">
+
+            <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -115,44 +115,44 @@
                     </Style.Triggers>
                 </Style>
             </Image.Style>
-                
-        </Image>
-            
-   
 
-        <Button x:Name="EditMovieBtn" HorizontalAlignment="Left" Margin="548,457,0,0" VerticalAlignment="Top" Width="68" Height="57" Click="EditMovieBtn_Click" Grid.Column="1" RenderTransformOrigin="0.37,0.87" BorderThickness="0" Background="{x:Null}">
+        </Image>
+
+
+
+        <Button x:Name="EditMovieBtn" HorizontalAlignment="Left" Margin="527,462,0,0" VerticalAlignment="Top" Width="68" Height="56" Click="EditMovieBtn_Click" Grid.Column="1" RenderTransformOrigin="0.37,0.87" BorderThickness="0" Background="{x:Null}">
             <materialDesign:PackIcon Kind="TableSearch" Foreground="white" Width="36" Height="48" />
         </Button>
 
-        <Button x:Name="ImdbBtn"  HorizontalAlignment="Left" Margin="628,457,0,0" VerticalAlignment="Top" Width="68" Height="57" Click="ImdbBtn_Click" Foreground="White" Grid.Column="1" BorderThickness="0" Background="{x:Null}">
+        <Button x:Name="ImdbBtn"  HorizontalAlignment="Left" Margin="607,462,0,0" VerticalAlignment="Top" Width="68" Height="56" Click="ImdbBtn_Click" Foreground="White" Grid.Column="1" BorderThickness="0" Background="{x:Null}">
             <materialDesign:PackIcon Kind="Web" Foreground="white" Width="36" Height="48" RenderTransformOrigin="6.75,0.417" />
         </Button>
 
-        <Button x:Name="OpenFolderBtn" HorizontalAlignment="Left" Margin="708,457,0,0" VerticalAlignment="Top" Width="68" Height="57" Click="OpenFolderBtn_Click" BorderThickness="0" Grid.Column="1" RenderTransformOrigin="0.731,0.526" Background="{x:Null}">
+        <Button x:Name="OpenFolderBtn" HorizontalAlignment="Left" Margin="687,462,0,0" VerticalAlignment="Top" Width="68" Height="56" Click="OpenFolderBtn_Click" BorderThickness="0" Grid.Column="1" RenderTransformOrigin="0.731,0.526" Background="{x:Null}">
             <materialDesign:PackIcon Kind="FolderOpen" Foreground="white" Width="36" Height="48" />
         </Button>
 
-        <Button x:Name="PlayBtn" HorizontalAlignment="Left" Margin="788,457,0,0" VerticalAlignment="Top" Width="68" Height="57" Click="PlayBtn_Click" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}">
+        <Button x:Name="PlayBtn" HorizontalAlignment="Left" Margin="767,462,0,0" VerticalAlignment="Top" Width="68" Height="56" Click="PlayBtn_Click" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}">
             <materialDesign:PackIcon Kind="PlayCircle" Foreground="white" Width="36" Height="48" />
         </Button>
 
-        <ListBox x:Name="FixedListBox"   HorizontalAlignment="Left" Height="121" Margin="530,512,0,0" VerticalAlignment="Top" Width="347" SelectionChanged="FixedListBox_SelectionChanged"  Grid.Column="1" RenderTransformOrigin="0.6,0.424" Background="#FFC1C5C7"/>
+        <ListBox x:Name="FixedListBox"   HorizontalAlignment="Left" Height="122" Margin="509,516,0,0" VerticalAlignment="Top" Width="348" SelectionChanged="FixedListBox_SelectionChanged"  Grid.Column="1" RenderTransformOrigin="0.6,0.424" Background="#FFC1C5C7"/>
 
-        <Button x:Name="AcceptButton"   HorizontalAlignment="Left" Margin="823,589,0,0" VerticalAlignment="Top" Width="68" Height="57" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}" Click="AcceptButton_Click">
+        <Button x:Name="AcceptButton"   HorizontalAlignment="Left" Margin="803,594,0,0" VerticalAlignment="Top" Width="68" Height="56" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}" Click="AcceptButton_Click">
             <materialDesign:PackIcon Kind="Check" Foreground="White" Width="36" Height="48" />
         </Button>
 
-        <Button x:Name="NextPageButton"   HorizontalAlignment="Left" Margin="863,542,0,0" VerticalAlignment="Top" Width="68" Height="57" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}" Click="NextPageButton_Click">
+        <Button x:Name="NextPageButton"   HorizontalAlignment="Left" Margin="843,546,0,0" VerticalAlignment="Top" Width="68" Height="58" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}" Click="NextPageButton_Click">
             <materialDesign:PackIcon Kind="MenuRight" Foreground="white" Width="36" Height="48" />
         </Button>
 
-        <Button x:Name="PreviousPageButton"  HorizontalAlignment="Left" Margin="481,542,0,0" VerticalAlignment="Top" Width="68" Height="57" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}" Click="PreviousPageButton_Click">
+        <Button x:Name="PreviousPageButton"  HorizontalAlignment="Left" Margin="471,548,0,0" VerticalAlignment="Top" Width="68" Height="58" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}" Click="PreviousPageButton_Click">
             <materialDesign:PackIcon Kind="MenuLeft" Foreground="white" Width="36" Height="48" />
         </Button>
 
-        <Label x:Name="PageLabel" Content="1&#xA;" Grid.Column="1" HorizontalAlignment="Left" Margin="692,607,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Height="41" Width="39"/>
+        <Label x:Name="PageLabel" Content="1&#xA;" Grid.Column="1" HorizontalAlignment="Left" Margin="671,612,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Height="40" Width="40"/>
 
-        <ViewUI:TimedLabel x:Name="WarrningLabel" Content="*Select A movie first"  Visibility="Hidden"  HorizontalAlignment="Left" Margin="386,43,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF" Width="263" Grid.ColumnSpan="2" />
+        <ViewUI:TimedLabel x:Name="WarrningLabel" Content="*Select A movie first"  Visibility="Visible"  HorizontalAlignment="Left" Margin="320,30,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF" Width="262" Grid.ColumnSpan="2" />
 
     </Grid>
 </Window>
