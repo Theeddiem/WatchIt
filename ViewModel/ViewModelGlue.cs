@@ -268,7 +268,7 @@ namespace ViewModel
                     filterd = filterd.OrderByDescending(w => w.Rating).ToList();
                 }
 
-                if (i_SelectedValue == "By Genre")/
+                if (i_SelectedValue == "By Genre")
                 {
                     filterd = filterd.OrderBy(w => w.Genre).ToList();
 
