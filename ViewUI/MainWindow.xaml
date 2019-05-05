@@ -28,17 +28,11 @@
             <ColumnDefinition Width="948*"/>
         </Grid.ColumnDefinitions>
 
-
-
-
-
-
-
         <Button x:Name="getMoviesFromPc"  Style="{StaticResource MaterialDesignRaisedDarkButton}"  Content="Search The Pc&#xA;" Margin="30,62,0,0" VerticalAlignment="Top" Height="32" Click="GetMoviesFromPc_Click" Background="#FF829FAE" BorderThickness="1" BorderBrush="Black" FontWeight="Normal" HorizontalAlignment="Left" Width="141" FontSize="16"/>
 
         <DockPanel Margin="30,100,0,0">
             <StackPanel>
-                <Expander Header="On Pc" Width="250"   HorizontalAlignment="Left" Background="#FFC1C5C7">
+                <Expander Header="On Pc" Width="250"  HorizontalAlignment="Left" Background="#FFC1C5C7">
                     <StackPanel>
                         <ScrollViewer Height="500">
                             <ListBox>
