@@ -17,18 +17,6 @@ namespace MainProgramUi
         {
             InitializeComponent();
 
-            if (m_ViewModelGlue.CurrentSettings.LoadMovies())
-            {
-                m_ViewModelGlue.MoviesFound = m_ViewModelGlue.CurrentSettings.MoviesFound;
-                m_ViewModelGlue.LoadImageForEachMovie();
-            }
-
-
-            if (m_ViewModelGlue.CurrentSettings.LoadFiles())
-            {
-                m_ViewModelGlue.StoredFilesInPc = m_ViewModelGlue.CurrentSettings.StoredFilesInPc;
-            }
-
             getDataListBox.ItemsSource = m_ViewModelGlue.StoredFilesInPc;
             MoviesListBox.ItemsSource = m_ViewModelGlue.MoviesFound;
             FixedListBox.ItemsSource = m_ViewModelGlue.reSearchMoviesFound;
@@ -44,12 +32,11 @@ namespace MainProgramUi
         {
             ComboBoxItem select = (ComboBoxItem)SortTypeComboBox.SelectedValue;
 
-            m_ViewModelGlue.sortType(select.Content.ToString());
+            m_ViewModelGlue.SortMovies(select.Content.ToString());
         }
 
         private void MoviesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             if (MoviesListBox.SelectedItem != null)
             {
                 CoverImage.Source = (MoviesListBox.SelectedItem as Movie).CoverImage;
@@ -58,20 +45,6 @@ namespace MainProgramUi
             showHideControls(Visibility.Hidden);
         }
 
-
-        private bool movieIsSelected()
-        {
-            bool movieSelected = true;
-            WarrningLabel.Visibility = Visibility.Hidden;
-            if (MoviesListBox.SelectedItem == null)
-            {
-                new System.Threading.Thread(WarrningLabel.startTimedLabel).Start();
-                movieSelected = false;
-
-            }
-
-            return movieSelected;
-        }
 
 
         private void ImdbBtn_Click(object sender, RoutedEventArgs e)
@@ -110,19 +83,12 @@ namespace MainProgramUi
             {
                 showHideControls(Visibility.Visible);
                 m_ViewModelGlue.PageNumber = 0;
-                m_ViewModelGlue.MoviesResults(MoviesListBox.SelectedItem as Movie, m_ViewModelGlue.PageNumber);
+                m_ViewModelGlue.MoiveReSearchResults(MoviesListBox.SelectedItem as Movie, m_ViewModelGlue.PageNumber);
                 PageLabel.Content = m_ViewModelGlue.PageNumber;
             }
 
         }
 
-        private void showHideControls(Visibility i_Choise)
-        {
-            FixedListBox.Visibility = i_Choise;
-            AcceptButton.Visibility = i_Choise;
-            NextPageButton.Visibility = i_Choise;
-            PreviousPageButton.Visibility = i_Choise;
-        }
 
         private void FixedListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -143,7 +109,7 @@ namespace MainProgramUi
         {
             if (FixedListBox.SelectedItem != null)
             {
-                m_ViewModelGlue.changeRefMovies(MoviesListBox.SelectedItem as Movie, FixedListBox.SelectedItem as Movie);
+                m_ViewModelGlue.ChangeMovies(MoviesListBox.SelectedItem as Movie, FixedListBox.SelectedItem as Movie);
             }
         }
 
@@ -151,7 +117,7 @@ namespace MainProgramUi
         {
             if (MoviesListBox.SelectedItem != null)
             {
-                m_ViewModelGlue.MoviesResults(MoviesListBox.SelectedItem as Movie, ++m_ViewModelGlue.PageNumber);
+                m_ViewModelGlue.MoiveReSearchResults(MoviesListBox.SelectedItem as Movie, ++m_ViewModelGlue.PageNumber);
                 PageLabel.Content = m_ViewModelGlue.PageNumber;
             }
         }
@@ -160,7 +126,7 @@ namespace MainProgramUi
         {
             if (MoviesListBox.SelectedItem != null)
             {
-                m_ViewModelGlue.MoviesResults(MoviesListBox.SelectedItem as Movie, --m_ViewModelGlue.PageNumber);
+                m_ViewModelGlue.MoiveReSearchResults(MoviesListBox.SelectedItem as Movie, --m_ViewModelGlue.PageNumber);
                 PageLabel.Content = m_ViewModelGlue.PageNumber;
             }
         }
@@ -171,6 +137,34 @@ namespace MainProgramUi
             {
                 OverViewLabel.Content = (MoviesListBox.SelectedItem as Movie).Overview;
             }
+        }
+
+        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void showHideControls(Visibility i_Choise)
+        {
+            FixedListBox.Visibility = i_Choise;
+            AcceptButton.Visibility = i_Choise;
+            NextPageButton.Visibility = i_Choise;
+            PreviousPageButton.Visibility = i_Choise;
+        }
+
+
+        private bool movieIsSelected()
+        {
+            bool movieSelected = true;
+            WarrningLabel.Visibility = Visibility.Hidden;
+            if (MoviesListBox.SelectedItem == null)
+            {
+                new System.Threading.Thread(WarrningLabel.startTimedLabel).Start();
+                movieSelected = false;
+
+            }
+
+            return movieSelected;
         }
     }
 }

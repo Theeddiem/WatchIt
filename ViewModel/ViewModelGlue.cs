@@ -29,6 +29,22 @@ namespace ViewModel
             CurrentSettings = new SaveSetting(MoviesFound,StoredFilesInPc);
             reSearchMoviesFound = new ObservableCollection<Movie>();
             PageNumber = 0;
+            LoadSettings();
+        }
+
+        private void LoadSettings()
+        {
+            if (CurrentSettings.LoadMovies())
+            {
+                MoviesFound = CurrentSettings.MoviesFound;
+                LoadImageForEachMovie();
+            }
+
+
+            if (CurrentSettings.LoadFiles())
+            {
+                StoredFilesInPc = CurrentSettings.StoredFilesInPc;
+            }
         }
 
         public void LoadImageForEachMovie()
@@ -147,7 +163,7 @@ namespace ViewModel
             return found;
         }
 
-        public void MoviesResults(Movie i_IncorrentMovie, int i_currentPage) // i_currentPage = 0,3,6,9,12;
+        public void MoiveReSearchResults(Movie i_IncorrentMovie, int i_currentPage) // i_currentPage = 0,3,6,9,12;
         {
 
             if (PageNumber<0)
@@ -210,7 +226,7 @@ namespace ViewModel
             i_reSearchMoviesFound.Add(movie);
         }
 
-        public void changeRefMovies(Movie i_IncorrentMovie,Movie i_CorrectMovie)
+        public void ChangeMovies(Movie i_IncorrentMovie,Movie i_CorrectMovie)
         {
             for (int i = 0; i < MoviesFound.Count; i++)
             {
@@ -236,7 +252,7 @@ namespace ViewModel
             }
         }
 
-        public void sortType(string i_SelectedValue)
+        public void SortMovies(string i_SelectedValue)
         {
             if (MoviesFound.Count > 1)
             {
@@ -267,10 +283,6 @@ namespace ViewModel
             }
 
         }
-
-        /// <summary>
-        /// button on Ui
-        /// </summary>
 
         public void OpenFolder(Video i_Video)
         {

@@ -81,7 +81,8 @@
                             <TextBlock Text="{Binding ReleasedYear}" Margin="5,0,0,0" FontSize="14"  Foreground="White" FontWeight="Bold"/>
                         </StackPanel>
                         <Border BorderThickness="3" Margin="0,5,0,5" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                            <Image Source="{Binding CoverImage}"  Stretch="Fill" Height="215" Width="155"  />
+                            <Image Source="{Binding CoverImage}"  Stretch="Fill" Height="215" Width="155"    RenderOptions.BitmapScalingMode="Fant"
+ />
                         </Border>
 
                         <StackPanel Orientation="Horizontal">
@@ -104,7 +105,8 @@
 
         <Label x:Name="OverViewLabel" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="544,144,0,0" VerticalAlignment="Top" Height="252" Width="269" Foreground="#DDFFFFFF" FontSize="13"/>
         <Image x:Name="CoverImage" Height="403" Margin="497,64,89,204"
-                Width="362" OpacityMask="Black" Grid.Column="1" MouseEnter="CoverImage_MouseEnter">
+                 RenderOptions.BitmapScalingMode="Fant"
+       RenderOptions.EdgeMode="Aliased" Width="362" OpacityMask="Black" Grid.Column="1" MouseEnter="CoverImage_MouseEnter">
 
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
@@ -152,7 +154,13 @@
 
         <Label x:Name="PageLabel" Content="1&#xA;" Grid.Column="1" HorizontalAlignment="Left" Margin="671,612,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Height="40" Width="40"/>
 
-        <ViewUI:TimedLabel x:Name="WarrningLabel" Content="*Select A movie first"  Visibility="Visible"  HorizontalAlignment="Left" Margin="320,30,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF" Width="262" Grid.ColumnSpan="2" />
+        <ViewUI:TimedLabel x:Name="WarrningLabel" Content="*Select A movie first"  Visibility="Hidden"  HorizontalAlignment="Left" Margin="320,30,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF" Width="262" Grid.ColumnSpan="2" />
+        
+     
+        <Button x:Name="SearchBtn" Visibility="Hidden" HorizontalAlignment="Left" Margin="0,15,0,0" VerticalAlignment="Top" Width="68" Height="56" Click="SearchBtn_Click" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}">
+            <materialDesign:PackIcon Kind="Search" Foreground="white" Width="36" Height="48" />
+        </Button>
 
+        
     </Grid>
 </Window>
