@@ -270,7 +270,7 @@ namespace ViewModel
 
                 if (i_SelectedValue == "By Genre")
                 {
-                    filterd = filterd.OrderByDescending(w => w.Genre).ToList();
+                    filterd = filterd.OrderBy(w => w.Genre).ToList();
 
                 }
 
