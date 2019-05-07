@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,18 +10,23 @@ namespace MainProgramUi
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
+
     public partial class MainWindow : Window
     {
         ViewModelGlue m_ViewModelGlue = new ViewModelGlue();
-
+        Movie m_CurrentSelectedMovie;
+        
         public MainWindow()
         {
             InitializeComponent();
 
             getDataListBox.ItemsSource = m_ViewModelGlue.StoredFilesInPc;
             MoviesListBox.ItemsSource = m_ViewModelGlue.MoviesFound;
-            FixedListBox.ItemsSource = m_ViewModelGlue.reSearchMoviesFound;
+            FixedListBox.ItemsSource = m_ViewModelGlue.movieChangePageManager.reSearchMoviesFound;
 
+            m_CurrentSelectedMovie = MoviesListBox.SelectedItem as Movie;
         }
 
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
@@ -31,13 +37,13 @@ namespace MainProgramUi
         private void SortTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem select = (ComboBoxItem)SortTypeComboBox.SelectedValue;
-
             m_ViewModelGlue.SortMovies(select.Content.ToString());
         }
 
         private void MoviesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (MoviesListBox.SelectedItem != null)
+
+            if (m_CurrentSelectedMovie != null)
             {
                 CoverImage.Source = (MoviesListBox.SelectedItem as Movie).CoverImage;
             }
@@ -49,26 +55,25 @@ namespace MainProgramUi
 
         private void ImdbBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (movieIsSelected())
+            if(!m_ViewModelGlue.OpenImdbSite(m_CurrentSelectedMovie))
             {
-                m_ViewModelGlue.OpenImdbSite(MoviesListBox.SelectedItem as Video);
-
+                active2secondLabelEffect();
             }
         }
 
         private void PlayBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (movieIsSelected())
+            if(!m_ViewModelGlue.PlayFile(m_CurrentSelectedMovie))
             {
-                m_ViewModelGlue.PlayFile(MoviesListBox.SelectedItem as Video);
+                active2secondLabelEffect();
             }
         }
 
         private void OpenFolderBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (movieIsSelected())
+            if(!m_ViewModelGlue.OpenFolder(m_CurrentSelectedMovie))
             {
-                m_ViewModelGlue.OpenFolder(MoviesListBox.SelectedItem as Video);
+                active2secondLabelEffect();
             }
         }
 
@@ -79,14 +84,32 @@ namespace MainProgramUi
                 showHideControls(Visibility.Hidden);
             }
 
-            else if (movieIsSelected())
+            else if (m_CurrentSelectedMovie != null)
             {
                 showHideControls(Visibility.Visible);
-                m_ViewModelGlue.PageNumber = 0;
-                m_ViewModelGlue.MoiveReSearchResults(MoviesListBox.SelectedItem as Movie, m_ViewModelGlue.PageNumber);
-                PageLabel.Content = m_ViewModelGlue.PageNumber;
+
+                m_ViewModelGlue.movieChangePageManager.MoiveReSearchResults(m_CurrentSelectedMovie, m_ViewModelGlue.movieChangePageManager.PageNumber);
+                PageLabel.Content = m_ViewModelGlue.movieChangePageManager.PageNumber;
             }
 
+        }
+
+        private void NextPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (m_CurrentSelectedMovie != null)
+            {
+                m_ViewModelGlue.movieChangePageManager.MoiveReSearchResults(m_CurrentSelectedMovie, ++m_ViewModelGlue.movieChangePageManager.PageNumber);
+                PageLabel.Content = m_ViewModelGlue.movieChangePageManager.PageNumber;
+            }
+        }
+
+        private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (m_CurrentSelectedMovie != null)
+            {
+                m_ViewModelGlue.movieChangePageManager.MoiveReSearchResults(m_CurrentSelectedMovie, --m_ViewModelGlue.movieChangePageManager.PageNumber);
+                PageLabel.Content = m_ViewModelGlue.movieChangePageManager.PageNumber;
+            }
         }
 
 
@@ -112,30 +135,13 @@ namespace MainProgramUi
                 m_ViewModelGlue.ChangeMovies(MoviesListBox.SelectedItem as Movie, FixedListBox.SelectedItem as Movie);
             }
         }
-
-        private void NextPageButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (MoviesListBox.SelectedItem != null)
-            {
-                m_ViewModelGlue.MoiveReSearchResults(MoviesListBox.SelectedItem as Movie, ++m_ViewModelGlue.PageNumber);
-                PageLabel.Content = m_ViewModelGlue.PageNumber;
-            }
-        }
-
-        private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (MoviesListBox.SelectedItem != null)
-            {
-                m_ViewModelGlue.MoiveReSearchResults(MoviesListBox.SelectedItem as Movie, --m_ViewModelGlue.PageNumber);
-                PageLabel.Content = m_ViewModelGlue.PageNumber;
-            }
-        }
-
+    
         private void CoverImage_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if (MoviesListBox.SelectedItem != null)
+
+            if (m_CurrentSelectedMovie != null)
             {
-                OverViewLabel.Content = (MoviesListBox.SelectedItem as Movie).Overview;
+                OverViewLabel.Content = m_CurrentSelectedMovie.Overview;
             }
         }
 
@@ -152,19 +158,16 @@ namespace MainProgramUi
             PreviousPageButton.Visibility = i_Choise;
         }
 
-
-        private bool movieIsSelected()
+        private void active2secondLabelEffect()
         {
-            bool movieSelected = true;
-            WarrningLabel.Visibility = Visibility.Hidden;
-            if (MoviesListBox.SelectedItem == null)
-            {
-                new System.Threading.Thread(WarrningLabel.startTimedLabel).Start();
-                movieSelected = false;
+            new Thread(WarrningLabel.startTimedLabel).Start();
+        }
 
-            }
+        private Video selectedAsVideo()
+        {
 
-            return movieSelected;
+            return MoviesListBox.SelectedItem as Video;
+
         }
     }
 }

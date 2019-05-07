@@ -10,16 +10,20 @@ using TMDbLib.Objects.Search;
 
 namespace ViewModel
 {
+    public delegate void CurrentActionMade();
+
     public class ViewModelGlue
     {
 
         public ObservableCollection<Movie> MoviesFound { get; set; }
         public ObservableCollection<FileInfo> StoredFilesInPc { get; set; }
-        public ObservableCollection<Movie> reSearchMoviesFound  { get; set; }
+        //public ObservableCollection<Movie> reSearchMoviesFound  { get; set; }
         public SaveSetting CurrentSettings { get; }
         private TMDbClient m_Client;
+        public MovieChangePageManager movieChangePageManager { get; set; }
 
-        public int PageNumber { get; set; }
+
+        //public int PageNumber { get; set; }
 
         public ViewModelGlue()
         {
@@ -27,8 +31,11 @@ namespace ViewModel
             MoviesFound = new ObservableCollection<Movie>();
             StoredFilesInPc = new ObservableCollection<FileInfo>();
             CurrentSettings = new SaveSetting(MoviesFound,StoredFilesInPc);
-            reSearchMoviesFound = new ObservableCollection<Movie>();
-            PageNumber = 0;
+            //reSearchMoviesFound = new ObservableCollection<Movie>();
+            movieChangePageManager = new MovieChangePageManager(m_Client);
+
+            //PageNumber = 0;
+
             LoadSettings();
         }
 
@@ -163,68 +170,6 @@ namespace ViewModel
             return found;
         }
 
-        public void MoiveReSearchResults(Movie i_IncorrentMovie, int i_currentPage) // i_currentPage = 0,3,6,9,12;
-        {
-
-            if (PageNumber<0)
-            {
-                PageNumber = 0;
-            }
-            reSearchMoviesFound.Clear();
-            string fileName = i_IncorrentMovie.CuttedFileName;
-            SearchContainer<SearchMovie> results = m_Client.SearchMovieAsync(fileName).Result;
-            byte numOfResultsWanted = 3;
-
-            for (int j = fileName.Length - 1; j >= 0; j--)
-            {
-                if (char.IsSeparator(fileName[j]))
-                {
-                    fileName = fileName.Substring(0, j);
-                    results = m_Client.SearchMovieAsync(fileName).Result;
-
-                    if (results.TotalResults / numOfResultsWanted >= 1) // at least 3 results 
-                    {
-                        int perPage = i_currentPage * numOfResultsWanted + numOfResultsWanted;
-                        int index = i_currentPage * numOfResultsWanted;
-                        while (index < results.TotalResults && index < perPage)
-                        {
-                            if (results.Results[index].MediaType == MediaType.Movie)
-                            {
-                                createMovieInstance(results.Results[index].Id, i_IncorrentMovie, reSearchMoviesFound);
-                            }
-
-                            index++;
-                        }
-
-                        break;
-
-                    }
-
-                    else // if less than 3 results, take all and that's it.
-                    {
-                        foreach (var item in results.Results)
-                        {
-                            if (item.MediaType == MediaType.Movie)
-                            {
-                                createMovieInstance(item.Id, i_IncorrentMovie, reSearchMoviesFound);
-                            }
-                        }
-
-                    }
-                    break;
-                }            
-            }
-        }
-
-        private void createMovieInstance (int i_results,Movie i_IncorrentMovie, ObservableCollection<Movie> i_reSearchMoviesFound)
-        {
-            Movie movie = new Movie();
-            movie.ApiMovie = m_Client.GetMovieAsync(i_results).Result;
-            movie.InitializeClass();
-            movie.FilePath = i_IncorrentMovie.FilePath;
-            movie.CuttedFileName = i_IncorrentMovie.CuttedFileName;
-            i_reSearchMoviesFound.Add(movie);
-        }
 
         public void ChangeMovies(Movie i_IncorrentMovie,Movie i_CorrectMovie)
         {
@@ -284,29 +229,66 @@ namespace ViewModel
 
         }
 
-        public void OpenFolder(Video i_Video)
+        public bool OpenFolder(Video i_Video)
         {
-            string folderPath = Path.GetDirectoryName(i_Video.FilePath);
-            if (Directory.Exists(folderPath))
+
+            bool execute = false;
+
+            if (checkIfSelected(i_Video))
             {
-                System.Diagnostics.Process.Start(folderPath);
+                string folderPath = Path.GetDirectoryName(i_Video.FilePath);
+                if (Directory.Exists(folderPath))
+                {
+                    System.Diagnostics.Process.Start(folderPath);
+                }
+                execute = true;
             }
+
+            return execute;
         }
 
-        public void PlayFile(Video i_Video)
+        public bool PlayFile(Video i_Video)
         {
-            string filePath = i_Video.FilePath;
-            if (File.Exists(filePath))
+            bool execute = false;
+
+            if (checkIfSelected(i_Video))
             {
-                System.Diagnostics.Process.Start(filePath);
+                string filePath = i_Video.FilePath;
+                if (File.Exists(filePath))
+                {
+                    System.Diagnostics.Process.Start(filePath);
+                }
+                execute = true;
             }
+
+            return execute;
         }
 
-        public void OpenImdbSite(Video i_Video)
+        public bool OpenImdbSite(Video i_Video)
         {
-            string imdbSite = string.Format("https://www.imdb.com/title/{0}", i_Video.ImdbId);
-            System.Diagnostics.Process.Start(imdbSite);
+            bool execute = false;
+
+            if(checkIfSelected(i_Video))
+            {
+                string imdbSite = string.Format("https://www.imdb.com/title/{0}", i_Video.ImdbId);
+                System.Diagnostics.Process.Start(imdbSite);
+                execute = true;
+            }
+
+            return execute; 
+
         }
 
+        public bool checkIfSelected(Video i_Video)
+        {
+            bool selected = false; 
+
+            if(i_Video != null)
+            {
+                selected = true;
+            }
+
+            return selected;
+        }
     }
 }
