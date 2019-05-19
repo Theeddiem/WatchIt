@@ -25,8 +25,6 @@ namespace MainProgramUi
             getDataListBox.ItemsSource = m_ViewModelGlue.StoredFilesInPc;
             MoviesListBox.ItemsSource = m_ViewModelGlue.MoviesFound;
             FixedListBox.ItemsSource = m_ViewModelGlue.movieChangePageManager.reSearchMoviesFound;
-
-
         }
 
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
@@ -43,17 +41,9 @@ namespace MainProgramUi
         private void MoviesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             m_CurrentSelectedMovie = MoviesListBox.SelectedItem as Movie;
-
-            if (m_CurrentSelectedMovie != null)
-            {
-                
-                CoverImage.Source = (m_CurrentSelectedMovie).CoverImage;
-            }
-
+            CoverImage.Source = (m_CurrentSelectedMovie).CoverImage;
             showHideControls(Visibility.Hidden);
         }
-
-
 
         private void ImdbBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -81,9 +71,9 @@ namespace MainProgramUi
 
         private void EditMovieBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (FixedListBox.Visibility == Visibility.Visible)
+            if (FixedListBox.Visibility == Visibility.Visible) // for second click on the button to close fixedlist
             {
-                showHideControls(Visibility.Hidden);
+                showHideControls(Visibility.Hidden); 
             }
 
             else if (m_CurrentSelectedMovie != null)
@@ -129,7 +119,6 @@ namespace MainProgramUi
 
         }
 
-
         private void Window_Closed(object sender, EventArgs e)
         {
             m_ViewModelGlue.CurrentSettings.Save();
@@ -152,11 +141,6 @@ namespace MainProgramUi
             }
         }
 
-        private void SearchBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void showHideControls(Visibility i_Choise)
         {
             FixedListBox.Visibility = i_Choise;
@@ -170,13 +154,10 @@ namespace MainProgramUi
             new Thread(WarrningLabel.startTimedLabel).Start();
         }
 
-        private Video selectedAsVideo()
-        {
+        //private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        //{
 
-            return MoviesListBox.SelectedItem as Video;
-
-        }
-
+        //}
     }
 }
 

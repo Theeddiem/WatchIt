@@ -153,9 +153,9 @@
         <ViewUI:TimedLabel x:Name="WarrningLabel" Content="*Select A movie first"  Visibility="Hidden"  HorizontalAlignment="Left" Margin="295,30,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF" Width="262" Grid.ColumnSpan="2" />
 
 
-        <Button x:Name="SearchBtn" Visibility="Hidden" HorizontalAlignment="Left" Margin="0,15,0,0" VerticalAlignment="Top" Width="68" Height="56" Click="SearchBtn_Click" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}">
+        <!--<Button x:Name="SearchBtn" Visibility="Hidden" HorizontalAlignment="Left" Margin="0,15,0,0" VerticalAlignment="Top" Width="68" Height="56" Click="SearchBtn_Click" RenderTransformOrigin="0.375,1.089" Grid.Column="1" BorderThickness="0" Background="{x:Null}">
             <materialDesign:PackIcon Kind="Search" Foreground="white" Width="36" Height="48" />
-        </Button>
+        </Button>-->
 
 
     </Grid>

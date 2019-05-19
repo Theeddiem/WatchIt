@@ -170,7 +170,6 @@ namespace ViewModel
             return found;
         }
 
-
         public void ChangeMovies(Movie i_IncorrentMovie,Movie i_CorrectMovie)
         {
             for (int i = 0; i < MoviesFound.Count; i++)
