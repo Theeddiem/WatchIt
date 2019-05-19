@@ -15,16 +15,16 @@ namespace MainProgramUi
 
     public partial class MainWindow : Window
     {
-        ViewModelGlue m_ViewModelGlue = new ViewModelGlue();
-        Movie m_CurrentSelectedMovie;
+        private ViewModelGlue m_ViewModelGlue = new ViewModelGlue();
+        private Movie m_CurrentSelectedMovie;
         
         public MainWindow()
         {
             InitializeComponent();
 
-            getDataListBox.ItemsSource = m_ViewModelGlue.StoredFilesInPc;
+            getDataListBox.ItemsSource = m_ViewModelGlue.StoredFilesInPc; 
             MoviesListBox.ItemsSource = m_ViewModelGlue.MoviesFound;
-            FixedListBox.ItemsSource = m_ViewModelGlue.movieChangePageManager.reSearchMoviesFound;
+            FixedListBox.ItemsSource = m_ViewModelGlue.MovieChangePageManager.reSearchMoviesFound;
         }
 
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
@@ -41,6 +41,7 @@ namespace MainProgramUi
         private void MoviesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             m_CurrentSelectedMovie = MoviesListBox.SelectedItem as Movie;
+        
             CoverImage.Source = (m_CurrentSelectedMovie).CoverImage;
             showHideControls(Visibility.Hidden);
         }
@@ -80,8 +81,8 @@ namespace MainProgramUi
             {
                 showHideControls(Visibility.Visible);
 
-                m_ViewModelGlue.movieChangePageManager.MoiveReSearchResults(m_CurrentSelectedMovie);
-                PageLabel.Content = m_ViewModelGlue.movieChangePageManager.PageNumber;
+                m_ViewModelGlue.MovieChangePageManager.MoiveReSearchResults(m_CurrentSelectedMovie);
+                PageLabel.Content = m_ViewModelGlue.MovieChangePageManager.PageNumber;
             }
 
             else if(m_CurrentSelectedMovie == null)
@@ -95,8 +96,8 @@ namespace MainProgramUi
         {
             if (m_CurrentSelectedMovie != null)
             {
-                m_ViewModelGlue.movieChangePageManager.NextPage(m_CurrentSelectedMovie);
-                PageLabel.Content = m_ViewModelGlue.movieChangePageManager.PageNumber;
+                m_ViewModelGlue.MovieChangePageManager.NextPage(m_CurrentSelectedMovie);
+                PageLabel.Content = m_ViewModelGlue.MovieChangePageManager.PageNumber;
             }
         }
 
@@ -104,8 +105,8 @@ namespace MainProgramUi
         {
             if (m_CurrentSelectedMovie != null)
             {
-                m_ViewModelGlue.movieChangePageManager.PreviousPage(m_CurrentSelectedMovie);
-                PageLabel.Content = m_ViewModelGlue.movieChangePageManager.PageNumber;
+                m_ViewModelGlue.MovieChangePageManager.PreviousPage(m_CurrentSelectedMovie);
+                PageLabel.Content = m_ViewModelGlue.MovieChangePageManager.PageNumber;
             }
         }
 

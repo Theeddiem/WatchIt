@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
@@ -17,13 +18,10 @@ namespace ViewModel
 
         public ObservableCollection<Movie> MoviesFound { get; set; }
         public ObservableCollection<FileInfo> StoredFilesInPc { get; set; }
-        //public ObservableCollection<Movie> reSearchMoviesFound  { get; set; }
         public SaveSetting CurrentSettings { get; }
         private TMDbClient m_Client;
-        public MovieChangePageManager movieChangePageManager { get; set; }
+        public MovieChangePageManager MovieChangePageManager { get; set; }
 
-
-        //public int PageNumber { get; set; }
 
         public ViewModelGlue()
         {
@@ -31,11 +29,7 @@ namespace ViewModel
             MoviesFound = new ObservableCollection<Movie>();
             StoredFilesInPc = new ObservableCollection<FileInfo>();
             CurrentSettings = new SaveSetting(MoviesFound,StoredFilesInPc);
-            //reSearchMoviesFound = new ObservableCollection<Movie>();
-            movieChangePageManager = new MovieChangePageManager(m_Client);
-
-            //PageNumber = 0;
-
+            MovieChangePageManager = new MovieChangePageManager(m_Client);
             LoadSettings();
         }
 
@@ -44,7 +38,8 @@ namespace ViewModel
             if (CurrentSettings.LoadMovies())
             {
                 MoviesFound = CurrentSettings.MoviesFound;
-                LoadImageForEachMovie();
+              //  new Thread(LoadImageForEachMovie).Start();
+               LoadImageForEachMovie();
             }
 
 
@@ -56,6 +51,7 @@ namespace ViewModel
 
         public void LoadImageForEachMovie()
         {
+           
             foreach (var item in MoviesFound)
             {
                 item.initializeImageCoverImage();
