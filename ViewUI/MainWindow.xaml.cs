@@ -26,7 +26,7 @@ namespace MainProgramUi
             MoviesListBox.ItemsSource = m_ViewModelGlue.MoviesFound;
             FixedListBox.ItemsSource = m_ViewModelGlue.movieChangePageManager.reSearchMoviesFound;
 
-            m_CurrentSelectedMovie = MoviesListBox.SelectedItem as Movie;
+
         }
 
         private void GetMoviesFromPc_Click(object sender, RoutedEventArgs e)
@@ -42,10 +42,12 @@ namespace MainProgramUi
 
         private void MoviesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            m_CurrentSelectedMovie = MoviesListBox.SelectedItem as Movie;
 
             if (m_CurrentSelectedMovie != null)
             {
-                CoverImage.Source = (MoviesListBox.SelectedItem as Movie).CoverImage;
+                
+                CoverImage.Source = (m_CurrentSelectedMovie).CoverImage;
             }
 
             showHideControls(Visibility.Hidden);
@@ -90,6 +92,11 @@ namespace MainProgramUi
 
                 m_ViewModelGlue.movieChangePageManager.MoiveReSearchResults(m_CurrentSelectedMovie, m_ViewModelGlue.movieChangePageManager.PageNumber);
                 PageLabel.Content = m_ViewModelGlue.movieChangePageManager.PageNumber;
+            }
+
+            else if(m_CurrentSelectedMovie == null)
+            {
+                active2secondLabelEffect();
             }
 
         }
@@ -169,6 +176,7 @@ namespace MainProgramUi
             return MoviesListBox.SelectedItem as Video;
 
         }
+
     }
 }
 
