@@ -12,70 +12,78 @@ namespace ViewModel
 {
     public class MovieChangePageManager
     {
-        public int PageNumber { get; set; }
+        public int PageNumber { get; set; } = 0;
         public ObservableCollection<Movie> reSearchMoviesFound { get; set; }
         public TMDbClient m_Client { get; set; }
+        public byte NumOfResultsWanted { get; set; } = 3;
 
-        public MovieChangePageManager(TMDbClient i_Client/*int i_PageNumber, ObservableCollection<Movie> i_reSearchMoviesFound, TMDbClient i_Client*/)
+        public MovieChangePageManager(TMDbClient i_Client)
         {
-            PageNumber = 0;
             reSearchMoviesFound = new ObservableCollection<Movie>();
             m_Client = i_Client;
-
         }
 
-        public void MoiveReSearchResults(Video i_IncorrentMovie, int i_currentPage) // i_currentPage = 0,3,6,9,12;
+        public void NextPage(Video i_IncorrentMovie)
         {
+            PageNumber++;
+            MoiveReSearchResults(i_IncorrentMovie);
+        }
 
-
-            if (PageNumber < 0)
+        public void PreviousPage(Video i_IncorrentMovie)
+        {
+            if (PageNumber != 0) // makeing sure I won't go under 0 for pageing
             {
-                PageNumber = 0;
+                PageNumber--;
+                MoiveReSearchResults(i_IncorrentMovie);
             }
-            reSearchMoviesFound.Clear();
-            string fileName = i_IncorrentMovie.CuttedFileName;
-            SearchContainer<SearchMovie> results = m_Client.SearchMovieAsync(fileName).Result;
-            byte numOfResultsWanted = 3;
+        }
 
-            for (int j = fileName.Length - 1; j >= 0; j--)
-            {
-                if (char.IsSeparator(fileName[j]))
+        public void MoiveReSearchResults(Video i_IncorrentMovie) 
+        {
+                reSearchMoviesFound.Clear();
+                string fileName = i_IncorrentMovie.CuttedFileName;
+                SearchContainer<SearchMovie> results = m_Client.SearchMovieAsync(fileName).Result;
+
+                for (int j = fileName.Length - 1; j >= 0; j--)
                 {
-                    fileName = fileName.Substring(0, j);
-                    results = m_Client.SearchMovieAsync(fileName).Result;
-
-                    if (results.TotalResults / numOfResultsWanted >= 1) // at least 3 results 
+                    if (char.IsSeparator(fileName[j]))
                     {
-                        int perPage = i_currentPage * numOfResultsWanted + numOfResultsWanted;
-                        int index = i_currentPage * numOfResultsWanted;
-                        while (index < results.TotalResults && index < perPage)
+                        fileName = fileName.Substring(0, j);
+                        results = m_Client.SearchMovieAsync(fileName).Result;
+
+                        if (results.TotalResults / NumOfResultsWanted >= 1) // at least 3 results 
                         {
-                            if (results.Results[index].MediaType == MediaType.Movie)
+                            int perPage = PageNumber * NumOfResultsWanted + NumOfResultsWanted;
+                            int index = PageNumber * NumOfResultsWanted;
+                            while (index < results.TotalResults && index < perPage)
                             {
-                                createMovieInstance(results.Results[index].Id, i_IncorrentMovie, reSearchMoviesFound);
+                                if (results.Results[index].MediaType == MediaType.Movie)
+                                {
+                                    createMovieInstance(results.Results[index].Id, i_IncorrentMovie, reSearchMoviesFound);
+                                }
+
+                                index++;
                             }
 
-                            index++;
+                            break;
+
                         }
 
+                        else // if less than 3 results, take all and that's it.
+                        {
+                            foreach (var item in results.Results)
+                            {
+                                if (item.MediaType == MediaType.Movie)
+                                {
+                                    createMovieInstance(item.Id, i_IncorrentMovie, reSearchMoviesFound);
+                                }
+                            }
+
+                        }
                         break;
-
                     }
-
-                    else // if less than 3 results, take all and that's it.
-                    {
-                        foreach (var item in results.Results)
-                        {
-                            if (item.MediaType == MediaType.Movie)
-                            {
-                                createMovieInstance(item.Id, i_IncorrentMovie, reSearchMoviesFound);
-                            }
-                        }
-
-                    }
-                    break;
                 }
-            }
+            
         }
 
         private void createMovieInstance(int i_results, Video i_IncorrentMovie, ObservableCollection<Movie> i_reSearchMoviesFound)

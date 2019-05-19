@@ -80,7 +80,7 @@ namespace MainProgramUi
             {
                 showHideControls(Visibility.Visible);
 
-                m_ViewModelGlue.movieChangePageManager.MoiveReSearchResults(m_CurrentSelectedMovie, m_ViewModelGlue.movieChangePageManager.PageNumber);
+                m_ViewModelGlue.movieChangePageManager.MoiveReSearchResults(m_CurrentSelectedMovie);
                 PageLabel.Content = m_ViewModelGlue.movieChangePageManager.PageNumber;
             }
 
@@ -95,7 +95,7 @@ namespace MainProgramUi
         {
             if (m_CurrentSelectedMovie != null)
             {
-                m_ViewModelGlue.movieChangePageManager.MoiveReSearchResults(m_CurrentSelectedMovie, ++m_ViewModelGlue.movieChangePageManager.PageNumber);
+                m_ViewModelGlue.movieChangePageManager.NextPage(m_CurrentSelectedMovie);
                 PageLabel.Content = m_ViewModelGlue.movieChangePageManager.PageNumber;
             }
         }
@@ -104,7 +104,7 @@ namespace MainProgramUi
         {
             if (m_CurrentSelectedMovie != null)
             {
-                m_ViewModelGlue.movieChangePageManager.MoiveReSearchResults(m_CurrentSelectedMovie, --m_ViewModelGlue.movieChangePageManager.PageNumber);
+                m_ViewModelGlue.movieChangePageManager.PreviousPage(m_CurrentSelectedMovie);
                 PageLabel.Content = m_ViewModelGlue.movieChangePageManager.PageNumber;
             }
         }
