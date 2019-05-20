@@ -15,7 +15,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="WatchIt" Height="700" Width="1150" ResizeMode="CanMinimize" Closed="Window_Closed">
+        Title="WatchIt" Height="700" Width="1150" ResizeMode="CanResize" Closed="Window_Closed">
 
     <Grid >
         <Grid.Background>
@@ -47,8 +47,8 @@
         </StackPanel>
 
 
-        <ComboBox x:Name="SortTypeComboBox" materialDesign:HintAssist.Hint="Sort"  
-        materialDesign:HintAssist.HintOpacity="1" HorizontalAlignment="Left" Margin="610,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="SortTypeComboBox_SelectionChanged" SelectedIndex="-1" RenderTransformOrigin="-0.138,0.545" Grid.Column="1" BorderBrush="#89020000" BorderThickness="0" Foreground="#DDC1BEBE" Background="Transparent">
+        <ComboBox x:Name="SortTypeComboBox" materialDesign:HintAssist.Hint=" Sort"  
+        materialDesign:HintAssist.HintOpacity="1" HorizontalAlignment="Left" Margin="230,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="SortTypeComboBox_SelectionChanged" SelectedIndex="-1" RenderTransformOrigin="-0.138,0.545" Grid.Column="1" Foreground="#DDC1BEBE" Background="Transparent">
             <ComboBoxItem Content="By Year" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem Content="By Rating" HorizontalAlignment="Left" Width="118" Background="#00000000"/>
             <ComboBoxItem Content="By Genre" HorizontalAlignment="Left" Width="118"/>
