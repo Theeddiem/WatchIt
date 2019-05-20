@@ -14,10 +14,9 @@ namespace ViewModel
         [XmlIgnore]
         public TMDbLib.Objects.Movies.Movie ApiMovie { get; set; }
 
-        public Movie()
-        {
-   
-        }
+        public Movie(){ } //Parameterless constructor needed for Serialization
+
+
         public void InitializeClass()
         {
             if (ApiMovie != null)
@@ -42,7 +41,7 @@ namespace ViewModel
             for (int i = 0; i < ApiMovie.Overview.Length; i++)
             {
                 genres.Append(ApiMovie.Overview[i]);
-                if(char.IsSeparator(ApiMovie.Overview[i]) && count / 35 >=1)
+                if(char.IsSeparator(ApiMovie.Overview[i]) && count / 35 >=1) // dropline affter every 35 chars
                 {
                     genres.Append("\n");
                     count = 0;

@@ -41,8 +41,11 @@ namespace MainProgramUi
         private void MoviesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             m_CurrentSelectedMovie = MoviesListBox.SelectedItem as Movie;
-        
-            CoverImage.Source = (m_CurrentSelectedMovie).CoverImage;
+
+            if (m_CurrentSelectedMovie != null)
+            {
+                CoverImage.Source = (m_CurrentSelectedMovie).CoverImage;
+            }
             showHideControls(Visibility.Hidden);
         }
 

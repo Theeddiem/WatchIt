@@ -51,10 +51,11 @@ namespace ViewModel
                         fileName = fileName.Substring(0, j);
                         results = m_Client.SearchMovieAsync(fileName).Result;
 
-                        if (results.TotalResults / NumOfResultsWanted >= 1) // at least 3 results 
+                        if (results.TotalResults / NumOfResultsWanted >= 1) // at least 3 results found
                         {
                             int perPage = PageNumber * NumOfResultsWanted + NumOfResultsWanted;
                             int index = PageNumber * NumOfResultsWanted;
+
                             while (index < results.TotalResults && index < perPage)
                             {
                                 if (results.Results[index].MediaType == MediaType.Movie)
@@ -66,7 +67,6 @@ namespace ViewModel
                             }
 
                             break;
-
                         }
 
                         else // if less than 3 results, take all and that's it.
